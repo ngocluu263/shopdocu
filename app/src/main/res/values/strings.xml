@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">ShopDoCu</string>
     <string name="action_settings">Settings</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Email">example: example@example.com</string>
+    <string name="Phone"></string>
+    <string name="button_finish">Finish</string>
+    <string name="dateofbirth">01/01/1900</string>
 </resources>
