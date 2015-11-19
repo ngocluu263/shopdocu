@@ -5,12 +5,10 @@ package com.swd2015.shopdocu.Minh;
  */
 public class NavigationItem {
     private String title;
-    private String subtitle;
     private int resIcon;
 
-    public NavigationItem(String title,String subtitle, int resIcon){
+    public NavigationItem(String title, int resIcon){
         this.title=title;
-        this.subtitle=subtitle;
         this.resIcon=resIcon;
     };
 
@@ -18,9 +16,6 @@ public class NavigationItem {
         return this.title;
     }
 
-    public String getSubtitle(){
-        return this.subtitle;
-    }
 
     public int getResIcon(){
         return this.resIcon;
@@ -28,9 +23,6 @@ public class NavigationItem {
 
     public void setTitle(String title){
         this.title=title;
-    }
-    public void setSubtitle(String subtitle){
-        this.subtitle=subtitle;
     }
 
     public void setResIcon(int resIcon){

@@ -33,12 +33,10 @@ public class NavListAdapter extends ArrayAdapter<NavigationItem>{
         View v=View.inflate(context,resLayout,null);
 
         TextView txtTitle=(TextView) v.findViewById(R.id.title);
-        TextView txtSubtitle=(TextView) v.findViewById(R.id.subtitle);
         ImageView icon= (ImageView) v.findViewById(R.id.nav_icon);
 
         NavigationItem navItem=listNavItems.get(position);
         txtTitle.setText(navItem.getTitle());
-        txtSubtitle.setText(navItem.getSubtitle());
         icon.setImageResource(navItem.getResIcon());
 
         return v;
