@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- Editext for Search -->
+    <EditText android:id="@+id/inputSearch"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:hint="@string/search_hint"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="83dp"
+        android:layout_centerHorizontal="true"
+        android:background="#EEEEEE" />
+
+    <!-- List View -->
+
+    <ImageView
+        android:id="@+id/search_icon"
+        android:src="@drawable/ic_search_icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_above="@+id/category_text_view"
+        android:layout_alignRight="@+id/inputSearch"
+        android:layout_alignEnd="@+id/inputSearch" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Danh mục:"
+        android:id="@+id/category_text_view"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:layout_marginTop="96dp"
+        android:layout_below="@+id/inputSearch"
+        android:layout_alignLeft="@+id/inputSearch"
+        android:layout_alignStart="@+id/inputSearch" />
+
+    <Spinner
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:id="@+id/category_spinner"
+        android:layout_above="@+id/orderBy_text_view"
+        android:layout_alignRight="@+id/inputSearch"
+        android:layout_alignEnd="@+id/inputSearch"
+        android:layout_alignTop="@+id/category_text_view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sắp xếp theo:"
+        android:id="@+id/orderBy_text_view"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:layout_marginTop="69dp"
+        android:layout_below="@+id/category_text_view"
+        android:layout_alignLeft="@+id/category_text_view"
+        android:layout_alignStart="@+id/category_text_view" />
+
+
+    <Spinner
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:id="@+id/orderBy_spinner"
+        android:layout_alignBottom="@+id/orderBy_text_view"
+        android:layout_alignLeft="@+id/category_spinner"
+        android:layout_alignStart="@+id/category_spinner"
+        android:layout_alignTop="@+id/orderBy_text_view" />
+
+
+</RelativeLayout>
+
+
