@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class HomePageActivity extends ActionBarActivity {
     List<Fragment> listFragments;
 
     ActionBarDrawerToggle actionBarDrawerToggle;
+
+    ProductService productService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

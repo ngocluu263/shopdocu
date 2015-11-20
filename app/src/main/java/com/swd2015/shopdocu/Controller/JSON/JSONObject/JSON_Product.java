@@ -1,4 +1,4 @@
-package com.swd2015.shopdocu.Controller.JSONObject;
+package com.swd2015.shopdocu.Controller.JSON.JSONObject;
 
 import com.google.gson.annotations.SerializedName;
 

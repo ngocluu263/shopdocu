@@ -1,15 +1,9 @@
-package com.swd2015.shopdocu.Controller.Service;
+package com.swd2015.shopdocu.Controller.JSON.Util;
 
 /**
  * Created by Quang on 16-Nov-15.
  */
 import android.os.AsyncTask;
-
-import com.google.gson.Gson;
-import com.swd2015.shopdocu.Controller.Activity.MainActivity;
-import com.swd2015.shopdocu.Controller.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Modal.DTO.Image;
-import com.swd2015.shopdocu.Modal.DTO.Product;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,20 +18,22 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 
 public class JSONParser extends AsyncTask<String, String, String> {
 
-    MainActivity mainActivity;
-    private static String API = "http://swd2015-001-site1.1tempurl.com/api/product";
+    public JSONTask API;
+    public String ID = "";
     HttpURLConnection urlConnection;
 
-    public JSONParser(MainActivity activity){
-        mainActivity = activity;
+    public JSONParser(){
+
     }
 
-    private String readAll(Reader rd) throws IOException {
+//    public JSONParser(MainActivity activity){
+//        mainActivity = activity;
+//    }
+
+    public String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
         while ((cp = rd.read()) != -1) {
@@ -49,29 +45,37 @@ public class JSONParser extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... params) {
         InputStream is = null;
+        String jsonText = "";
+        JSONObject jsonObject;
         try {
-            URL url = new URL(API);
+            URL url = new URL(API.toString() + ID);
             urlConnection = (HttpURLConnection) url.openConnection();
             is = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = readAll(rd);
+            jsonText = readAll(rd);
             JSONArray json = new JSONArray(jsonText);
             return json.toString();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException ex){
             ex.printStackTrace();
+            try {
+                jsonObject = new JSONObject(jsonText);
+                return jsonObject.toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-        return null;
+        return "";
     }
 
-    @Override
-    protected void onPostExecute(String json) {
-        Gson gson = new Gson();
-        JSON_Product[] products = gson.fromJson(json.toString(), JSON_Product[].class);
-        JSON_Product product = products[0];
-        System.out.println("-- Image URL: " + product.getImage());
-        mainActivity.example = product.getImage();
-    }
+//    @Override
+//    protected void onPostExecute(String json) {
+//        Gson gson = new Gson();
+//        JSON_Product[] products = gson.fromJson(json.toString(), JSON_Product[].class);
+//        JSON_Product product = products[0];
+//        System.out.println("-- Image URL: " + product.getImage());
+//        mainActivity.example = product.getImage();
+//    }
     
 }
