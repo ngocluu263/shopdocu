@@ -1,6 +1,7 @@
 package com.swd2015.shopdocu.Minh;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -66,8 +67,9 @@ public class HomePageActivity extends ActionBarActivity {
         listFragments.add(new fragment_home());
         listFragments.add(new fragment_about());
         listFragments.add(new fragment_setting());
-       // FragmentManager fragmentManager = getFragmentManager();
-        //fragmentManager.beginTransaction().replace(R.id.main,listFragments.get(0)).commit();
+        HomePage_Fragment homePage_fragment=new HomePage_Fragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main,homePage_fragment).commit();
        // setTitle(listNavItems.get(2).getTitle());
 
         listNav.setItemChecked(0, true);
@@ -78,8 +80,8 @@ public class HomePageActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //replace the fragment with the selection corresponding
-                // FragmentManager fragmentManager = getFragmentManager();
-               // fragmentManager.beginTransaction().replace(R.id.main,listFragments.get(position)).commit();
+                 FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main,listFragments.get(position)).commit();
                 setTitle("");
                 listNav.setItemChecked(position,true);
                 // listNav.setItemChecked();
