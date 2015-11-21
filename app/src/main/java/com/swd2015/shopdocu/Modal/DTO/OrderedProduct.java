@@ -5,20 +5,22 @@ package com.swd2015.shopdocu.Modal.DTO;
  */
 public class OrderedProduct extends Product {
     private int orderID;
+    private String status;
     private int quantity;
-    private long total;
+    private float total;
 
     public OrderedProduct(int quantity, long total) {
         this.setQuantity(quantity);
         this.setTotal(total);
     }
 
-    public OrderedProduct(Product product, int orderID, int quantity, long total) {
-        super(product.ID, product.name, product.price, product.description, product.category,
-                product.status, product.createDate, product.amount, product.image);
+    public OrderedProduct(Product product, int orderID,String status, int quantity, float total) {
+        super(product.getID(), product.getName(), product.getPrice(), product.getDescription(), product.getCategory(),
+                product.getCreateDate(), product.getImage());
         this.setOrderID(orderID);
         this.setQuantity(quantity);
-        this.setTotal(this.price*quantity);
+        this.setTotal(this.getPrice() * quantity);
+        this.setStatus(status);
     }
 
 
@@ -30,11 +32,11 @@ public class OrderedProduct extends Product {
         this.quantity = quantity;
     }
 
-    public long getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(float total) {
         this.total = total;
     }
 
@@ -44,5 +46,13 @@ public class OrderedProduct extends Product {
 
     public void setOrderID(int orderID) {
         this.orderID = orderID;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

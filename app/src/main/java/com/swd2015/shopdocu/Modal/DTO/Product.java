@@ -6,30 +6,26 @@ import java.util.Date;
  * Created by Quang on 14-Nov-15.
  */
 public class Product {
-    protected int ID;
-    protected String name;
-    protected Integer price;
-    protected String description;
-    protected Integer category;
-    protected Integer status;
-    protected Date createDate;
-    protected Integer amount;
-    protected String image;
+    private int ID;
+    private String name;
+    private Float price;
+    private String description;
+    private Integer category;
+    private Date createDate;
+    private String image;
 
     public Product(){
 
     }
 
-    public Product(int ID, String name, Integer price, String description, Integer category, Integer status, Date createDate, Integer amount, String image) {
-        this.ID = ID;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.category = category;
-        this.status = status;
-        this.createDate = createDate;
-        this.amount = amount;
-        this.image = image;
+    public Product(int ID, String name, Float price, String description, Integer category, Date createDate, String image) {
+        this.setID(ID);
+        this.setName(name);
+        this.setPrice(price);
+        this.setDescription(description);
+        this.setCategory(category);
+        this.setCreateDate(createDate);
+        this.setImage(image);
     }
 
     public int getID() {
@@ -48,11 +44,11 @@ public class Product {
         this.name = name;
     }
 
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -72,14 +68,6 @@ public class Product {
         this.category = category;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     public Date getCreateDate() {
         return createDate;
     }
@@ -87,15 +75,6 @@ public class Product {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
 
     public String getImage() {
         return image;

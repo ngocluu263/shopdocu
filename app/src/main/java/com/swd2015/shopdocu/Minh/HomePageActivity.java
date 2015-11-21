@@ -7,8 +7,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,7 @@ import com.swd2015.shopdocu.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageActivity extends ActionBarActivity {
+public class HomePageActivity extends AppCompatActivity {
     final String greenColor="#7CD175";
     DrawerLayout drawerLayout;
     RelativeLayout drawerPane;
@@ -33,13 +34,21 @@ public class HomePageActivity extends ActionBarActivity {
 
     List<NavigationItem> listNavItems;
     List<Fragment> listFragments;
+    private Toolbar toolbar;
 
     ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home_page);
+
+        //toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
+        //setSupportActionBar(toolbar);
+
+        //toolbar.setBackground(new ColorDrawable(Color.parseColor("#7CD175")));
+
 
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -70,6 +79,7 @@ public class HomePageActivity extends ActionBarActivity {
         HomePage_Fragment homePage_fragment=new HomePage_Fragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main,homePage_fragment).commit();
+
        // setTitle(listNavItems.get(2).getTitle());
 
         listNav.setItemChecked(0, true);

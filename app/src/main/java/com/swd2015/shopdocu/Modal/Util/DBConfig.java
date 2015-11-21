@@ -9,7 +9,7 @@ public abstract class DBConfig {
     
     public static final String TABLE_ORDERED_PRODUCT = "OrderedProduct";
     public static final String TABLE_FAVORITE = "Favorite";
-    public static final String TABLE_SEEN = "Seen";
+    public static final String TABLE_SEEN_PRODUCT = "SeenProduct";
 
     public static final String ORDER_ID = "OrderID";
     public static final String PRODUCT_ID = "ProductID";
@@ -25,6 +25,6 @@ public abstract class DBConfig {
     public static final String FAVORITE_ID = "ID";
     public static final String FAVORITE_PRODUCT_ID = "ProductID";
 
-    public static final String SEEN_ID = "ID";
-    public static final String SEEN_PRODUCT_ID = "ProductID";
+    public static final String SEEN_PRODUCT_ID = "ID";
+    public static final String SEEN_PRODUCT_PRODUCT_ID = "ProductID";
 }

@@ -1,11 +1,57 @@
-<resources>
+﻿<resources>
     <string name="app_name">ShopDoCu</string>
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Closed</string>
     <string name="title_activity_home_page">ShopDoCu.vn</string>
-
-
-<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="search_hint">Tìm kiếm</string>
+    <string name="search_title">Tìm kiếm</string>
+    <string name="title_activity_searchable">SearchableActivity</string>
+    <string name="add_product_picture">Hình ảnh sản phẩm</string>
+    <string name="add_product_name">Tên sản phẩm</string>
+    <string name="add_product_category">Danh mục</string>
+    <string name="add_exchange_address">Địa điểm giao dịch</string>
+    <string name="add_product_price">Giá bán</string>
+    <string name="add_product_detail">Chi tiết sản phẩm</string>
+    <string name="add_customer_name">Tên khách hàng</string>
+    <string name="add_customer_address">Địa chỉ</string>
+    <string name="add_customer_email">Email</string>
+    <string name="add_customer_phone">Điện thoại</string>
+    <string name="continue_button">TIẾP TỤC</string>
+    <string name="request_for_sell_button">ĐĂNG BÁN</string>
+    <string-array name="category_spinner">
+        <item>TẤT CẢ</item>
+        <item>----- NỘI NGOẠI THẤT, ĐỒ GIA DỤNG -----</item>
+        <item>Tất cả</item>
+        <item>Bàn</item>
+        <item>Ghế</item>
+        <item>Tủ</item>
+        <item>Tủ lạnh, Máy lạnh, Máy giặt</item>
+        <item>Nội ngoại thất</item>
+        <item>Đồ gia dụng gia đình khác</item>
+        <item>----- ĐỒ ĐIỆN TỬ -----</item>
+        <item>Tất cả</item>
+        <item>Tivi, Loa, Amply</item>
+        <item>Máy nghe nhạc, cassette</item>
+        <item>Phụ kiện, Linh kiện</item>
+        <item>----- THỜI TRANG -----</item>
+        <item>Tất cả</item>
+        <item>Quần áo</item>
+        <item>Giày dép, Túi xách, Phụ kiện</item>
+        <item>Đồ dùng cá nhân</item>
+        <item>----- GIẢI TRÍ, THỂ THAO, SỞ THÍCH -----</item>
+        <item>Tất cả</item>
+        <item>Máy game</item>
+        <item>Đồ thể thao</item>
+        <item>Sưu tầm</item>
+        <item>Sở thích khác </item>
+        <item>----- CÁC LOẠI KHÁC -----</item>
+    </string-array>
+    <string-array name="orderBy_spinner">
+        <item>Giá tăng dần</item>
+        <item>Giá giảm dần</item>
+        <item>Mới nhất trước </item>
+    </string-array>
 </resources>

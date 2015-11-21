@@ -23,7 +23,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 DBConfig.PRODUCT_PRICE + " INTEGER," +
                 DBConfig.PRODUCT_DESCRIPTION + "  TEXT," +
                 DBConfig.PRODUCT_CATEGORY + " TEXT," +
-                DBConfig.PRODUCT_STATUS + " INTEGER," +
+                DBConfig.PRODUCT_STATUS + " TEXT," +
                 DBConfig.PRODUCT_CREATEDATE + " DATE," +
                 DBConfig.PRODUCT_IMAGE + " TEXT," +
                 DBConfig.ORDER_QUANTITY + " INTEGER" +  
@@ -36,9 +36,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 ")";
 
         String CREATE_SEEN_TABLE = "CREATE TABLE " +
-                DBConfig.TABLE_SEEN + " (" +
-                DBConfig.SEEN_ID + " INTEGER PRIMARY KEY," +
-                DBConfig.SEEN_PRODUCT_ID + " INTEGER" +
+                DBConfig.TABLE_SEEN_PRODUCT + " (" +
+                DBConfig.SEEN_PRODUCT_ID + " INTEGER PRIMARY KEY," +
+                DBConfig.SEEN_PRODUCT_PRODUCT_ID + " INTEGER" +
                 ")";
 
         db.execSQL(CREATE_ORDER_TABLE);
@@ -51,7 +51,7 @@ public class DBHandler extends SQLiteOpenHelper {
                           int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_ORDERED_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_FAVORITE);
-        db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_SEEN);
+        db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_SEEN_PRODUCT);
         onCreate(db);
     }
 }

@@ -3,11 +3,11 @@ package com.swd2015.shopdocu.Modal.DTO;
 /**
  * Created by Quang on 14-Nov-15.
  */
-public class Seen {
+public class SeenProduct {
     private int ID;
     private int productID;
 
-    public Seen(int ID, int productID) {
+    public SeenProduct(int ID, int productID) {
         this.setID(ID);
         this.setProductID(productID);
     }
