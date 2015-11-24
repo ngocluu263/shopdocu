@@ -212,7 +212,7 @@ public class HomePageActivity extends AppCompatActivity {
     //
 
 
-    //endregion
+    //endregion menu
 
 
 

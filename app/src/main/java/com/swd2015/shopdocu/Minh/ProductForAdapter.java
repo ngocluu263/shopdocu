@@ -6,14 +6,14 @@ package com.swd2015.shopdocu.Minh;
 public class ProductForAdapter {
     private String name;
     private String price;
-    private int image;
-    public ProductForAdapter(String name,String price,int image){
+    private String image;
+    public ProductForAdapter(String name,String price,String image){
         this.name=name;
         this.price=price;
         this.image=image;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 

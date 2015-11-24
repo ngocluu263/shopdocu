@@ -35,11 +35,15 @@ public class HomePage_Fragment extends Fragment {
 
         //listProduct tra ve tu JSON
         List<Product> listProduct=new ArrayList<Product>();
+        Product p=new Product(1,"Ban ghe",100000.0F,"a",1,null,"a");
+
+
+
 
         List<ProductForAdapter> listData= new ArrayList<ProductForAdapter>();
         ProductForAdapter productForAdapter;
         for(Product product:listProduct ){
-            productForAdapter=new ProductForAdapter(product.getName(), changePrice(product.getPrice()),R.drawable.home_icon);
+            productForAdapter=new ProductForAdapter(product.getName(), changePrice(product.getPrice()),product.getImage());
             listData.add(productForAdapter);
         }
 
@@ -61,7 +65,7 @@ public class HomePage_Fragment extends Fragment {
     private String changePrice(Float price) {
         String sPrice=String.valueOf(price);
 
-        return sPrice;
+        return sPrice + " đ";
     }
 
 

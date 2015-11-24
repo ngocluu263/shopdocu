@@ -28,6 +28,8 @@ public class Product {
         this.setImage(image);
     }
 
+
+
     public int getID() {
         return ID;
     }
