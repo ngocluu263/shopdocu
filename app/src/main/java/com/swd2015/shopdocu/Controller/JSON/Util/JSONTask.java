@@ -5,7 +5,7 @@ package com.swd2015.shopdocu.Controller.JSON.Util;
  */
 public enum JSONTask {
     GET_ALL_PRODUCT("http://swd2015-001-site1.1tempurl.com/api/product"),
-    GET_PRODUCT("http://swd2015-001-site1.1tempurl.com/api/product/getproductbyid/")
+    GET_PRODUCT_BY_ID("http://swd2015-001-site1.1tempurl.com/api/product/getproductbyid")
     ;
 
     private final String text;

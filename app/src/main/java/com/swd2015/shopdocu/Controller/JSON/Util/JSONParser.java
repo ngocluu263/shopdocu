@@ -29,10 +29,6 @@ public class JSONParser extends AsyncTask<String, String, String> {
 
     }
 
-//    public JSONParser(MainActivity activity){
-//        mainActivity = activity;
-//    }
-
     public String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -58,7 +54,6 @@ public class JSONParser extends AsyncTask<String, String, String> {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException ex){
-            ex.printStackTrace();
             try {
                 jsonObject = new JSONObject(jsonText);
                 return jsonObject.toString();
@@ -68,14 +63,5 @@ public class JSONParser extends AsyncTask<String, String, String> {
         }
         return "";
     }
-
-//    @Override
-//    protected void onPostExecute(String json) {
-//        Gson gson = new Gson();
-//        JSON_Product[] products = gson.fromJson(json.toString(), JSON_Product[].class);
-//        JSON_Product product = products[0];
-//        System.out.println("-- Image URL: " + product.getImage());
-//        mainActivity.example = product.getImage();
-//    }
     
 }

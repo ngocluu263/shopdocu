@@ -3,6 +3,7 @@ package com.swd2015.shopdocu.Controller.JSON.JSONObject;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Quang on 18-Nov-15.
@@ -21,9 +22,7 @@ public class JSON_Product {
     @SerializedName("CreateDate")
     private String createDate;
     @SerializedName("ImageURL")
-    private String image;
-//    @SerializedName("ImageURL")
-//    private List<String> image;
+    private List<String> image;
     @SerializedName("Status")
     private String status;
 
@@ -31,7 +30,7 @@ public class JSON_Product {
 
     }
 
-    public JSON_Product(int ID, String name, int price, String description, String category, String createDate, String image, String status) {
+    public JSON_Product(int ID, String name, int price, String description, String category, String createDate, List<String> image, String status) {
         this.ID = ID;
         this.name = name;
         this.price = price;
@@ -90,11 +89,11 @@ public class JSON_Product {
         this.createDate = createDate;
     }
 
-    public String getImage() {
+    public List<String> getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(List<String> image) {
         this.image = image;
     }
 
