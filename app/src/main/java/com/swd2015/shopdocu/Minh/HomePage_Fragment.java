@@ -35,7 +35,7 @@ public class HomePage_Fragment extends Fragment {
 
         //listProduct tra ve tu JSON
         List<Product> listProduct=new ArrayList<Product>();
-        Product p=new Product(1,"Ban ghe",100000.0F,"a",1,null,"a");
+        Product p=new Product(1,"Ban ghe",100000.0F,"a",1,null,"");
 
 
 
@@ -55,7 +55,9 @@ public class HomePage_Fragment extends Fragment {
         recyclerView.setAdapter(productAdapter);
 
         //Hot product
-        recyclerViewHotProduct.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager2=new LinearLayoutManager(getActivity());
+        layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewHotProduct.setLayoutManager(layoutManager2);
         recyclerView.setAdapter(productAdapter);
 
         return v;

@@ -1,7 +1,10 @@
 package com.swd2015.shopdocu.Minh;
 
-import android.app.Fragment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,19 +12,23 @@ import android.widget.ImageView;
 
 import com.swd2015.shopdocu.R;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class ImageBannerFragment extends Fragment {
-     int imgRes;
+     String imgURL ;
     ImageView imgView;
 
     public ImageBannerFragment(){
 
     }
 
-    public static final ImageBannerFragment newInstance(int imgRes){
+    public static final ImageBannerFragment newInstance(String imgURL){
         ImageBannerFragment fragment=new ImageBannerFragment();
         Bundle bundle=new Bundle();
-        bundle.putInt("imgRes", imgRes);
+        bundle.putString("imgURL", imgURL);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -34,14 +41,40 @@ public class ImageBannerFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_image_banner, container, false);
         imgView=(ImageView) v.findViewById(R.id.imgBanner);
-        imgView.setImageResource(imgRes);
+        new LoadImageFromInternet().execute(imgURL);
         return v;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        imgRes= getArguments().getInt("imgRes");
+        imgURL= getArguments().getString("imgURL");
 
     }
+
+    private class LoadImageFromInternet extends AsyncTask<String,Integer,Bitmap>{
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            URL url= null;
+            try {
+                url = new URL(params[0]);
+                Bitmap bmp= BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                return bmp;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            imgView.setImageBitmap(bitmap);
+
+        }
+    }
+
 }
+
