@@ -1,4 +1,4 @@
-package com.swd2015.shopdocu.Modal.Util;
+package com.swd2015.shopdocu.Model.Util;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

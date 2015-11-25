@@ -1,19 +1,18 @@
-package com.swd2015.shopdocu.Modal.DTO;
+package com.swd2015.shopdocu.Model.DTO;
 
 /**
  * Created by Quang on 14-Nov-15.
  */
-public class Order_Status {
+public class Product_Category {
     private int ID;
     private String name;
 
-    public Order_Status(){}
+    public Product_Category(){}
 
-    public Order_Status(int ID, String name) {
+    public Product_Category(int ID, String name) {
         this.setID(ID);
         this.setName(name);
     }
-
 
     public int getID() {
         return ID;

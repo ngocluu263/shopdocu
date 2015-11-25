@@ -1,4 +1,4 @@
-package com.swd2015.shopdocu.Modal.DTO;
+package com.swd2015.shopdocu.Model.DTO;
 
 import java.util.Date;
 

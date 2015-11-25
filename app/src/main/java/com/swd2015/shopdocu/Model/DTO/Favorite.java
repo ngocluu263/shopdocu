@@ -1,4 +1,4 @@
-package com.swd2015.shopdocu.Modal.DTO;
+package com.swd2015.shopdocu.Model.DTO;
 
 /**
  * Created by Quang on 14-Nov-15.

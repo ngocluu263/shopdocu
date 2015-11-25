@@ -1,4 +1,4 @@
-package com.swd2015.shopdocu.Modal.Util;
+package com.swd2015.shopdocu.Model.Util;
 
 /**
  * Created by Quang on 14-Nov-15.

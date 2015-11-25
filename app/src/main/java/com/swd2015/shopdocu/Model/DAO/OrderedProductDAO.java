@@ -1,11 +1,11 @@
-package com.swd2015.shopdocu.Modal.DAO;
+package com.swd2015.shopdocu.Model.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import com.swd2015.shopdocu.Modal.DTO.OrderedProduct;
-import com.swd2015.shopdocu.Modal.Util.DBConfig;
-import com.swd2015.shopdocu.Modal.Util.DBHandler;
+import com.swd2015.shopdocu.Model.DTO.OrderedProduct;
+import com.swd2015.shopdocu.Model.Util.DBConfig;
+import com.swd2015.shopdocu.Model.Util.DBHandler;
 
 /**
  * Created by Quang on 14-Nov-15.
