@@ -53,7 +53,7 @@ public class SearchActivity extends AppCompatActivity {
 //                Spinner categorySpinner = (Spinner) findViewById(R.id.category_spinner);
 //                searchedcategoryID = categorySpinner.getSelectedItemPosition();
                 ProductService productService = new ProductService(that);
-                productService.getSearchedProducts("azz", 27);
+                productService.getSearchedProducts("a", 27);
 //                searchResultGridView.setVisibility(View.VISIBLE);
 //                searchResultGridView.setAdapter(new ShowSearchedResultAdapter(getApplication()));
                     }

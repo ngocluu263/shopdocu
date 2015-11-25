@@ -2,6 +2,7 @@ package com.swd2015.shopdocu.Minh;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.swd2015.shopdocu.Ga.SearchActivity;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
@@ -152,7 +154,7 @@ public class HomePageActivity extends AppCompatActivity {
         });
         //endregion
 
-        newProductGrid = (GridView) findViewById(R.id.newProductGrid);
+//        newProductGrid = (GridView) findViewById(R.id.newProductGrid);
         //newProductGrid.setAdapter();
 
     }
@@ -167,7 +169,8 @@ public class HomePageActivity extends AppCompatActivity {
         else{
             switch (item.getItemId()){
                 case 0:{
-                    Toast.makeText(getBaseContext(),"Search Icon",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, SearchActivity.class);
+                    startActivity(intent);
                     return true;
                 }
                 case 1:{

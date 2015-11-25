@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.swd2015.shopdocu.Modal.DTO.Product;
+import com.swd2015.shopdocu.Model.DTO.Product;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
