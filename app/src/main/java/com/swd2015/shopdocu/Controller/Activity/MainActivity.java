@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
+import com.swd2015.shopdocu.Controller.Service.JSONParser;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<JSON_Product> productList;
     public JSON_Product product;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
         ProductService productService = new ProductService(this);
         productService.getAllProduct();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

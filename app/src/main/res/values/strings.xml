@@ -1,5 +1,5 @@
 ﻿<resources>
-    <string name="app_name">GÀ GẦM GỪ</string>
+    <string name="app_name">ShopDoCu</string>
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Closed</string>
@@ -57,7 +57,6 @@
 	<item>----- THỜI TRANG -----</item>
         <item>Quần áo</item>
         <item>Phụ kiện khác</item>
-
         <item>----- CÁC LOẠI KHÁC -----</item>
     </string-array>
     <string-array name="orderBy_spinner">
