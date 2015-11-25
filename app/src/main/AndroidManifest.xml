@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.MainActivity"
+            android:name=".Controller.Activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
@@ -32,7 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!--<activity android:name=".Ga.RequestSellActivity" >-->
             <!--<intent-filter>-->
 
