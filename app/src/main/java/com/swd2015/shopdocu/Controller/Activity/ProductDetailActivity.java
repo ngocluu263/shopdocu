@@ -42,7 +42,7 @@ public class ProductDetailActivity extends Activity {
         productSmallImage1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Glide.with(getBaseContext())
-                        .load(product.getImage().get(1))
+                        .load(product.getImage().get(0))
                         .into(productLargeImage);
             }
         });
@@ -50,14 +50,16 @@ public class ProductDetailActivity extends Activity {
         productSmallImage2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Glide.with(getBaseContext())
-                        .load(product.getImage().get(2))
+                        .load(product.getImage().get(1))
                         .into(productLargeImage);
             }
         });
 
         productSmallImage3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                Glide.with(getBaseContext())
+                        .load(product.getImage().get(2))
+                        .into(productLargeImage);
             }
         });
 

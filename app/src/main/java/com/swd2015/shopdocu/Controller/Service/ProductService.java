@@ -54,11 +54,14 @@ public class ProductService {
                 productDetailActivity.productTitle.setText(product.getName());
 
                 Glide.with(productDetailActivity)
-                        .load(product.getImage().get(1))
+                        .load(product.getImage().get(0))
                         .into(productDetailActivity.productLargeImage);
                 Glide.with(productDetailActivity)
-                        .load(product.getImage().get(1)).override(100, 100).centerCrop()
+                        .load(product.getImage().get(0)).override(100, 100).centerCrop()
                         .into(productDetailActivity.productSmallImage1);
+                Glide.with(productDetailActivity)
+                        .load(product.getImage().get(1)).override(100, 100).centerCrop()
+                        .into(productDetailActivity.productSmallImage2);
                 Glide.with(productDetailActivity)
                         .load(product.getImage().get(2)).override(100, 100).centerCrop()
                         .into(productDetailActivity.productSmallImage2);
