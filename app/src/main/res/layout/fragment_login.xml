@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efeeee"
+    tools:context="com.swd2015.shopdocu.Minh.LoginFragment">
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/imageLogo"
+        android:src="@drawable/home_icon"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        android:id="@+id/edtEmail"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:hint="  Email"/>
+
+    <EditText
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:background="#ffffff"
+        android:id="@+id/edtPassword"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="  Mật khẩu"
+        android:layout_below="@+id/edtEmail"
+        android:layout_alignLeft="@+id/edtEmail"
+        android:layout_alignStart="@+id/edtEmail" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hiện mật khẩu"
+        android:textColor="#767575"
+        android:fontFamily="sans-serif-condensed"
+        android:id="@+id/chkShowPassword"
+        android:layout_below="@+id/edtPassword"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:text="Đăng nhập"
+        android:background="#339933"
+        android:id="@+id/btnLogin"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/edtPassword"
+        android:layout_centerHorizontal="true"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn chưa có tài khoản?"
+        android:textColor="#3F9D2F"
+        android:id="@+id/txtSignUp"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn quên mật khẩu?"
+        android:textColor="#3F9D2F"
+        android:layout_below="@id/txtSignUp"
+        android:id="@+id/txtForgetPass"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

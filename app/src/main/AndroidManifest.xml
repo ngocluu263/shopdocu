@@ -9,72 +9,36 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.MainActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".Controller.Activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".Minh.HomePageActivity"
             android:label="@string/title_activity_home_page" >
+        </activity>
+
+        <uses-feature
+            android:name="android.hardware.camera"
+            android:required="true" />
+
+        <uses-permission android:name="android.permission.INTERNET"/>
+
+        <activity android:name=".Ga.SearchActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <!--<activity android:name=".Ga.RequestSellActivity" >-->
+            <!--<intent-filter>-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <activity android:name=".Minh.LoginActivity" >
         </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.RequestForSellActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.RequestForSellCustomerDetailActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.SearchableActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.ShowSearchResultActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-
     </application>
 
 </manifest>

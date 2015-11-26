@@ -5,10 +5,8 @@
     <string name="drawer_close">Drawer Closed</string>
     <string name="title_activity_home_page">ShopDoCu.vn</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_search">Tìm kiếm</string>
     <string name="search_hint">Tìm kiếm</string>
-    <string name="search_title">Tìm kiếm</string>
-    <string name="title_activity_searchable">SearchableActivity</string>
     <string name="add_product_picture">Hình ảnh sản phẩm</string>
     <string name="add_product_name">Tên sản phẩm</string>
     <string name="add_product_category">Danh mục</string>
@@ -22,31 +20,43 @@
     <string name="continue_button">TIẾP TỤC</string>
     <string name="request_for_sell_button">ĐĂNG BÁN</string>
     <string-array name="category_spinner">
-        <item>TẤT CẢ</item>
-        <item>----- NỘI NGOẠI THẤT, ĐỒ GIA DỤNG -----</item>
-        <item>Tất cả</item>
+        <item>----- TẤT CẢ -----</item>
+	
+	<item>----- NỘI NGOẠI THẤT GIA ĐÌNH  -----</item>
         <item>Bàn</item>
         <item>Ghế</item>
-        <item>Tủ</item>
-        <item>Tủ lạnh, Máy lạnh, Máy giặt</item>
-        <item>Nội ngoại thất</item>
-        <item>Đồ gia dụng gia đình khác</item>
-        <item>----- ĐỒ ĐIỆN TỬ -----</item>
+	<item>Tủ, kệ</item>
+	<item>Giường</item>
+        <item>Nội ngoại thất khác</item>			
+
+        <item>----- QUÁN CÀ PHÊ -----</item>
+        <item>Bàn cà phê</item>
+        <item>Ghế cà phê</item>
+        <item>Quầy pha chế</item>
+        
+        <item>----- ĐỒ VĂN PHÒNG -----</item>
         <item>Tất cả</item>
-        <item>Tivi, Loa, Amply</item>
-        <item>Máy nghe nhạc, cassette</item>
-        <item>Phụ kiện, Linh kiện</item>
-        <item>----- THỜI TRANG -----</item>
-        <item>Tất cả</item>
+        <item>Bàn văn phòng</item>
+        <item>Ghế văn phòng</item>
+        <item>Tủ văn phòng</item>
+
+        <item>----- ĐỒ QUÁN ĂN -----</item>
+        <item>Bàn ghế quán ăn</item>
+        <item>Tủ đông, tủ lạnh</item>
+
+        <item>----- ĐỒ KHÁCH SẠN -----</item>
+        <item>Giường khách sạn</item>
+        <item>Tủ khách sạn</item>
+
+	<item>----- ĐỒ ĐIỆN TỬ, ĐIỆN MÁY -----</item>
+        <item>Tivi</item>
+        <item>Loa</item>
+        <item>Dàn karaoke</item>
+        <item>Đồ điện tử khác</item>
+
+	<item>----- THỜI TRANG -----</item>
         <item>Quần áo</item>
-        <item>Giày dép, Túi xách, Phụ kiện</item>
-        <item>Đồ dùng cá nhân</item>
-        <item>----- GIẢI TRÍ, THỂ THAO, SỞ THÍCH -----</item>
-        <item>Tất cả</item>
-        <item>Máy game</item>
-        <item>Đồ thể thao</item>
-        <item>Sưu tầm</item>
-        <item>Sở thích khác </item>
+        <item>Phụ kiện khác</item>
         <item>----- CÁC LOẠI KHÁC -----</item>
     </string-array>
     <string-array name="orderBy_spinner">
@@ -54,4 +64,7 @@
         <item>Giá giảm dần</item>
         <item>Mới nhất trước </item>
     </string-array>
+    <string name="title_activity_request_sell">ĐĂNG BÁN</string>
+    <string name="request_sell_product_tab">Thông tin sản phẩm</string>
+    <string name="request_sell_customer_tab">Thông tin liên hệ</string>
 </resources>

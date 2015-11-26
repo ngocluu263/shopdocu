@@ -27,8 +27,8 @@ public class JSONProductTask extends JSONParser {
         StringBuilder sb = new StringBuilder();
         for (String param:params) {
             sb.append("/" + param);
+            this.ID = sb.toString();
         }
-        this.ID = String.valueOf(sb.toString());
     }
 
     @Override
@@ -37,15 +37,19 @@ public class JSONProductTask extends JSONParser {
         switch (this.API){
             case GET_ALL_PRODUCT:
                 JSON_Product[] products = gson.fromJson(json, JSON_Product[].class);
-                if(products != null) {
-                    productService.setAllProduct(new ArrayList<>(Arrays.asList(products)));
-                }
+                productService.setAllProduct(new ArrayList<>(Arrays.asList(products)));
                 break;
             case GET_PRODUCT_BY_ID:
                 JSON_Product p = gson.fromJson(json, JSON_Product.class);
-                if(p != null){
-                    productService.setProduct(p);
-                }
+                productService.setProduct(p);
+                break;
+            case GET_SEARCHED_PRODUCTS:
+                JSON_Product[] searchedProducts = gson.fromJson(json, JSON_Product[].class);
+                productService.setSearchedProducts(new ArrayList<>(Arrays.asList(searchedProducts)));
+                break;
+            case GET_NEW_PRODUCTS:
+                JSON_Product[] newProducts = gson.fromJson(json, JSON_Product[].class);
+                productService.setSearchedProducts(new ArrayList<>(Arrays.asList(newProducts)));
                 break;
         }
     }
