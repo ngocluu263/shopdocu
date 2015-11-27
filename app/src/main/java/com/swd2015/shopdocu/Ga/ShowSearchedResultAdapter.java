@@ -66,20 +66,17 @@ public class ShowSearchedResultAdapter extends BaseAdapter {
         }
 
         if (searchedProductList != null) {
-            for (int i = 0; i < searchedProductList.size(); ++i) {
                 ImageView productImageView = (ImageView) searchGridView.findViewById(R.id.search_results_product_image);
                 Glide.with(mContext)
-                        .load(searchedProductList.get(i).getImage().get(i).toString())
+                        .load(searchedProductList.get(position).getImage().get(0).toString())
                         .placeholder(R.drawable.ic_shopping_cart) // optional
                         .error(R.drawable.ic_close_search)         // optional
                         .into(productImageView);
 
                 TextView productNameTextView = (TextView) searchGridView.findViewById(R.id.search_results_product_name);
-                productNameTextView.setText(searchedProductList.get(i).getName());
-
+                productNameTextView.setText(searchedProductList.get(position).getName());
                 TextView productPriceTextView = (TextView) searchGridView.findViewById(R.id.search_results_product_price);
-                productPriceTextView.setText(String.valueOf(searchedProductList.get(i).getPrice()));
-            }
+                productPriceTextView.setText(String.valueOf(searchedProductList.get(position).getPrice()));
         } else {
             TextView productNotFoundTextView = (TextView) searchGridView.findViewById(R.id.search_results_product_name);
             productNotFoundTextView.setText("PRODUCT NOT FOUND!");

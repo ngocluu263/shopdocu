@@ -5,17 +5,12 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
 import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
+import com.swd2015.shopdocu.Controller.Adapter.ProductDetailAdapter;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONImageTask;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
-import java.util.List;
 import android.view.View;
 import android.widget.BaseAdapter;
-import com.swd2015.shopdocu.Controller.Activity.MainActivity;
-import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
 import com.swd2015.shopdocu.Ga.SearchActivity;
 import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
 import java.util.ArrayList;
@@ -38,16 +33,6 @@ public class ProductService {
         jsonTask.execute();
     }
 
-//    public void setAllProduct(ArrayList<JSON_Product> productList){
-//        switch (activity.getClass().getSimpleName()){
-//            case "MainActivity":
-//                MainActivity mainActivity = (MainActivity) activity;
-//
-//                // Ví dụ: get product đầu tiên và set Description của nó vào MainActivity
-//                mainActivity.example = productList.get(0).getDescription();
-//                break;
-//        }
-//    }
     public void setAllProduct(ArrayList<JSON_Product> productList){
         switch (activity.getClass().getSimpleName()){
             case "ShowSearchedResultAdapter":
@@ -84,19 +69,16 @@ public class ProductService {
 
                 productDetailActivity.product = product;
                 productDetailActivity.productTitle.setText(product.getName());
+                productDetailActivity.productPrice.setText(String.valueOf(product.getPrice()));
+                productDetailActivity.productStatus.setText(product.getStatus());
 
                 Glide.with(productDetailActivity)
                         .load(product.getImage().get(0))
                         .into(productDetailActivity.productLargeImage);
-                Glide.with(productDetailActivity)
-                        .load(product.getImage().get(0)).override(100, 100).centerCrop()
-                        .into(productDetailActivity.productSmallImage1);
-                Glide.with(productDetailActivity)
-                        .load(product.getImage().get(1)).override(100, 100).centerCrop()
-                        .into(productDetailActivity.productSmallImage2);
-                Glide.with(productDetailActivity)
-                        .load(product.getImage().get(2)).override(100, 100).centerCrop()
-                        .into(productDetailActivity.productSmallImage2);
+
+                productDetailActivity.smallImageListView.setVisibility(View.VISIBLE);
+                productDetailActivity.smallImageListView.setAdapter(new ProductDetailAdapter(productDetailActivity,product.getImage()));
+                break;
             case "MainActivity":
                 MainActivity mainActivity = (MainActivity) activity;
                 mainActivity.product = product;

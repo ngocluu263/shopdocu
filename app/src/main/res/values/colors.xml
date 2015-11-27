@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#FFFFFF</color>
+    <color name="orange">#EB7F00</color>
+    <color name="blueDark">#1695A3</color>
+    <color name="lightWhite">#EDEFF0</color>
     <color name="colorPrimary">#45BF55</color>
     <color name="colorPrimaryDark">#167F39</color>
     <color name="colorAccent">#000000</color>
+    <color name="colorButtonSelect">#C5FFCB</color>
 </resources>

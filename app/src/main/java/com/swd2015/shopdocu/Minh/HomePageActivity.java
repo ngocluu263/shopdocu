@@ -20,7 +20,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.Ga.SearchActivity;
 import com.swd2015.shopdocu.R;
 
@@ -40,8 +39,6 @@ public class HomePageActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     ActionBarDrawerToggle actionBarDrawerToggle;
-
-    ProductService productService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +91,10 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //replace the fragment with the selection corresponding
-                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.main,listFragments.get(position)).commit();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main, listFragments.get(position)).commit();
                 setTitle("");
-                listNav.setItemChecked(position,true);
+                listNav.setItemChecked(position, true);
                 // listNav.setItemChecked();
 
                 //region switch position
@@ -156,8 +153,6 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
         //endregion
-
-//        newProductGrid = (GridView) findViewById(R.id.newProductGrid);
         //newProductGrid.setAdapter();
 
     }
@@ -212,8 +207,6 @@ public class HomePageActivity extends AppCompatActivity {
             menuItem2.setIcon(R.drawable.cart_icon);
             menuItem2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
-
-
     }
 
     //

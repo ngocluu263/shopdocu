@@ -67,4 +67,5 @@
     <string name="title_activity_request_sell">ĐĂNG BÁN</string>
     <string name="request_sell_product_tab">Thông tin sản phẩm</string>
     <string name="request_sell_customer_tab">Thông tin liên hệ</string>
+    <string name="product_description">Chi tiết sản phẩm</string>
 </resources>
