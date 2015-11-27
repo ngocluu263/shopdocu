@@ -38,55 +38,29 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-    <RelativeLayout
-        android:id="@+id/product_small_image_list"
-        android:layout_below="@id/product_large_image"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="70dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:background="#dcdddf" >
+        <View
+            android:layout_below="@id/product_large_image"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/darker_gray"/>
 
-        <RelativeLayout
-            android:id="@+id/small_image_section_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
-
-            <ImageView
-                android:id="@+id/product_small_image_1"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/small_image_section_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/small_image_section_1">
-
-            <ImageView
-                android:id="@+id/product_small_image_2"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/small_image_section_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/small_image_section_2">
-
-            <ImageView
-                android:id="@+id/product_small_image_3"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
-        </RelativeLayout>
-    </RelativeLayout>
+        <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/product_small_image_list"
+            android:layout_below="@id/product_large_image"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:columnWidth="60dp"
+            android:numColumns="auto_fit"
+            android:layout_marginTop="30dp"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="columnWidth"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:visibility="invisible"
+            android:background="#dcdddf" />
 
     </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -4,11 +4,6 @@ package com.swd2015.shopdocu.Controller.JSON.Util;
  * Created by Quang on 16-Nov-15.
  */
 import android.os.AsyncTask;
-import com.google.gson.Gson;
-import com.swd2015.shopdocu.Controller.Activity.MainActivity;
-import com.swd2015.shopdocu.Controller.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Model.DTO.Image;
-import com.swd2015.shopdocu.Model.DTO.Product;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

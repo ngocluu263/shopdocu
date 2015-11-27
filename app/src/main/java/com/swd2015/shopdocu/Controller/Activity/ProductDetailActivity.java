@@ -3,6 +3,8 @@ package com.swd2015.shopdocu.Controller.Activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,9 +23,7 @@ public class ProductDetailActivity extends Activity {
     public static int productID;
     public static TextView productTitle;
     public static ImageView productLargeImage;
-    public static ImageView productSmallImage1;
-    public static ImageView productSmallImage2;
-    public static ImageView productSmallImage3;
+    public static GridView smallImageListView;
 
 
     public JSON_Product product;
@@ -35,34 +35,12 @@ public class ProductDetailActivity extends Activity {
 
         productTitle = (TextView) findViewById(R.id.product_name);
         productLargeImage = (ImageView) findViewById(R.id.product_large_image);
-        productSmallImage1 = (ImageView) findViewById(R.id.product_small_image_1);
-        productSmallImage2 = (ImageView) findViewById(R.id.product_small_image_2);
-        productSmallImage3 = (ImageView) findViewById(R.id.product_small_image_3);
 
-        productSmallImage1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Glide.with(getBaseContext())
-                        .load(product.getImage().get(0))
-                        .into(productLargeImage);
-            }
-        });
-
-        productSmallImage2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Glide.with(getBaseContext())
-                        .load(product.getImage().get(1))
-                        .into(productLargeImage);
-            }
-        });
-
-        productSmallImage3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Glide.with(getBaseContext())
-                        .load(product.getImage().get(2))
-                        .into(productLargeImage);
-            }
-        });
+        smallImageListView = (GridView) findViewById(R.id.product_small_image_list);
 
         productService.getProductByID(6);
+
     }
+
+
 }

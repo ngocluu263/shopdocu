@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
 import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
+import com.swd2015.shopdocu.Controller.Adapter.ProductDetailAdapter;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONImageTask;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
@@ -84,19 +85,13 @@ public class ProductService {
 
                 productDetailActivity.product = product;
                 productDetailActivity.productTitle.setText(product.getName());
-
                 Glide.with(productDetailActivity)
                         .load(product.getImage().get(0))
                         .into(productDetailActivity.productLargeImage);
-                Glide.with(productDetailActivity)
-                        .load(product.getImage().get(0)).override(100, 100).centerCrop()
-                        .into(productDetailActivity.productSmallImage1);
-                Glide.with(productDetailActivity)
-                        .load(product.getImage().get(1)).override(100, 100).centerCrop()
-                        .into(productDetailActivity.productSmallImage2);
-                Glide.with(productDetailActivity)
-                        .load(product.getImage().get(2)).override(100, 100).centerCrop()
-                        .into(productDetailActivity.productSmallImage2);
+
+                productDetailActivity.smallImageListView.setVisibility(View.VISIBLE);
+                productDetailActivity.smallImageListView.setAdapter(new ProductDetailAdapter(productDetailActivity,product.getImage()));
+                break;
             case "MainActivity":
                 MainActivity mainActivity = (MainActivity) activity;
                 mainActivity.product = product;
