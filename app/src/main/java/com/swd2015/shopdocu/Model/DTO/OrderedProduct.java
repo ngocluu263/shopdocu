@@ -9,6 +9,8 @@ public class OrderedProduct extends Product {
     private int quantity;
     private float total;
 
+    public OrderedProduct(){}
+
     public OrderedProduct(int quantity, long total) {
         this.setQuantity(quantity);
         this.setTotal(total);
