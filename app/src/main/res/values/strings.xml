@@ -67,4 +67,15 @@
     <string name="title_activity_request_sell">ĐĂNG BÁN</string>
     <string name="request_sell_product_tab">Thông tin sản phẩm</string>
     <string name="request_sell_customer_tab">Thông tin liên hệ</string>
+
+    // PRODUCT DETAIL ACTIVITY STRING
+    <string name="product_description">Chi tiết sản phẩm</string>
+    <string name="buy_button">MUA NGAY</string>
+    <string name="add_to_cart_button">Thêm vào giỏ hàng</string>
+    <string name="cart_title">Giỏ hàng của bạn</string>
+
+    // CART ACTIVITY STRING
+    <string name="product_name_column_title">Sản phẩm</string>
+    <string name="product_quantity_column_title">Số lượng</string>
+
 </resources>

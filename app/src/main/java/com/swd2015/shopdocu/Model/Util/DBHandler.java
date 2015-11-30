@@ -8,39 +8,38 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHandler extends SQLiteOpenHelper {
 
-    public DBHandler(Context context, String name,
-                       SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DBConfig.DATABASE_NAME, factory, DBConfig.DATABASE_VERSION);
+    private static final String CREATE_ORDER_TABLE = "CREATE TABLE " +
+            DBConfig.TABLE_ORDERED_PRODUCT + "(" +
+            DBConfig.ORDER_ID + " INTEGER PRIMARY KEY," +
+            DBConfig.PRODUCT_ID + " INTEGER," +
+            DBConfig.PRODUCT_NAME + " TEXT," +
+            DBConfig.PRODUCT_PRICE + " INTEGER," +
+            DBConfig.PRODUCT_DESCRIPTION + "  TEXT," +
+            DBConfig.PRODUCT_CATEGORY + " TEXT," +
+            DBConfig.PRODUCT_STATUS + " TEXT," +
+            DBConfig.PRODUCT_CREATEDATE + " DATE," +
+            DBConfig.PRODUCT_IMAGE + " TEXT," +
+            DBConfig.ORDER_QUANTITY + " INTEGER" +
+            ")";
+
+    private static final String CREATE_FAVORITE_TABLE = "CREATE TABLE " +
+            DBConfig.TABLE_FAVORITE + " (" +
+            DBConfig.FAVORITE_ID + " INTEGER PRIMARY KEY," +
+            DBConfig.FAVORITE_PRODUCT_ID + " INTEGER" +
+            ")";
+
+    private static final String CREATE_SEEN_TABLE = "CREATE TABLE " +
+            DBConfig.TABLE_SEEN_PRODUCT + " (" +
+            DBConfig.SEEN_PRODUCT_ID + " INTEGER PRIMARY KEY," +
+            DBConfig.SEEN_PRODUCT_PRODUCT_ID + " INTEGER" +
+            ")";
+
+    public DBHandler(Context context) {
+        super(context, DBConfig.DATABASE_NAME, null, DBConfig.DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_ORDER_TABLE = "CREATE TABLE " +
-                DBConfig.TABLE_ORDERED_PRODUCT + "(" +
-                DBConfig.ORDER_ID + " INTEGER PRIMARY KEY," +
-                DBConfig.PRODUCT_ID + " INTEGER," +
-                DBConfig.PRODUCT_NAME + " TEXT," +
-                DBConfig.PRODUCT_PRICE + " INTEGER," +
-                DBConfig.PRODUCT_DESCRIPTION + "  TEXT," +
-                DBConfig.PRODUCT_CATEGORY + " TEXT," +
-                DBConfig.PRODUCT_STATUS + " TEXT," +
-                DBConfig.PRODUCT_CREATEDATE + " DATE," +
-                DBConfig.PRODUCT_IMAGE + " TEXT," +
-                DBConfig.ORDER_QUANTITY + " INTEGER" +  
-                ")";
-
-        String CREATE_FAVORITE_TABLE = "CREATE TABLE " +
-                DBConfig.TABLE_FAVORITE + " (" +
-                DBConfig.FAVORITE_ID + " INTEGER PRIMARY KEY," +
-                DBConfig.FAVORITE_PRODUCT_ID + " INTEGER" +
-                ")";
-
-        String CREATE_SEEN_TABLE = "CREATE TABLE " +
-                DBConfig.TABLE_SEEN_PRODUCT + " (" +
-                DBConfig.SEEN_PRODUCT_ID + " INTEGER PRIMARY KEY," +
-                DBConfig.SEEN_PRODUCT_PRODUCT_ID + " INTEGER" +
-                ")";
-
         db.execSQL(CREATE_ORDER_TABLE);
         db.execSQL(CREATE_FAVORITE_TABLE);
         db.execSQL(CREATE_SEEN_TABLE);

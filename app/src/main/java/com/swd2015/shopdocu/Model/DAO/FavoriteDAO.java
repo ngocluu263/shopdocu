@@ -13,9 +13,8 @@ import com.swd2015.shopdocu.Model.Util.DBHandler;
  */
 public class FavoriteDAO extends DBHandler {
 
-    public FavoriteDAO(Context context, String name,
-                     SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DBConfig.DATABASE_NAME, factory, DBConfig.DATABASE_VERSION);
+    public FavoriteDAO(Context context) {
+        super(context);
     }
 
     public void addFavorite(Favorite favorite){

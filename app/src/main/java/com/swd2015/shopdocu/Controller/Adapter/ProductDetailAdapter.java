@@ -44,16 +44,16 @@ public class ProductDetailAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return imageList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View smallImageListView;
 
         if (convertView == null) {
@@ -63,9 +63,10 @@ public class ProductDetailAdapter extends BaseAdapter{
         }
 
         if (imageList != null){
-            String image = imageList.get(position);
+            int pos = position;
+            final String image = imageList.get(position);
             final ImageView productSmallImage = (ImageView) smallImageListView.findViewById(R.id.product_small_image);
-            final View productSmallImageSelector = (View) smallImageListView.findViewById(R.id.product_small_image_selector);
+            final View productSmallImageSelector = smallImageListView.findViewById(R.id.product_small_image_selector);
 
             // Load small Images
             Glide.with(mContext)
@@ -74,6 +75,7 @@ public class ProductDetailAdapter extends BaseAdapter{
                     .error(R.drawable.ic_close_search)         // optional
                     .into(productSmallImage);
 
+
             // Set Image click event
             productSmallImage.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -81,12 +83,13 @@ public class ProductDetailAdapter extends BaseAdapter{
                         lastImageSelector.setVisibility(View.INVISIBLE);
                     }
                     Glide.with(mContext)
-                            .load(imageList.get(position))
+                            .load(image)
                             .into(productDetailActivity.productLargeImage);
                     productSmallImageSelector.setVisibility(View.VISIBLE);
                     lastImageSelector = productSmallImageSelector;
                 }
             });
+
         }
 
         return smallImageListView;

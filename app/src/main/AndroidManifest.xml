@@ -33,7 +33,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Controller.Activity.ProductDetailActivity" >
+        <activity android:name=".Controller.Activity.ProductDetailActivity"
+            android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -45,6 +46,14 @@
             <!--</intent-filter>-->
         <!--</activity>-->
         <activity android:name=".Minh.LoginActivity" >
+        </activity>
+
+        <activity android:name=".Controller.Activity.CartActivity"
+            android:label="@string/cart_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

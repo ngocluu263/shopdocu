@@ -14,14 +14,24 @@ public class OrderedProduct extends Product {
         this.setTotal(total);
     }
 
-    public OrderedProduct(Product product, int orderID,String status, int quantity, float total) {
+    public OrderedProduct(Product product, String status) {
         super(product.getID(), product.getName(), product.getPrice(), product.getDescription(), product.getCategory(),
                 product.getCreateDate(), product.getImage());
-        this.setOrderID(orderID);
+//        this.setOrderID(orderID);
+        this.setQuantity(0);
+        this.setTotal(0);
+        this.setStatus(status);
+    }
+
+    public OrderedProduct(Product product, String status, int quantity) {
+        super(product.getID(), product.getName(), product.getPrice(), product.getDescription(), product.getCategory(),
+                product.getCreateDate(), product.getImage());
+//        this.setOrderID(orderID);
         this.setQuantity(quantity);
         this.setTotal(this.getPrice() * quantity);
         this.setStatus(status);
     }
+
 
 
     public int getQuantity() {

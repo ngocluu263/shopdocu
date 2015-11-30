@@ -1,5 +1,10 @@
 package com.swd2015.shopdocu.Model.DTO;
 
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -16,6 +21,21 @@ public class Product {
 
     public Product(){
 
+    }
+
+    public Product(JSON_Product jsonProduct){
+        this.setID(jsonProduct.getID());
+        this.setName(jsonProduct.getName());
+        this.setPrice((float) jsonProduct.getPrice());
+        this.setDescription(jsonProduct.getDescription());
+        this.setCategory(Integer.parseInt(jsonProduct.getCategory()));
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        try {
+            this.setCreateDate(df.parse(jsonProduct.getCreateDate()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.setImage(jsonProduct.getImage().get(0));
     }
 
     public Product(int ID, String name, Float price, String description, Integer category, Date createDate, String image) {
