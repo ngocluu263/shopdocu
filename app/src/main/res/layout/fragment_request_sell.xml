@@ -1,22 +1,22 @@
 <RelativeLayout
     android:id="@+id/request_sell_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RequestSellActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/request_sell_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimary"
-        android:elevation="6dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/request_sell_toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:background="?attr/colorPrimary"-->
+        <!--android:elevation="6dp"-->
+        <!--android:minHeight="?attr/actionBarSize"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+        <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
 
     <android.support.design.widget.TabLayout
         android:id="@+id/request_sell_tab_layout"
@@ -38,12 +38,14 @@
         android:id="@+id/request_sell_product_fragment"
         android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:textColor="@color/colorAccent" />
 
     <fragment android:name="com.swd2015.shopdocu.Ga.RequestSellCustomerFragment"
         android:id="@+id/request_sell_customer_fragment"
         android:layout_weight="2"
         android:layout_width="0dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:textColor="@color/colorAccent" />
 
 </RelativeLayout>

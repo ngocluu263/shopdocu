@@ -1,31 +1,41 @@
 package com.swd2015.shopdocu.Controller.Service;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
+import com.swd2015.shopdocu.Controller.JSON.Task.JSONCustomerTask;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
-import com.swd2015.shopdocu.Ga.SearchActivity;
+import com.swd2015.shopdocu.Ga.RequestSellFragment;
+import com.swd2015.shopdocu.Ga.SearchFragment;
 import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
+import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Quang on 20/11/2015.
  */
-public class ProductService {
+public class ProductService{
     Activity activity;
-    BaseAdapter baseAdapter;
+    Fragment fragment;
+    Context mContext;
 
     public ProductService(Activity activity){
         this.activity = activity;
     }
-
-    public ProductService(BaseAdapter baseAdapter){
-        this.baseAdapter = baseAdapter;
+    public ProductService(Fragment fragment){
+        this.fragment = fragment;
     }
 
     public void getAllProduct(){
@@ -33,35 +43,20 @@ public class ProductService {
         jsonTask.execute();
     }
 
-//    public void setAllProduct(ArrayList<JSON_Product> productList){
-//        switch (activity.getClass().getSimpleName()){
-//            case "MainActivity":
-//                MainActivity mainActivity = (MainActivity) activity;
-//
-//                // Ví dụ: get product đầu tiên và set Description của nó vào MainActivity
-//                mainActivity.example = productList.get(0).getDescription();
-//                break;
-//        }
-//    }
     public void setAllProduct(ArrayList<JSON_Product> productList){
-        switch (activity.getClass().getSimpleName()){
-            case "ShowSearchedResultAdapter":
-                System.out.println("GA GAM GU");
-                ShowSearchedResultAdapter showSearchedResultAdapter =
-                        (ShowSearchedResultAdapter) baseAdapter;
-                //showSearchResultAdapter.searchedProductList = productList;
+        switch (fragment.getClass().getSimpleName()){
+            case "SearchFragment":
+                SearchFragment searchFragment = (SearchFragment) fragment;
+
+                //Set all ProductName to arrayList for search suggestion
                 for (int i = 0; i < productList.size(); ++i) {
-                    showSearchedResultAdapter.searchedProductName = productList.get(i).getName();
-                    System.out.println("aaaaaSAFASFa = " + productList.get(i).getName());
-
-                    showSearchedResultAdapter.searchedProductImageURL =
-                            productList.get(0).getImage().get(0).toString();
-                    System.out.println("ADFHG = " + productList.get(0).getImage().get(0).toString());
-
-                    showSearchedResultAdapter.searchedProductPrice =
-                            String.valueOf(productList.get(i).getPrice());
-                    System.out.println("Price = " + String.valueOf(productList.get(i).getPrice()));
+                    searchFragment.listProductsName.add(productList.get(i).getName());
                 }
+                searchFragment.searchTextView.setAdapter(new ArrayAdapter<String>(
+                                            searchFragment.getActivity().getApplicationContext(),
+                                            R.layout.list_searched_product_suggestion,
+                                            searchFragment.listProductsName));
+
                 break;
         }
     }
@@ -88,32 +83,42 @@ public class ProductService {
     }
 
     public void setSearchedProducts(ArrayList<JSON_Product> productList){
-        switch (activity.getClass().getSimpleName()){
-            case "SearchActivity":
-                SearchActivity searchActivity = (SearchActivity) activity;
-                searchActivity.searchResultGridView.setVisibility(View.VISIBLE);
-                System.out.println("QWERT " + productList.size());
-                searchActivity.searchResultGridView.setAdapter(new ShowSearchedResultAdapter(searchActivity, productList));
-//                ShowSearchedResultAdapter showSearchedResultAdapter =
-//                                                            (ShowSearchedResultAdapter) baseAdapter;
-//
-//                showSearchedResultAdapter.searchedProductList = productList;
-//                System.out.println("PDLS: " + productList.size());
-//                System.out.println("SPRLS: " + showSearchedResultAdapter.searchedProductList.size());
-//                for (int i = 0; i < productList.size(); ++i) {
-//                    showSearchedResultAdapter.searchedProductName = productList.get(i).getName();
-//                    System.out.println("aaaaaSAFASFa = " + productList.get(i).getName());
-//
-//                    showSearchedResultAdapter.searchedProductImageURL =
-//                                                productList.get(i).getImage().get(i).toString();
-//                    System.out.println("ADFHG = " + productList.get(i).getImage().get(i).toString());
-//
-//                    showSearchedResultAdapter.searchedProductPrice =
-//                             String.valueOf(productList.get(i).getPrice());
-//                    System.out.println("Price = " + String.valueOf(productList.get(i).getPrice()));
-//                }
+        switch (fragment.getClass().getSimpleName()){
+            case "SearchFragment":
+                SearchFragment searchFragment = (SearchFragment) fragment;
 
+                if (productList.size() != 0) {
+                    int orderByID = searchFragment.orderBySpinner.getSelectedItemPosition();
+                    if (orderByID == 0) {
+                        Collections.sort(productList, new Comparator<JSON_Product>() {
+                            @Override
+                            public int compare(JSON_Product p1, JSON_Product p2) {
+                                return p1.getPrice() - p2.getPrice(); // Ascending
+                            }
+                        });
+                    } else if (orderByID == 1) {
+                        Collections.sort(productList, new Comparator<JSON_Product>() {
+                            @Override
+                            public int compare(JSON_Product p1, JSON_Product p2) {
+                                return p2.getPrice() - p1.getPrice(); // Descending
+                            }
+                        });
+                    }
+
+                    //Call adapter to show searched result to Grid View
+                    searchFragment.searchResultGridView.setAdapter(
+                                    new ShowSearchedResultAdapter(searchFragment.getActivity()
+                                                                        .getApplicationContext(),
+                                                                        productList));
+                } else {
+                    searchFragment.productNotFoundTV_1.setText(R.string.product_not_found_1);
+                    searchFragment.productNotFoundTV_2.setText(R.string.product_not_found_2);
+                    searchFragment.productNotFoundTV_1.setVisibility(View.VISIBLE);
+                    searchFragment.productNotFoundTV_2.setVisibility(View.VISIBLE);
+                    searchFragment.searchResultGridView.setVisibility(View.INVISIBLE);
+                }
                 break;
         }
     }
+
 }

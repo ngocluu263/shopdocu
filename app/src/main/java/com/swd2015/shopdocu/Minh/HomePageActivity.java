@@ -2,6 +2,7 @@ package com.swd2015.shopdocu.Minh;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -20,7 +21,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.swd2015.shopdocu.Ga.SearchActivity;
+import com.swd2015.shopdocu.Ga.RequestSellFragment;
+import com.swd2015.shopdocu.Ga.SearchFragment;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
@@ -169,8 +171,12 @@ public class HomePageActivity extends AppCompatActivity {
         else{
             switch (item.getItemId()){
                 case 0:{
-                    Intent intent = new Intent(this, SearchActivity.class);
-                    startActivity(intent);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.main,
+                                                               new SearchFragment()).commit();
+//                    FragmentManager fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction().replace(R.id.main,
+//                                                            new RequestSellFragment()).commit();
                     return true;
                 }
                 case 1:{

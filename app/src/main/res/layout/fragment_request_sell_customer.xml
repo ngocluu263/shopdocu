@@ -12,13 +12,13 @@
         android:src="@drawable/ic_add_customer_name"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_alignBottom="@+id/inputCustomerName"
-        android:layout_toLeftOf="@+id/inputProductCategory"
-        android:layout_toStartOf="@+id/inputProductCategory" />
+        android:layout_alignBottom="@+id/input_customer_name"
+        android:layout_toLeftOf="@+id/input_customer_address"
+        android:layout_toStartOf="@+id/input_customer_address" />
 
     <EditText
-        android:id="@+id/inputCustomerName"
-        android:layout_width="300dp"
+        android:id="@+id/input_customer_name"
+        android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:hint="@string/add_customer_name"
         android:layout_alignParentTop="true"
@@ -33,12 +33,12 @@
         android:layout_height="45dp"
         android:layout_marginTop="46dp"
         android:layout_below="@+id/add_customer_name_icon"
-        android:layout_toLeftOf="@+id/inputCustomerEmail"
-        android:layout_toStartOf="@+id/inputCustomerEmail" />
+        android:layout_toLeftOf="@+id/input_customer_email"
+        android:layout_toStartOf="@+id/input_customer_email" />
 
     <EditText
-        android:id="@+id/inputProductCategory"
-        android:layout_width="300dp"
+        android:id="@+id/input_customer_address"
+        android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:hint="@string/add_customer_address"
         android:layout_alignBottom="@+id/add_customer_address_icon"
@@ -56,8 +56,8 @@
         android:layout_marginTop="46dp"/>
 
     <EditText
-        android:id="@+id/inputCustomerEmail"
-        android:layout_width="300dp"
+        android:id="@+id/input_customer_email"
+        android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:hint="@string/add_customer_email"
         android:layout_alignBottom="@+id/add_customer_email_icon"
@@ -75,8 +75,8 @@
         android:layout_alignEnd="@+id/add_customer_email_icon" />
 
     <EditText
-        android:id="@+id/inputCustomerPhone"
-        android:layout_width="300dp"
+        android:id="@+id/input_customer_phone_number"
+        android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:hint="@string/add_customer_phone"
         android:layout_alignTop="@+id/add_customer_phone_icon"
@@ -85,8 +85,8 @@
         android:inputType="number"/>
 
     <Button
-        android:layout_width="355dp"
-        android:layout_height="55dp"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
         android:text="@string/request_for_sell_button"
         android:id="@+id/button"
         android:layout_alignParentBottom="true"

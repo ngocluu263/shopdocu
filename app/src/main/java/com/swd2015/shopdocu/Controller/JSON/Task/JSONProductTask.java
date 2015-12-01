@@ -21,12 +21,6 @@ public class JSONProductTask extends JSONParser {
         this.API = task;
     }
 
-//    public JSONProductTask(ProductService productService, JSONTask task, int ID){
-//        this.productService = productService;
-//        this.API = task;
-//        this.ID = String.valueOf(ID);
-//    }
-
     public JSONProductTask(ProductService productService, JSONTask task, String... params){
         this.productService = productService;
         this.API = task;
@@ -52,11 +46,7 @@ public class JSONProductTask extends JSONParser {
             case GET_SEARCHED_PRODUCTS:
                 JSON_Product[] searchedProducts = gson.fromJson(json, JSON_Product[].class);
                 productService.setSearchedProducts(new ArrayList<>(Arrays.asList(searchedProducts)));
-                break;
-            case GET_NEW_PRODUCTS:
-                JSON_Product[] newProducts = gson.fromJson(json, JSON_Product[].class);
-                productService.setSearchedProducts(new ArrayList<>(Arrays.asList(newProducts)));
-                break;
+		break;
         }
     }
 }

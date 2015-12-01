@@ -4,34 +4,37 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="15dp"
+    android:background="@color/colorLightWhite">
+
 
     <ImageView
         android:id="@+id/search_results_product_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"/>
+
     <TextView
         android:id="@+id/search_results_product_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:gravity="center"
         android:maxLines="2"
         android:ellipsize="marquee"
-        android:textSize="12sp"
-        android:textColor="#000000"
-        android:textStyle="bold"/>
+        android:textSize="15sp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:gravity="left" />
 
     <TextView
         android:id="@+id/search_results_product_price"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:gravity="center"
         android:maxLines="2"
         android:ellipsize="marquee"
-        android:textSize="12sp"
-        android:textColor="#000000"
-        android:textStyle="bold"/>
+        android:textSize="15sp"
+        android:textColor="@color/colorSearchedPrice"
+        android:textStyle="bold"
+        android:gravity="left" />
 </LinearLayout>

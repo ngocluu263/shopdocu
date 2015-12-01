@@ -18,6 +18,13 @@
         <activity
             android:name=".Minh.HomePageActivity"
             android:label="@string/title_activity_home_page" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
         </activity>
 
         <uses-feature
@@ -26,17 +33,6 @@
 
         <uses-permission android:name="android.permission.INTERNET"/>
 
-        <activity android:name=".Ga.SearchActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <!--<activity android:name=".Ga.RequestSellActivity" >-->
-            <!--<intent-filter>-->
-
-            <!--</intent-filter>-->
-        <!--</activity>-->
         <activity android:name=".Minh.LoginActivity" >
         </activity>
     </application>

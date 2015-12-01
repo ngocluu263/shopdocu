@@ -3,4 +3,6 @@
     <color name="colorPrimary">#45BF55</color>
     <color name="colorPrimaryDark">#167F39</color>
     <color name="colorAccent">#000000</color>
+    <color name="colorSearchedPrice">#940315</color>
+    <color name="colorLightWhite">#d3d3d3</color>
 </resources>
