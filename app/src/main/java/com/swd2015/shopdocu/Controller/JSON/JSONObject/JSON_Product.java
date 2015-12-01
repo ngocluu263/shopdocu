@@ -8,6 +8,7 @@ import java.util.List;
  * Created by Quang on 18-Nov-15.
  */
 public class JSON_Product {
+    //ProductID ProductName ProductPrice Category
     @SerializedName("ProductID")
     private int ID;
     @SerializedName("ProductName")

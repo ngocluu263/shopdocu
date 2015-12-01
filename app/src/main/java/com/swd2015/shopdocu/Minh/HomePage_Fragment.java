@@ -9,18 +9,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.swd2015.shopdocu.Model.DTO.Product;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
+import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomePage_Fragment extends Fragment {
-
-
+    public List<JSON_Product> listProduct;
+    public ProductService productService=new ProductService(this);
+    public LinearLayoutManager layoutManager;
+    public LinearLayoutManager layoutManager2;
+    public ProductForAdapter productForAdapter;
+    public  ProductAdapter newProductAdapter;
+    public  ProductAdapter hotProductAdapter;
+    public List<ProductForAdapter> listDataHotProduct;
+    public List<ProductForAdapter> listDataNewProduct;
+    public RecyclerView recyclerView;
+    public RecyclerView recyclerViewHotProduct;
     public HomePage_Fragment() {
         // Required empty public constructor
     }
@@ -30,41 +39,37 @@ public class HomePage_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_home_page, container, false);
-        RecyclerView recyclerView= (RecyclerView) v.findViewById(R.id.recyclerView);
-        RecyclerView recyclerViewHotProduct= (RecyclerView) v.findViewById(R.id.viewHotProduct);
+        recyclerView= (RecyclerView) v.findViewById(R.id.recyclerView);
+        recyclerViewHotProduct= (RecyclerView) v.findViewById(R.id.viewHotProduct);
 
         //listProduct tra ve tu JSON
-        List<Product> listProduct=new ArrayList<Product>();
-        Product p=new Product(1,"Ban ghe",100000.0F,"a",1,null,"");
-
-
-
-
-        List<ProductForAdapter> listData= new ArrayList<ProductForAdapter>();
-        ProductForAdapter productForAdapter;
-        for(Product product:listProduct ){
-            productForAdapter=new ProductForAdapter(product.getName(), changePrice(product.getPrice()),product.getImage());
-            listData.add(productForAdapter);
-        }
+        productService.getNewProducts();
+        //Product p=new Product(1,"Ban ghe",100000.0F,"a",1,null,"");
+      //  listDataNewProduct= new ArrayList<ProductForAdapter>();
+       // for(JSON_Product product:listProduct ){
+       //     productForAdapter=new ProductForAdapter(product.getName(), changePrice(product.getPrice()),product.getImage().get(0).toString());
+      //      listDataNewProduct.add(productForAdapter);
+      //  }
 
         //New product
-        ProductAdapter productAdapter=new ProductAdapter(getActivity().getApplicationContext(),listData);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(productAdapter);
+       // newProductAdapter=new ProductAdapter(getActivity().getApplicationContext(),listDataNewProduct);
+       // layoutManager=new LinearLayoutManager(getActivity());
+       // layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+      //  recyclerView.setLayoutManager(layoutManager);
+      //  recyclerView.setAdapter(newProductAdapter);
 
         //Hot product
-        LinearLayoutManager layoutManager2=new LinearLayoutManager(getActivity());
-        layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerViewHotProduct.setLayoutManager(layoutManager2);
-        recyclerView.setAdapter(productAdapter);
+       // hotProductAdapter=new ProductAdapter(getActivity().getApplicationContext(),listDataNewProduct);
+        //layoutManager2=new LinearLayoutManager(getActivity());
+       // layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+       // recyclerViewHotProduct.setLayoutManager(layoutManager2);
+       // recyclerView.setAdapter(hotProductAdapter);
 
         return v;
     }
 
     //ham them dau . cho 1 chuoi so dai
-    private String changePrice(Float price) {
+    private String changePrice(int price) {
         String sPrice=String.valueOf(price);
 
         return sPrice + " đ";

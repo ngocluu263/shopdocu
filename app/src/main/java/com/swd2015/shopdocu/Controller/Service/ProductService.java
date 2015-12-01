@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.widget.BaseAdapter;
 
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
@@ -18,7 +20,12 @@ import com.swd2015.shopdocu.Ga.RequestSellFragment;
 import com.swd2015.shopdocu.Ga.SearchFragment;
 import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
 import com.swd2015.shopdocu.R;
+import com.swd2015.shopdocu.Ga.SearchFragment;
+import com.swd2015.shopdocu.Minh.HomePage_Fragment;
+import com.swd2015.shopdocu.Minh.ProductAdapter;
+import com.swd2015.shopdocu.Minh.ProductForAdapter;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,14 +35,23 @@ import java.util.Comparator;
  */
 public class ProductService{
     Activity activity;
-    Fragment fragment;
     Context mContext;
+    BaseAdapter baseAdapter;
+    Fragment fragment;
 
-    public ProductService(Activity activity){
+    public ProductService(Activity activity, Fragment fragment){
+        this.fragment=fragment;
         this.activity = activity;
     }
-    public ProductService(Fragment fragment){
+    public ProductService(Fragment fragment) {
         this.fragment = fragment;
+    }
+    public ProductService(Activity activity) {
+            this.activity = activity;
+    }
+
+    public ProductService(BaseAdapter baseAdapter){
+        this.baseAdapter = baseAdapter;
     }
 
     public void getAllProduct(){
@@ -57,8 +73,17 @@ public class ProductService{
                                             R.layout.list_searched_product_suggestion,
                                             searchFragment.listProductsName));
 
+        switch (activity.getClass().getSimpleName()){
+            case "MainActivity":
+                MainActivity mainActivity = (MainActivity) activity;
+
+                 //Ví dụ: get product đầu tiên và set Description của nó vào MainActivity
+                mainActivity.example = productList.get(0).getDescription();
                 break;
         }
+        //HomePage_Fragment homePage_fragment=(HomePage_Fragment) fragment;
+       // homePage_fragment.listProduct=productList;
+
     }
 
     public void getProductByID(int ID){
@@ -117,8 +142,54 @@ public class ProductService{
                     searchFragment.productNotFoundTV_2.setVisibility(View.VISIBLE);
                     searchFragment.searchResultGridView.setVisibility(View.INVISIBLE);
                 }
+                //searchFragment.searchResultGridView.setAdapter(
+                                      //  new ShowSearchedResultAdapter(searchFragment.getContext(), productList));
                 break;
         }
     }
 
 }
+    public void getNewProducts(){
+        JSONProductTask jsonTask = new JSONProductTask(this, JSONTask.GET_NEW_PRODUCTS);
+        jsonTask.execute();
+    }
+
+    public void setNewProducts(ArrayList<JSON_Product> productList){
+        HomePage_Fragment homePageFragment=(HomePage_Fragment) fragment;
+        homePageFragment.listProduct=productList;
+
+        homePageFragment.listDataNewProduct= new ArrayList<ProductForAdapter>();
+        for(JSON_Product product:homePageFragment.listProduct ){
+            homePageFragment.productForAdapter
+                    =new ProductForAdapter(formatName(product.getName())
+                    , formatPrice(product.getPrice())
+                    ,product.getImage().get(0).toString());
+            homePageFragment.listDataNewProduct.add(homePageFragment.productForAdapter);
+        }
+
+        //New product
+        homePageFragment.newProductAdapter=
+                new ProductAdapter(homePageFragment.getActivity().getApplicationContext()
+                        ,homePageFragment.listDataNewProduct);
+        homePageFragment.layoutManager=new LinearLayoutManager(homePageFragment.getActivity());
+        homePageFragment.layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        homePageFragment.recyclerView.setLayoutManager(homePageFragment.layoutManager);
+        homePageFragment.recyclerView.setAdapter(homePageFragment.newProductAdapter);
+
+        }
+
+    private String formatName(String name) {
+        if (name.length()>=15){
+            name = name.substring(0,13)+"...";
+        }
+        return name;
+    }
+
+    private String formatPrice(int price) {
+        double amount =price;
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String sPrice=formatter.format(amount);
+        sPrice = sPrice.replace(',','.');
+        return sPrice + " VND";
+    }
+    }

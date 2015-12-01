@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<JSON_Product> productList;
     public JSON_Product product;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

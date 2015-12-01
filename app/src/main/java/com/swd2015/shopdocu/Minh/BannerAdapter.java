@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Created by Minh on 11/24/2015.
  */
+
 public class BannerAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
 
     List<Fragment> listFragments;

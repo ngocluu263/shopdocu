@@ -5,96 +5,79 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 /**
- * Created by PhucLHSE61219 on 28/11/2015.
+ * Created by Minh on 11/28/2015.
  */
 public class JSON_Customer {
     @SerializedName("ID")
-    private int customerID;
+    private int ID;
     @SerializedName("FullName")
-    private String customerName;
+    private String fullName;
     @SerializedName("Email")
-    private String customerEmail;
+    private String email;
     @SerializedName("PhoneNumber")
-    private String customerPhoneNumber;
+    private String  phoneNumber;
     @SerializedName("Birthday")
-    private String customerBirthday;
+    private Date birthday;
     @SerializedName("Gender")
-    private String customerGender;
+    private String  gender;
     @SerializedName("Address")
-    private String customerAddress;
+    private String  address;
     @SerializedName("ImageURL")
-    private String customerImageURL;
+    private String avatar;
 
-    public JSON_Customer (){
+
+    public JSON_Customer(){
 
     }
 
-    public JSON_Customer(int customerID, String customerName, String customerEmail,
-                         String customerPhoneNumber, String customerBirthday, String customerGender,
-                         String customerAddress, String customerImageURL) {
-        this.customerID = customerID;
-        this.customerName = customerName;
-        this.customerEmail = customerEmail;
-        this.customerPhoneNumber = customerPhoneNumber;
-        this.customerBirthday = customerBirthday;
-        this.customerGender = customerGender;
-        this.customerAddress = customerAddress;
-        this.customerImageURL = customerImageURL;
+    public JSON_Customer(int ID,String fullName,String email,String phoneNumber,Date birthday,String  gender,String address,String avatar){
+        this.ID=ID;
+        this.fullName=fullName;
+        this.email=email;
+        this.phoneNumber=phoneNumber;
+        this.birthday=birthday;
+        this.gender=gender;
+        this.address=address;
+        this.avatar=avatar;
     }
 
-    public String getCustomerName(){
-        return customerName;
+    public int getID(){return this.ID;}
+    public String getFullName(){return this.fullName;}
+    public String getEmail(){return this.email;}
+    public String getPhoneNumber(){return this.phoneNumber;}
+    public String getGender(){return this.gender;}
+    public String getAddress(){return this.address;}
+    public String getAvatar(){return this.avatar;}
+    public Date getBirthday(){return  this.birthday;}
+
+    public void setID(int ID){this.ID=ID;}
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public void setCustomerName(String customerName){
-        this.customerName = customerName;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getCustomerEmail(){
-        return customerEmail;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public void setCustomerEmail(String customerEmail){
-        this.customerEmail = customerEmail;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
-    public String getCustomerPhoneNumber(){
-        return customerPhoneNumber;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setCustomerPhoneNumber(String customerPhoneNumber){
-        this.customerPhoneNumber = customerPhoneNumber;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getCustomerBirthday(){
-        return customerBirthday;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setCustomerBirthday(String customerBirthday){
-        this.customerBirthday = customerBirthday;
-    }
-
-    public String getCustomerGender(){
-        return customerGender;
-    }
-
-    public void setCustomerGender(String customerGender){
-        this.customerGender = customerGender;
-    }
-
-    public String getCustomerAddress(){
-        return customerAddress;
-    }
-
-    public void setCustomerAddress(String customerAddress){
-        this.customerAddress = customerAddress;
-    }
-
-    public String getCustomerImageURL(){
-        return customerGender;
-    }
-
-    public void setCustomerImageURL(String customerImageURL){
-        this.customerImageURL = customerImageURL;
-    }
 }

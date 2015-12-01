@@ -72,6 +72,7 @@ public class ImageBannerFragment extends Fragment {
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             imgView.setImageBitmap(bitmap);
+            imgView.setScaleType(ImageView.ScaleType.FIT_XY);
 
         }
     }

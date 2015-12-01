@@ -8,14 +8,20 @@
     tools:context="com.swd2015.shopdocu.Minh.HomePageActivity">
 
     <!--Main content -->
-    <RelativeLayout
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#dddedf"></RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <include layout="@layout/toolbar"/>
 
-
+            <RelativeLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#dddedf">
+            </RelativeLayout>
+        </LinearLayout>
 
 
         <!--Drawer Pane -->

@@ -38,9 +38,9 @@ public class HomePageActivity extends AppCompatActivity {
 
     List<NavigationItem> listNavItems;
     List<Fragment> listFragments;
-    private Toolbar toolbar;
-
+    public ActionBar actionBar;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    public android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +48,11 @@ public class HomePageActivity extends AppCompatActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home_page);
 
-        //toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        //setSupportActionBar(toolbar);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
+        setSupportActionBar(toolbar);
+        //toolbar.setTitle("");
         //toolbar.setBackground(new ColorDrawable(Color.parseColor("#7CD175")));
-
-
-        ActionBar actionBar=getSupportActionBar();
+        actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(greenColor)));
         actionBar.setDisplayShowTitleEnabled(false);
@@ -177,6 +175,15 @@ public class HomePageActivity extends AppCompatActivity {
 //                    FragmentManager fragmentManager = getFragmentManager();
 //                    fragmentManager.beginTransaction().replace(R.id.main,
 //                                                            new RequestSellFragment()).commit();
+                    //Intent intent = new Intent(this, SearchFragment.class);
+//                    Fragment searchFragment = new SearchFragment();
+//                    FragmentManager fragmentManager = getFragmentManager();
+//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.search, searchFragment);
+//                    fragmentTransaction.addToBackStack(null);
+//                    fragmentTransaction.commit();
+                    //FragmentManager fragmentManager = getFragmentManager();
+                    //fragmentManager.beginTransaction().replace(R.id.main, new SearchFragment()).commit();
                     return true;
                 }
                 case 1:{
