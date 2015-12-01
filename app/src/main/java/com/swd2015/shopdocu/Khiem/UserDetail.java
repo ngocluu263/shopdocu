@@ -12,4 +12,9 @@ public class UserDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail);
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/Khiem_2
 }

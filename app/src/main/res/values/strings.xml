@@ -1,6 +1,7 @@
 ﻿<resources>
     <string name="app_name">ShopDoCu</string>
     <string name="action_settings">Settings</string>
+<<<<<<< HEAD
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Closed</string>
     <string name="title_activity_home_page">ShopDoCu.vn</string>
@@ -54,4 +55,12 @@
         <item>Giá giảm dần</item>
         <item>Mới nhất trước </item>
     </string-array>
+=======
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Email">example: example@example.com</string>
+    <string name="Phone"></string>
+    <string name="button_finish">Finish</string>
+    <string name="dateofbirth">01/01/1900</string>
+>>>>>>> origin/Khiem_2
 </resources>
