@@ -21,7 +21,6 @@ public class CartTask extends AsyncTask {
     protected Object doInBackground(Object[] params) {
         OrderedProductDAO dao = new OrderedProductDAO(cartService.activity.getBaseContext());
         cartService.setCartList(dao.getAllCart());
-
         return null;
     }
 }

@@ -26,7 +26,7 @@ public class OrderedProductDAO extends DBHandler {
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount();
         cursor.close();
-        db.close();
+//        db.close();
         return count;
     }
 
@@ -40,7 +40,7 @@ public class OrderedProductDAO extends DBHandler {
             return false;
         }
         cursor.close();
-        db.close();
+//        db.close();
         return true;
     }
 
@@ -94,7 +94,7 @@ public class OrderedProductDAO extends DBHandler {
             return quantity;
         } finally {
             cursor.close();
-            db.close();
+//            db.close();
         }
     }
 
@@ -107,6 +107,7 @@ public class OrderedProductDAO extends DBHandler {
                     " FROM " + DBConfig.TABLE_ORDERED_PRODUCT, null);
             if (cursor.moveToFirst()){
                 OrderedProduct product = new OrderedProduct();
+                int count = 0;
                 while (cursor.isAfterLast() == false){
                     product.setOrderID(cursor.getInt(cursor.getColumnIndex(DBConfig.ORDER_ID)));
                     product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.PRODUCT_ID)));
@@ -117,6 +118,9 @@ public class OrderedProductDAO extends DBHandler {
                     product.setPrice(cursor.getFloat(cursor.getColumnIndex(DBConfig.PRODUCT_PRICE)));
                     product.setQuantity(cursor.getInt(cursor.getColumnIndex(DBConfig.ORDER_QUANTITY)));
                     orderedProductList.add(product);
+                    cursor.moveToNext();
+                    count++;
+                    System.out.println("Hello world " + count);
                 }
             }
         } finally {

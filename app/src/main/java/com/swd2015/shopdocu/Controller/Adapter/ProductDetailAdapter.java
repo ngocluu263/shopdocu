@@ -63,7 +63,6 @@ public class ProductDetailAdapter extends BaseAdapter{
         }
 
         if (imageList != null){
-            int pos = position;
             final String image = imageList.get(position);
             final ImageView productSmallImage = (ImageView) smallImageListView.findViewById(R.id.product_small_image);
             final View productSmallImageSelector = smallImageListView.findViewById(R.id.product_small_image_selector);

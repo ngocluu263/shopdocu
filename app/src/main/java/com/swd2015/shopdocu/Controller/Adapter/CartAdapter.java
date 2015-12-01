@@ -1,11 +1,17 @@
 package com.swd2015.shopdocu.Controller.Adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Point;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -66,6 +72,7 @@ public class CartAdapter extends BaseAdapter {
             TextView productPrice = (TextView)cartListView.findViewById(R.id.product_price);
             TextView productStatus = (TextView)cartListView.findViewById(R.id.product_status);
             ImageView productSmallImage = (ImageView) cartListView.findViewById(R.id.product_small_image);
+            Spinner quantityDropdown = (Spinner)cartListView.findViewById(R.id.spinner_quantity);
 
             Glide.with(mContext)
                     .load(orderedProduct.getImage()).override(100, 100).centerCrop()
@@ -76,9 +83,44 @@ public class CartAdapter extends BaseAdapter {
             productTitle.setText(orderedProduct.getName());
             productPrice.setText(String.valueOf(orderedProduct.getPrice()));
             productStatus.setText(orderedProduct.getStatus());
+
+
+            String[] items = new String[]{"1", "2", "3" , "4", "5"};
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, items);
+            quantityDropdown.setAdapter(adapter);
+
+            // Maximum quantity is 5
+            if (orderedProduct.getQuantity() <= 5) {
+                quantityDropdown.setSelection(orderedProduct.getQuantity() - 1);
+            } else {
+                quantityDropdown.setSelection(4);
+            }
+
+            adjustFontSize(productTitle);
+
         }
 
         return cartListView;
 
+    }
+
+    public void adjustFontSize(TextView productTitle){
+        Display display = cartActivity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+
+        float textAdjustedSize = (float) ((float) convertPxToDp(width) * 0.045);
+        productTitle.setTextSize(textAdjustedSize);
+    }
+
+    public int convertPxToDp(float px){
+        Context context = cartActivity.getBaseContext();
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float dp = px / (metrics.densityDpi / 160f);
+
+        return (int) dp;
     }
 }

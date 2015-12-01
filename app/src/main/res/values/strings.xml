@@ -77,5 +77,15 @@
     // CART ACTIVITY STRING
     <string name="product_name_column_title">Sản phẩm</string>
     <string name="product_quantity_column_title">Số lượng</string>
+    <string name="total_product_title">TỔNG CỘNG</string>
+    <string name="product"> sản phẩm</string>
+    <string name="order_button">ĐẶT HÀNG</string>
+    <string name="checkout1_button">THANH TOÁN</string>
+
+
+    // CHECKOUT ACTIVITY STRING
+    <string name="checkout_1_title">Thanh toán</string>
+    <string name="send_to">Gửi tới:</string>
+
 
 </resources>

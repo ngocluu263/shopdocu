@@ -56,28 +56,6 @@ public class ProductDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
-//        final Fragment newFragment = new ShoppingCartFragment();
-//        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-//        if (findViewById(R.id.fragment_shopping_cart) != null) {
-//
-//            // However, if we're being restored from a previous state,
-//            // then we don't need to do anything and should return or else
-//            // we could end up with overlapping fragments.
-//            if (savedInstanceState != null) {
-//                return;
-//            }
-//
-//            // Create an instance of ExampleFragment
-//            ShoppingCartFragment firstFragment = new ShoppingCartFragment();
-//
-//            // In case this activity was started with special instructions from an Intent,
-//            // pass the Intent's extras to the fragment as arguments
-//            firstFragment.setArguments(getIntent().getExtras());
-//
-//            // Add the fragment to the 'fragment_container' FrameLayout
-//            ft.add(R.id.fragment_shopping_cart, firstFragment).commit();
-//        }
 
         productTitle = (TextView) findViewById(R.id.product_name);
         productPrice = (TextView) findViewById(R.id.productPrice);
@@ -98,13 +76,21 @@ public class ProductDetailActivity extends Activity {
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                ft.replace(R.id.product_detail_container, newFragment).commit();
-                OrderedProduct orderedProduct = new OrderedProduct(new Product(product),product.getStatus());
+                OrderedProduct orderedProduct = new OrderedProduct(new Product(product), product.getStatus());
                 OrderedProductDAO orderedProductDAO = new OrderedProductDAO(getBaseContext());
                 orderedProductDAO.addOrderedProduct(orderedProduct);
-                Intent intent = new Intent(getBaseContext(),CartActivity.class);
+                Intent intent = new Intent(getBaseContext(), CartActivity.class);
                 intent.putExtra("GoToCart", "ProductDetailActivity");
                 startActivity(intent);
+            }
+        });
+
+        addToCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OrderedProduct orderedProduct = new OrderedProduct(new Product(product), product.getStatus());
+                OrderedProductDAO orderedProductDAO = new OrderedProductDAO(getBaseContext());
+                orderedProductDAO.addOrderedProduct(orderedProduct);
             }
         });
     }
@@ -114,6 +100,7 @@ public class ProductDetailActivity extends Activity {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / (metrics.densityDpi / 160f);
+        
         return (int) dp;
     }
 
@@ -126,11 +113,23 @@ public class ProductDetailActivity extends Activity {
             int width = size.x;
             int height = size.y;
 
-            productDetailContainerHeight = convertPxToDp(height) * 90 / 100;
-            buyButtonSectionHeight = convertPxToDp(height) * 5 / 100;
-            buyButtonWidth = convertPxToDp(width) * 70 / 100;
-            addToCartButtonWidth = convertPxToDp(width) * 15 / 100;
+            System.out.println("heightttttttttt: " +height);
+            System.out.println("widthhhhhhhh: " + width);
+
+//            productDetailContainerHeight = convertPxToDp(height) * 90 / 100;
+//            buyButtonSectionHeight = convertPxToDp(height) * 5 / 100;
+//            buyButtonWidth = convertPxToDp(width) * 70 / 100;
+//            addToCartButtonWidth = convertPxToDp(width) * 15 / 100;
+
+            productDetailContainerHeight = height * 90 / 100;
+            buyButtonSectionHeight = height * 7 / 100;
+            buyButtonWidth = width * 70 / 100;
+            addToCartButtonWidth = width * 15 / 100;
+
         }
+
+        System.out.println("productDetailContainerHeight---- : " + productDetailContainerHeight);
+        System.out.println("buyButtonSectionHeight---- : " + buyButtonSectionHeight);
 
         productDetailContainer.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, productDetailContainerHeight));
@@ -144,12 +143,6 @@ public class ProductDetailActivity extends Activity {
                 buyButtonWidth, RelativeLayout.LayoutParams.MATCH_PARENT);
         buyButtonParam.setMargins(0, 0, 5, 0);
         buyButton.setLayoutParams(buyButtonParam);
-
-//        RelativeLayout.LayoutParams addToCartButtonParam = new RelativeLayout.LayoutParams(
-//                addToCartButtonWidth, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//        addToCartButtonParam.setMargins(0, 0, 10, 0);
-//        addToCartButtonParam.
-//        addToCartButton.setLayoutParams(addToCartButtonParam);
 
         Drawable buyButtonImg = getApplicationContext().getResources().getDrawable( R.drawable.ic_shopping_cart );
         buyButtonImg.setBounds(0, 0, 60, 60);

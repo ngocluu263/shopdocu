@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.swd2015.shopdocu.Controller.Activity.CartActivity">
+    tools:context="com.swd2015.shopdocu.Controller.Activity.CartActivity"
+    android:background="@color/lightWhite">
 
     <RelativeLayout
         android:id="@+id/cart_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/lightWhite">
+        android:layout_marginRight="7dp"
+        android:layout_marginLeft="7dp">
 
         <TextView
             android:gravity="left"
@@ -48,7 +50,7 @@
             android:layout_below="@id/product_name_column_title"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@color/lightGray"/>
@@ -63,18 +65,123 @@
                 android:id="@+id/productListSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/lightWhite">
+                android:background="@color/lightWhite"
+                android:orientation="vertical">
 
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
-                    android:id="@+id/listCartView" />
+                    android:id="@+id/list_cart_view" />
 
+                <View
+                    android:id="@+id/spliter2"
+                    android:layout_below="@id/list_cart_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/lightGray"/>
+
+                <RelativeLayout
+                        android:id="@+id/total_section"
+                        android:layout_below="@id/spliter2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:gravity="left"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="@string/total_product_title"
+                            android:id="@+id/total_product_title"
+                            android:textSize="18sp"
+                            android:textColor="@color/gray"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50px" />
+
+                    <TextView
+                        android:gravity="right"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="VNĐ"
+                        android:id="@+id/lbl_vnd"
+                        android:textSize="18sp"
+                        android:textColor="@color/gray"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="50px" />
+
+
+                    <TextView
+                        android:gravity="right"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="0"
+                        android:id="@+id/total_payment"
+                        android:textSize="18sp"
+                        android:textColor="@color/gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50px"
+                        android:layout_marginRight="46dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@+id/lbl_vnd"
+                        android:layout_alignEnd="@+id/lbl_vnd"
+                        android:layout_marginEnd="46dp" />
+
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="0"
+                        android:id="@+id/total_quantity"
+                        android:textSize="18sp"
+                        android:textColor="@color/gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@id/total_product_title"
+                        android:layout_marginLeft="20dp"/>
+
+                    <TextView
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="@string/product"
+                        android:id="@+id/product_string"
+                        android:textSize="18sp"
+                        android:textColor="@color/gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@id/total_quantity"
+                        android:layout_marginLeft="10dp"/>
+
+                </RelativeLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/order_button"
+                    android:id="@+id/order_button"
+                    android:layout_below="@id/total_section"
+                    android:background="@color/orange"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"/>
 
             </RelativeLayout>
 
+
+
         </ScrollView>
+
     </RelativeLayout>
 
 
