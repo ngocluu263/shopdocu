@@ -8,11 +8,12 @@ import java.util.List;
  * Created by Quang on 18-Nov-15.
  */
 public class JSON_Product {
-    @SerializedName("ID")
+    //ProductID ProductName ProductPrice Category
+    @SerializedName("ProductID")
     private int ID;
-    @SerializedName("Name")
+    @SerializedName("ProductName")
     private String name;
-    @SerializedName("Price")
+    @SerializedName("ProductPrice")
     private int price;
     @SerializedName("Description")
     private String description;
@@ -20,8 +21,6 @@ public class JSON_Product {
     private String category;
     @SerializedName("CreateDate")
     private String createDate;
-    //@SerializedName("ImageURL")
-    //private String image;
     @SerializedName("ImageURL")
     private List<String> image;
     @SerializedName("Status")

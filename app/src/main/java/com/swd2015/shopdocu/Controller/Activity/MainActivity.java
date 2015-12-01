@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
-import com.swd2015.shopdocu.Controller.Service.JSONParser;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     public String example;
     public ArrayList<JSON_Product> productList;
     public JSON_Product product;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

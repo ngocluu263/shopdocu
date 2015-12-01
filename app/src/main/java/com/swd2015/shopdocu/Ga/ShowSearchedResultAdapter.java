@@ -22,10 +22,6 @@ public class ShowSearchedResultAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater layoutInflater;
     public ArrayList<JSON_Product> searchedProductList;
-    public String searchedProductImageURL;
-    public String searchedProductName;
-    public String searchedProductPrice;
-
 
     public ShowSearchedResultAdapter(Context c, ArrayList<JSON_Product> searchedProductList) {
         mContext = c;
@@ -51,42 +47,38 @@ public class ShowSearchedResultAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View searchGridView;
-        System.out.println("dfghjkl");
-//        ImageView productImageView;
-//        TextView productNameTextView;
-//        TextView productPriceTextView;
-
-//        ProductService productService = new ProductService(this);
-//        productService.getSearchedProducts("a", 27);
 
         if (convertView == null) {
-            searchGridView = layoutInflater.inflate(R.layout.search_result_gridlayout, null);
+            searchGridView = layoutInflater.inflate(R.layout.searched_result_grid_item_layout, null);
         } else {
             searchGridView = convertView;
         }
 
         if (searchedProductList != null) {
-            for (int i = 0; i < searchedProductList.size(); ++i) {
-                ImageView productImageView = (ImageView) searchGridView.findViewById(R.id.search_results_product_image);
-                Glide.with(mContext)
-                        .load(searchedProductList.get(i).getImage().get(i).toString())
-                        .placeholder(R.drawable.ic_shopping_cart) // optional
-                        .error(R.drawable.ic_close_search)         // optional
-                        .into(productImageView);
+            //Set searched Product Image to Grid View
+            ImageView productImageView = (ImageView) searchGridView.findViewById(
+                                                                R.id.search_results_product_image);
+            Glide.with(mContext)
+                 .load(searchedProductList.get(position).getImage().get(0).toString())
+                 .placeholder(R.drawable.ic_shopping_cart)
+                 .error(R.drawable.ic_close_search)
+                 .into(productImageView);
 
-                TextView productNameTextView = (TextView) searchGridView.findViewById(R.id.search_results_product_name);
-                productNameTextView.setText(searchedProductList.get(i).getName());
+            //Set searched Product Name to Grid View
+            TextView productNameTextView = (TextView) searchGridView.findViewById(
+                                                                R.id.search_results_product_name);
+            productNameTextView.setText(searchedProductList.get(position).getName());
 
-                TextView productPriceTextView = (TextView) searchGridView.findViewById(R.id.search_results_product_price);
-                productPriceTextView.setText(String.valueOf(searchedProductList.get(i).getPrice()));
-            }
+            //Set searched Product Price to Grid View
+            TextView productPriceTextView = (TextView) searchGridView.findViewById(
+                                                                R.id.search_results_product_price);
+            productPriceTextView.setText(String.valueOf(searchedProductList.get(position)
+                    .getPrice()));
         } else {
-            TextView productNotFoundTextView = (TextView) searchGridView.findViewById(R.id.search_results_product_name);
-            productNotFoundTextView.setText("PRODUCT NOT FOUND!");
-            System.out.println("NOTTTTT");
-            return searchGridView;
+            searchGridView = convertView;
         }
 
         return searchGridView;
     }
 }
+

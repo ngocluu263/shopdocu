@@ -8,8 +8,11 @@ public enum JSONTask {
     GET_PRODUCT_BY_ID("http://swd2015-001-site1.1tempurl.com/api/product/getproductbyid"),
     GET_SEARCHED_PRODUCTS("http://swd2015-001-site1.1tempurl.com/api/product/SearchProduct"),
     GET_NEW_PRODUCTS("http://swd2015-001-site1.1tempurl.com/api/product/getnewproducts"),
-    GET_CUSTOMER_BY_ID("http://swd2015-001-site1.1tempurl.com/api/customer/getcustomerbyid");
+    GET_CUSTOMER_BY_ID("http://swd2015-001-site1.1tempurl.com/api/customer/getcustomerbyid"),
+    GET_ALL_BANNER("http://swd2015-001-site1.1tempurl.com/api/Image/Banner/GetAllBanners"),
+    CHECK_LOGIN("")
     ;
+
 
     private final String text;
 

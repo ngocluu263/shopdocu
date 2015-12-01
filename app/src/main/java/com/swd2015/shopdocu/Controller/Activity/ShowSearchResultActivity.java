@@ -10,6 +10,6 @@ public class ShowSearchResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_search_result);
+        setContentView(R.layout.activity_show_searched_results_gridview);
     }
 }

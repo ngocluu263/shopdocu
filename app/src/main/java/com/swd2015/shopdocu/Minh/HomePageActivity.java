@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.swd2015.shopdocu.Ga.SearchFragment;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
@@ -34,9 +35,9 @@ public class HomePageActivity extends AppCompatActivity {
 
     List<NavigationItem> listNavItems;
     List<Fragment> listFragments;
-    private Toolbar toolbar;
-
+    public ActionBar actionBar;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    public android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +45,11 @@ public class HomePageActivity extends AppCompatActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home_page);
 
-        //toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
-        //setSupportActionBar(toolbar);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
+        setSupportActionBar(toolbar);
+        //toolbar.setTitle("");
         //toolbar.setBackground(new ColorDrawable(Color.parseColor("#7CD175")));
-
-
-        ActionBar actionBar=getSupportActionBar();
+        actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(greenColor)));
         actionBar.setDisplayShowTitleEnabled(false);
@@ -152,7 +151,7 @@ public class HomePageActivity extends AppCompatActivity {
         });
         //endregion
 
-        newProductGrid = (GridView) findViewById(R.id.newProductGrid);
+//        newProductGrid = (GridView) findViewById(R.id.newProductGrid);
         //newProductGrid.setAdapter();
 
     }
@@ -167,7 +166,15 @@ public class HomePageActivity extends AppCompatActivity {
         else{
             switch (item.getItemId()){
                 case 0:{
-                    Toast.makeText(getBaseContext(),"Search Icon",Toast.LENGTH_SHORT).show();
+                    //Intent intent = new Intent(this, SearchFragment.class);
+//                    Fragment searchFragment = new SearchFragment();
+//                    FragmentManager fragmentManager = getFragmentManager();
+//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.search, searchFragment);
+//                    fragmentTransaction.addToBackStack(null);
+//                    fragmentTransaction.commit();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.main, new SearchFragment()).commit();
                     return true;
                 }
                 case 1:{

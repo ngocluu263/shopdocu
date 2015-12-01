@@ -14,10 +14,15 @@
             android:name=".Controller.Activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
+
         </activity>
         <activity
             android:name=".Minh.HomePageActivity"
             android:label="@string/title_activity_home_page" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <uses-feature
@@ -26,17 +31,9 @@
 
         <uses-permission android:name="android.permission.INTERNET"/>
 
-        <activity android:name=".Ga.SearchActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".Minh.LoginActivity" >
         </activity>
-        <!--<activity android:name=".Ga.RequestSellActivity" >-->
-            <!--<intent-filter>-->
 
-            <!--</intent-filter>-->
-        <!--</activity>-->
     </application>
 
 </manifest>
