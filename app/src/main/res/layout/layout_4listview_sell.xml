@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<TextView
+    android:layout_width="50dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/SellID"
+    android:text="abc"
+    android:textColor="@color/colorOrderID"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="5dp"
+    android:layout_alignParentTop="true"
+    />
+
+<ListView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/ProductSellList"
+
+
+    android:layout_below="@+id/SellID"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="0dp"
+    tools:listitem="@android:layout/simple_list_item_1">
+
+</ListView>
+<!-- <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:id="@+id/ProductName"
+     android:text="kahdsjkhakd"
+     android:textColor="black"
+     android:layout_below="@+id/SellID"
+     android:layout_marginLeft="12dp"
+     android:layout_marginTop="5dp"
+     /> -->
+
+<TextView
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/SellDate"
+    android:text="22/11/2015"
+    android:textColor="@color/colorOrderDate"
+    android:layout_below="@+id/ProductSellList"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="5dp"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/OrderSellPrice"
+    android:text="300000"
+    android:textColor="@color/colorOrderPrice"
+    android:layout_below="@+id/SellDate"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="5dp"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/SellUnit"
+    android:text="đ"
+    android:textColor="@color/colorOrderPrice"
+    android:layout_toRightOf="@+id/OrderSellPrice"
+    android:layout_below="@+id/SellDate"
+    android:layout_marginLeft="2dp"
+    android:layout_marginTop="5dp" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/OrderSellStatus"
+    android:text="Hủy"
+    android:textColor="@color/colorOrderStatus"
+    android:layout_below="@+id/OrderSellPrice"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="5dp" />
+</RelativeLayout>

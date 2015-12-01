@@ -53,6 +53,7 @@ public class JSONParser extends AsyncTask<String, String, String> {
             is = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             jsonText = readAll(rd);
+            System.out.println(jsonText);
             JSONArray json = new JSONArray(jsonText);
             return json.toString();
         } catch (IOException e) {
