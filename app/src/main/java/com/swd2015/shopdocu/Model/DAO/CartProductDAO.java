@@ -8,6 +8,9 @@ import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.Model.Util.DBConfig;
 import com.swd2015.shopdocu.Model.Util.DBHandler;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -57,7 +60,9 @@ public class CartProductDAO extends DBHandler {
         values.put(DBConfig.PRODUCT_DESCRIPTION, order.getDescription());
         values.put(DBConfig.PRODUCT_CATEGORY, order.getCategory());
         values.put(DBConfig.PRODUCT_STATUS, order.getStatus());
-        values.put(DBConfig.PRODUCT_CREATEDATE, order.getCategory());
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        String date = df.format(order.getCreateDate());
+        values.put(DBConfig.PRODUCT_CREATEDATE, date);
         values.put(DBConfig.PRODUCT_IMAGE, order.getImage());
 
 

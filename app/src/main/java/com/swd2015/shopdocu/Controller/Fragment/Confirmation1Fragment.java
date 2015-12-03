@@ -1,6 +1,7 @@
 package com.swd2015.shopdocu.Controller.Fragment;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,10 @@ public class Confirmation1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 requestConfirmation();
+
+                Confirmation2Fragment confirmation2Fragment = new Confirmation2Fragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main, confirmation2Fragment).addToBackStack(null).commit();
             }
         });
 
@@ -72,6 +77,10 @@ public class Confirmation1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 requestConfirmation();
+
+                Confirmation2Fragment confirmation2Fragment = new Confirmation2Fragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.main, confirmation2Fragment).addToBackStack(null).commit();
             }
         });
 

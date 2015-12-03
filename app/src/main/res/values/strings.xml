@@ -88,7 +88,7 @@
     <string name="checkout_1_title">Thanh toán</string>
     <string name="send_to">Gửi tới:</string>
 
-    // CONFIRMATION FRAGMENT STRING
+    // CONFIRMATION 1 FRAGMENT STRING
     <string name="confirmation_button">Xác nhận thanh toán</string>
     <string name="total_title">Thành tiền</string>
     <string name="vat_contain">(Đã bao gồm VAT)</string>
@@ -96,6 +96,14 @@
     <string name="free_cost">Miễn phí</string>
     <string name="customer_info_title">Địa chỉ nhận hàng</string>
     <string name="quantity_item">Số lượng: </string>
+    <string name="total_item">Tống giá: </string>
 
+    // CONFIRMATION 2 FRAGMENT STRING
+    <string name="back_to_home_button">Trở về trang chủ</string>
+    <string name="thankful_message">Cảm ơn bạn đã đặt hàng</string>
+    <string name="confirmation_message_1">Chúng tôi sẽ liên hệ với bạn
+        trong thời gian sớm nhất. </string>
+    <string name="confirmation_message_2">Liên hệ qua hotline: 0123456789 nếu bạn cần chúng tôi hỗ trợ. </string>
+    <string name="thankyou_message">Xin cảm ơn.</string>
 
 </resources>

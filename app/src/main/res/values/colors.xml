@@ -10,4 +10,5 @@
     <color name="colorPrimaryDark">#167F39</color>
     <color name="colorAccent">#000000</color>
     <color name="colorButtonSelect">#C5FFCB</color>
+    <color name="darkYellow">#F7E967</color>
 </resources>

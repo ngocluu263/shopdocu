@@ -48,6 +48,17 @@ public class DBHandler extends SQLiteOpenHelper {
             DBConfig.PRODUCT_IMAGE + " TEXT" +
             ")";
 
+    private static final String CREATE_USER_TABLE = "CREATE TABLE " +
+            DBConfig.TABLE_USER + " (" +
+            DBConfig.USER_ID + " INTEGER PRIMARY KEY," +
+            DBConfig.USER_NAME + " TEXT," +
+            DBConfig.USER_GENDER + " TEXT," +
+            DBConfig.USER_EMAIL + " TEXT," +
+            DBConfig.USER_ADDRESS + "  TEXT," +
+            DBConfig.USER_PHONE + " TEXT," +
+            DBConfig.USER_PASSWORD + " TEXT" +
+            ")";
+
     public DBHandler(Context context) {
         super(context, DBConfig.DATABASE_NAME, null, DBConfig.DATABASE_VERSION);
     }
@@ -57,6 +68,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_CART_TABLE);
         db.execSQL(CREATE_FAVORITE_TABLE);
         db.execSQL(CREATE_SEEN_TABLE);
+        db.execSQL(CREATE_USER_TABLE);
     }
 
     @Override
@@ -65,6 +77,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_CART_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_FAVORITE);
         db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_SEEN_PRODUCT);
+        db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_USER);
         onCreate(db);
     }
 }

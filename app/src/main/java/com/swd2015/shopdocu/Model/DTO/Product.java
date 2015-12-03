@@ -18,6 +18,7 @@ public class Product {
     private Integer category;
     private Date createDate;
     private String image;
+    private String status;
 
     public Product(){
 
@@ -104,5 +105,13 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
