@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.R;
 
 import java.io.IOException;
@@ -41,7 +42,14 @@ public class ImageBannerFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_image_banner, container, false);
         imgView=(ImageView) v.findViewById(R.id.imgBanner);
-        new LoadImageFromInternet().execute(imgURL);
+
+        Glide.with(getContext())
+                .load(imgURL)
+                .placeholder(R.drawable.ic_shopping_cart)
+                .error(R.drawable.ic_close_search)
+                .into(imgView);
+        imgView.setScaleType(ImageView.ScaleType.FIT_XY);
+        //new LoadImageFromInternet().execute(imgURL);
         return v;
     }
 

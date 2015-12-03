@@ -9,10 +9,17 @@ import com.swd2015.shopdocu.Controller.Activity.MainActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
-import com.swd2015.shopdocu.Ga.SearchFragment;
-import com.swd2015.shopdocu.Minh.HomePage_Fragment;
+import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
+import com.swd2015.shopdocu.Minh.BanGheCapheFragment;
+import com.swd2015.shopdocu.Minh.DienTuFragment;
+import com.swd2015.shopdocu.Minh.GiaDinhFragment;
+import com.swd2015.shopdocu.Minh.HomePageMainContentFragment;
+import com.swd2015.shopdocu.Minh.KhacFragment;
+import com.swd2015.shopdocu.Minh.KhachSanFragment;
 import com.swd2015.shopdocu.Minh.ProductAdapter;
 import com.swd2015.shopdocu.Minh.ProductForAdapter;
+import com.swd2015.shopdocu.Minh.QuanAnFragment;
+import com.swd2015.shopdocu.Minh.VanPhongFragment;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -24,6 +31,7 @@ public class ProductService {
     Activity activity;
     BaseAdapter baseAdapter;
     Fragment fragment;
+    android.support.v4.app.Fragment supportv4Fragment;
 
     public ProductService(Activity activity, Fragment fragment){
         this.fragment=fragment;
@@ -36,6 +44,9 @@ public class ProductService {
 
     public ProductService( Fragment fragment){
         this.fragment=fragment;
+    }
+    public ProductService(  android.support.v4.app.Fragment supportv4Fragment){
+        this.supportv4Fragment=supportv4Fragment;
     }
 
     public ProductService(BaseAdapter baseAdapter){
@@ -78,18 +89,71 @@ public class ProductService {
 
     public void getSearchedProducts(String productName, int categoryID){
         JSONProductTask jsonTask = new JSONProductTask(this,
-                        JSONTask.GET_SEARCHED_PRODUCTS, productName, String.valueOf(categoryID));
+                JSONTask.GET_SEARCHED_PRODUCTS, productName, String.valueOf(categoryID));
+        jsonTask.execute();
+    }
+
+    public void getSearchedProducts( int categoryID){
+        JSONProductTask jsonTask = new JSONProductTask(this,
+                JSONTask.GET_SEARCHED_PRODUCTS, String.valueOf(categoryID));
         jsonTask.execute();
     }
 
     public void setSearchedProducts(ArrayList<JSON_Product> productList){
-        switch (fragment.getClass().getSimpleName()){
-            case "SearchFragment":
-                SearchFragment searchFragment = (SearchFragment) fragment;
-                //searchFragment.searchResultGridView.setAdapter(
-                                      //  new ShowSearchedResultAdapter(searchFragment.getContext(), productList));
-                break;
-        }
+
+        if (supportv4Fragment!=null){
+            switch (supportv4Fragment.getClass().getSimpleName()){
+                case "BanGheCapheFragment":{
+                    BanGheCapheFragment banGheCapheFragment= (BanGheCapheFragment) supportv4Fragment;
+                    ShowSearchedResultAdapter adapter=new ShowSearchedResultAdapter(
+                            banGheCapheFragment.getActivity().getApplicationContext(),productList);
+                    banGheCapheFragment.gridResult.setAdapter(adapter);
+                    break;
+                }
+                case "DienTuFragment":{
+                    DienTuFragment dienTuFragment= (DienTuFragment) supportv4Fragment;
+                    ShowSearchedResultAdapter adapter=new ShowSearchedResultAdapter(
+                            dienTuFragment.getActivity().getApplicationContext(),productList);
+                    dienTuFragment.gridResult.setAdapter(adapter);
+                    break;
+                }
+                case "GiaDinhFragment":{
+                    GiaDinhFragment giaDinhFragment= (GiaDinhFragment) supportv4Fragment;
+                    ShowSearchedResultAdapter adapter=new ShowSearchedResultAdapter(
+                            giaDinhFragment.getActivity().getApplicationContext(),productList);
+                    giaDinhFragment.gridResult.setAdapter(adapter);
+                    break;
+                }
+                case "KhachSanFragment":{
+                    KhachSanFragment khachSanFragment= (KhachSanFragment) supportv4Fragment;
+                    ShowSearchedResultAdapter adapter=new ShowSearchedResultAdapter(
+                            khachSanFragment.getActivity().getApplicationContext(),productList);
+                    khachSanFragment.gridResult.setAdapter(adapter);
+                    break;
+                }
+                case "QuanAnFragment":{
+                    QuanAnFragment quanAnFragment= (QuanAnFragment) supportv4Fragment;
+                    ShowSearchedResultAdapter adapter=new ShowSearchedResultAdapter(
+                            quanAnFragment.getActivity().getApplicationContext(),productList);
+                    quanAnFragment.gridResult.setAdapter(adapter);
+                    break;
+                }
+                case "VanPhongFragment":{
+                    VanPhongFragment vanPhongFragment= (VanPhongFragment) supportv4Fragment;
+                    ShowSearchedResultAdapter adapter=new ShowSearchedResultAdapter(
+                            vanPhongFragment.getActivity().getApplicationContext(),productList);
+                    vanPhongFragment.gridResult.setAdapter(adapter);
+                    break;
+                }
+                case "KhacFragment":{
+                    KhacFragment khacFragment= (KhacFragment) supportv4Fragment;
+                    ShowSearchedResultAdapter adapter=new ShowSearchedResultAdapter(
+                            khacFragment.getActivity().getApplicationContext(),productList);
+                    khacFragment.gridResult.setAdapter(adapter);
+                    break;
+                }
+            }
+        }//end if supportV4Fragment !=null
     }
 
     public void getNewProducts(){
@@ -98,7 +162,7 @@ public class ProductService {
     }
 
     public void setNewProducts(ArrayList<JSON_Product> productList){
-        HomePage_Fragment homePageFragment=(HomePage_Fragment) fragment;
+        HomePageMainContentFragment homePageFragment=(HomePageMainContentFragment) supportv4Fragment;
         homePageFragment.listProduct=productList;
 
         homePageFragment.listDataNewProduct= new ArrayList<ProductForAdapter>();
@@ -120,6 +184,32 @@ public class ProductService {
         homePageFragment.recyclerView.setAdapter(homePageFragment.newProductAdapter);
 
         }
+
+    public void getHotProduct(){
+        JSONProductTask jsonTask = new JSONProductTask(this, JSONTask.GET_HOT_PRODUCTS);
+        jsonTask.execute();
+    }
+
+    public void setHotProduct(ArrayList<JSON_Product> productList){
+        HomePageMainContentFragment homePageFragment2=(HomePageMainContentFragment) supportv4Fragment;
+        homePageFragment2.listDataHotProduct= new ArrayList<ProductForAdapter>();
+        for(JSON_Product product:productList ){
+            homePageFragment2.hotProductForAdapter
+                    =new ProductForAdapter(formatName(product.getName())
+                    , formatPrice(product.getPrice())
+                    ,product.getImage().get(0).toString());
+            homePageFragment2.listDataHotProduct.add(homePageFragment2.hotProductForAdapter);
+        }
+        homePageFragment2.hotProductAdapter=
+                new ProductAdapter(homePageFragment2.getActivity().getApplicationContext()
+                        ,homePageFragment2.listDataHotProduct);
+        homePageFragment2.layoutManager2=new LinearLayoutManager(homePageFragment2.getActivity());
+        homePageFragment2.layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+        homePageFragment2.recyclerViewHotProduct.setLayoutManager(homePageFragment2.layoutManager2);
+        homePageFragment2.recyclerViewHotProduct.setAdapter(homePageFragment2.hotProductAdapter);
+    }
+
+
 
     private String formatName(String name) {
         if (name.length()>=15){

@@ -11,19 +11,24 @@ public class JSON_Customer {
     @SerializedName("ID")
     private int ID;
     @SerializedName("FullName")
-    private String fullName;
+    private String name;
+    @SerializedName("Gender")
+    private String gender;
     @SerializedName("Email")
     private String email;
+    @SerializedName("Address")
+    private String address;
     @SerializedName("PhoneNumber")
-    private String  phoneNumber;
+    private String phone;
+    @SerializedName("isGuest")
+    private Boolean isGuest;
+    @SerializedName("Password")
+    private String password;
     @SerializedName("Birthday")
     private Date birthday;
-    @SerializedName("Gender")
-    private String  gender;
-    @SerializedName("Address")
-    private String  address;
     @SerializedName("ImageURL")
     private String avatar;
+
 
 
     public JSON_Customer(){
@@ -32,9 +37,9 @@ public class JSON_Customer {
 
     public JSON_Customer(int ID,String fullName,String email,String phoneNumber,Date birthday,String  gender,String address,String avatar){
         this.ID=ID;
-        this.fullName=fullName;
+        this.name=fullName;
         this.email=email;
-        this.phoneNumber=phoneNumber;
+        this.phone=phoneNumber;
         this.birthday=birthday;
         this.gender=gender;
         this.address=address;
@@ -42,9 +47,9 @@ public class JSON_Customer {
     }
 
     public int getID(){return this.ID;}
-    public String getFullName(){return this.fullName;}
+    public String getName(){return this.name;}
     public String getEmail(){return this.email;}
-    public String getPhoneNumber(){return this.phoneNumber;}
+    public String getPhoneNumber(){return this.phone;}
     public String getGender(){return this.gender;}
     public String getAddress(){return this.address;}
     public String getAvatar(){return this.avatar;}
@@ -52,8 +57,8 @@ public class JSON_Customer {
 
     public void setID(int ID){this.ID=ID;}
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String fullName) {
+        this.name = fullName;
     }
 
     public void setAddress(String address) {
@@ -77,7 +82,7 @@ public class JSON_Customer {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phone = phoneNumber;
     }
 
 

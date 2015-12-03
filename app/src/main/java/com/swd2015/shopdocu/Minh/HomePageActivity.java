@@ -72,7 +72,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         //This code is useful when you just use 1 activity and manu fragment
         listFragments=  new ArrayList<Fragment>();
-        listFragments.add(new fragment_about());
+      //  listFragments.add(new fragment_about());
         listFragments.add(new LoginFragment());
         HomePage_Fragment homePage_fragment=new HomePage_Fragment();
         FragmentManager fragmentManager = getFragmentManager();

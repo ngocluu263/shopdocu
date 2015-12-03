@@ -10,9 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.swd2015.shopdocu.Controller.FormatNameAndPrice;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.R;
+
 import java.util.ArrayList;
 
 /**
@@ -50,6 +51,7 @@ public class ShowSearchedResultAdapter extends BaseAdapter {
 
         if (convertView == null) {
             searchGridView = layoutInflater.inflate(R.layout.searched_result_grid_item_layout, null);
+            searchGridView.setPadding(0,0,0,20);
         } else {
             searchGridView = convertView;
         }
@@ -67,13 +69,14 @@ public class ShowSearchedResultAdapter extends BaseAdapter {
             //Set searched Product Name to Grid View
             TextView productNameTextView = (TextView) searchGridView.findViewById(
                                                                 R.id.search_results_product_name);
-            productNameTextView.setText(searchedProductList.get(position).getName());
+            productNameTextView.setText
+                    (FormatNameAndPrice.FormatName(searchedProductList.get(position).getName(),20));
 
             //Set searched Product Price to Grid View
             TextView productPriceTextView = (TextView) searchGridView.findViewById(
                                                                 R.id.search_results_product_price);
-            productPriceTextView.setText(String.valueOf(searchedProductList.get(position)
-                    .getPrice()));
+            productPriceTextView.setText
+                    (FormatNameAndPrice.FormatPrice(searchedProductList.get(position).getPrice()));
         } else {
             searchGridView = convertView;
         }

@@ -1,6 +1,5 @@
 package com.swd2015.shopdocu.Minh;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,7 +10,7 @@ import com.swd2015.shopdocu.R;
 
 
 
-public class fragment_about extends Fragment {
+public class fragment_about extends android.support.v4.app.Fragment {
 
 
     @Override

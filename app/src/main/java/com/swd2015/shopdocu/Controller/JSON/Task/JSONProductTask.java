@@ -57,6 +57,10 @@ public class JSONProductTask extends JSONParser {
                 JSON_Product[] newProducts = gson.fromJson(json, JSON_Product[].class);
                 productService.setNewProducts(new ArrayList<>(Arrays.asList(newProducts)));
                 break;
+            case GET_HOT_PRODUCTS:
+                JSON_Product[] hotProducts = gson.fromJson(json, JSON_Product[].class);
+                productService.setHotProduct(new ArrayList<>(Arrays.asList(hotProducts)));
+                break;
         }
     }
 }
