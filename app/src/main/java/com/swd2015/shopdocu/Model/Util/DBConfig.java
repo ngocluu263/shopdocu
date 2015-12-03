@@ -7,7 +7,7 @@ public abstract class DBConfig {
     public static final String DATABASE_NAME = "ShopDoCu";
     public static final int DATABASE_VERSION = 1;
     
-    public static final String TABLE_ORDERED_PRODUCT = "OrderedProduct";
+    public static final String TABLE_CART_PRODUCT = "CartProduct";
     public static final String TABLE_FAVORITE = "Favorite";
     public static final String TABLE_SEEN_PRODUCT = "SeenProduct";
 
@@ -23,8 +23,6 @@ public abstract class DBConfig {
     public static final String ORDER_QUANTITY = "Quantity";
 
     public static final String FAVORITE_ID = "ID";
-    public static final String FAVORITE_PRODUCT_ID = "ProductID";
 
     public static final String SEEN_PRODUCT_ID = "ID";
-    public static final String SEEN_PRODUCT_PRODUCT_ID = "ProductID";
 }

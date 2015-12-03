@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHandler extends SQLiteOpenHelper {
 
-    private static final String CREATE_ORDER_TABLE = "CREATE TABLE " +
-            DBConfig.TABLE_ORDERED_PRODUCT + "(" +
+    private static final String CREATE_CART_TABLE = "CREATE TABLE " +
+            DBConfig.TABLE_CART_PRODUCT + "(" +
             DBConfig.ORDER_ID + " INTEGER PRIMARY KEY," +
             DBConfig.PRODUCT_ID + " INTEGER," +
             DBConfig.PRODUCT_NAME + " TEXT," +
@@ -25,13 +25,27 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String CREATE_FAVORITE_TABLE = "CREATE TABLE " +
             DBConfig.TABLE_FAVORITE + " (" +
             DBConfig.FAVORITE_ID + " INTEGER PRIMARY KEY," +
-            DBConfig.FAVORITE_PRODUCT_ID + " INTEGER" +
+            DBConfig.PRODUCT_ID + " INTEGER," +
+            DBConfig.PRODUCT_NAME + " TEXT," +
+            DBConfig.PRODUCT_PRICE + " INTEGER," +
+            DBConfig.PRODUCT_DESCRIPTION + "  TEXT," +
+            DBConfig.PRODUCT_CATEGORY + " TEXT," +
+            DBConfig.PRODUCT_STATUS + " TEXT," +
+            DBConfig.PRODUCT_CREATEDATE + " DATE," +
+            DBConfig.PRODUCT_IMAGE + " TEXT" +
             ")";
 
     private static final String CREATE_SEEN_TABLE = "CREATE TABLE " +
             DBConfig.TABLE_SEEN_PRODUCT + " (" +
             DBConfig.SEEN_PRODUCT_ID + " INTEGER PRIMARY KEY," +
-            DBConfig.SEEN_PRODUCT_PRODUCT_ID + " INTEGER" +
+            DBConfig.PRODUCT_ID + " INTEGER," +
+            DBConfig.PRODUCT_NAME + " TEXT," +
+            DBConfig.PRODUCT_PRICE + " INTEGER," +
+            DBConfig.PRODUCT_DESCRIPTION + "  TEXT," +
+            DBConfig.PRODUCT_CATEGORY + " TEXT," +
+            DBConfig.PRODUCT_STATUS + " TEXT," +
+            DBConfig.PRODUCT_CREATEDATE + " DATE," +
+            DBConfig.PRODUCT_IMAGE + " TEXT" +
             ")";
 
     public DBHandler(Context context) {
@@ -40,7 +54,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_ORDER_TABLE);
+        db.execSQL(CREATE_CART_TABLE);
         db.execSQL(CREATE_FAVORITE_TABLE);
         db.execSQL(CREATE_SEEN_TABLE);
     }
@@ -48,7 +62,7 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion,
                           int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_ORDERED_PRODUCT);
+        db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_CART_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_FAVORITE);
         db.execSQL("DROP TABLE IF EXISTS " + DBConfig.TABLE_SEEN_PRODUCT);
         onCreate(db);

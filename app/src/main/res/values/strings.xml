@@ -67,6 +67,7 @@
     <string name="title_activity_request_sell">ĐĂNG BÁN</string>
     <string name="request_sell_product_tab">Thông tin sản phẩm</string>
     <string name="request_sell_customer_tab">Thông tin liên hệ</string>
+    <string name="money_unit">VNĐ</string>
 
     // PRODUCT DETAIL ACTIVITY STRING
     <string name="product_description">Chi tiết sản phẩm</string>
@@ -80,12 +81,21 @@
     <string name="total_product_title">TỔNG CỘNG</string>
     <string name="product"> sản phẩm</string>
     <string name="order_button">ĐẶT HÀNG</string>
-    <string name="checkout1_button">THANH TOÁN</string>
+    <string name="checkout_button">THANH TOÁN</string>
 
 
-    // CHECKOUT ACTIVITY STRING
+    // CHECKOUT FRAGMENT STRING
     <string name="checkout_1_title">Thanh toán</string>
     <string name="send_to">Gửi tới:</string>
+
+    // CONFIRMATION FRAGMENT STRING
+    <string name="confirmation_button">Xác nhận thanh toán</string>
+    <string name="total_title">Thành tiền</string>
+    <string name="vat_contain">(Đã bao gồm VAT)</string>
+    <string name="shipping_cost">Phí vận chuyển</string>
+    <string name="free_cost">Miễn phí</string>
+    <string name="customer_info_title">Địa chỉ nhận hàng</string>
+    <string name="quantity_item">Số lượng: </string>
 
 
 </resources>

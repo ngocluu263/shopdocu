@@ -1,8 +1,6 @@
 package com.swd2015.shopdocu.Controller.Activity;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -20,11 +18,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-import com.swd2015.shopdocu.Controller.Fragment.ShoppingCartFragment;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
-import com.swd2015.shopdocu.Model.DAO.OrderedProductDAO;
-import com.swd2015.shopdocu.Model.DTO.OrderedProduct;
+import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
+import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.Model.DTO.Product;
 import com.swd2015.shopdocu.R;
 
@@ -76,9 +73,9 @@ public class ProductDetailActivity extends Activity {
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                OrderedProduct orderedProduct = new OrderedProduct(new Product(product), product.getStatus());
-                OrderedProductDAO orderedProductDAO = new OrderedProductDAO(getBaseContext());
-                orderedProductDAO.addOrderedProduct(orderedProduct);
+                CartProduct cartProduct = new CartProduct(new Product(product), product.getStatus());
+                CartProductDAO cartProductDAO = new CartProductDAO(getBaseContext());
+                cartProductDAO.addOrderedProduct(cartProduct);
                 Intent intent = new Intent(getBaseContext(), CartActivity.class);
                 intent.putExtra("GoToCart", "ProductDetailActivity");
                 startActivity(intent);
@@ -88,9 +85,9 @@ public class ProductDetailActivity extends Activity {
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OrderedProduct orderedProduct = new OrderedProduct(new Product(product), product.getStatus());
-                OrderedProductDAO orderedProductDAO = new OrderedProductDAO(getBaseContext());
-                orderedProductDAO.addOrderedProduct(orderedProduct);
+                CartProduct cartProduct = new CartProduct(new Product(product), product.getStatus());
+                CartProductDAO cartProductDAO = new CartProductDAO(getBaseContext());
+                cartProductDAO.addOrderedProduct(cartProduct);
             }
         });
     }
@@ -100,7 +97,7 @@ public class ProductDetailActivity extends Activity {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / (metrics.densityDpi / 160f);
-        
+
         return (int) dp;
     }
 

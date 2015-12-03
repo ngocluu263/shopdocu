@@ -3,20 +3,20 @@ package com.swd2015.shopdocu.Model.DTO;
 /**
  * Created by Quang on 14-Nov-15.
  */
-public class OrderedProduct extends Product {
+public class CartProduct extends Product {
     private int orderID;
     private String status;
     private int quantity;
     private float total;
 
-    public OrderedProduct(){}
+    public CartProduct(){}
 
-    public OrderedProduct(int quantity, long total) {
+    public CartProduct(int quantity, long total) {
         this.setQuantity(quantity);
         this.setTotal(total);
     }
 
-    public OrderedProduct(Product product, String status) {
+    public CartProduct(Product product, String status) {
         super(product.getID(), product.getName(), product.getPrice(), product.getDescription(), product.getCategory(),
                 product.getCreateDate(), product.getImage());
 //        this.setOrderID(orderID);
@@ -25,7 +25,7 @@ public class OrderedProduct extends Product {
         this.setStatus(status);
     }
 
-    public OrderedProduct(Product product, String status, int quantity) {
+    public CartProduct(Product product, String status, int quantity) {
         super(product.getID(), product.getName(), product.getPrice(), product.getDescription(), product.getCategory(),
                 product.getCreateDate(), product.getImage());
 //        this.setOrderID(orderID);

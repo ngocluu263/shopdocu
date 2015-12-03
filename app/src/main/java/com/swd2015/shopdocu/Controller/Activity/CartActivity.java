@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.swd2015.shopdocu.Controller.Service.CartService;
-import com.swd2015.shopdocu.Model.DTO.OrderedProduct;
+import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class CartActivity extends AppCompatActivity {
     public static TextView totalQuantity;
     public static TextView totalPayment;
     public static Button orderButton;
-    public ArrayList<OrderedProduct> cartList;
+    public ArrayList<CartProduct> cartList;
 
     @Override
     public void onBackPressed() {
@@ -53,7 +53,7 @@ public class CartActivity extends AppCompatActivity {
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(),Checkout1Activity.class);
+                Intent intent = new Intent(getBaseContext(),CheckoutMainActivity.class);
                 startActivity(intent);
             }
         });

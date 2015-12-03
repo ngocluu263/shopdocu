@@ -1,19 +1,33 @@
 package com.swd2015.shopdocu.Model.DTO;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Quang on 14-Nov-15.
  */
-public class OrderDetail {
+public class SoldOrderDetail {
+    @SerializedName("ID")
     private int ID;
-    private int orderID;
+    @SerializedName("SoldOrderID")
+    private int soldOrderID;
+    @SerializedName("ProductID")
     private int productID;
-    private int price;
+    @SerializedName("Price")
+    private float price;
+    @SerializedName("Quantity")
     private int quantity;
+    @SerializedName("IsDelete")
     private Boolean isDelete;
 
-    public OrderDetail(){}
+    public SoldOrderDetail(){}
 
-    public OrderDetail(int ID, int orderID, int productID, int price, int quantity, Boolean isDelete) {
+    public SoldOrderDetail(CartProduct cartProduct){
+        this.setProductID(cartProduct.getID());
+        this.setPrice(cartProduct.getPrice());
+        this.setQuantity(cartProduct.getQuantity());
+    }
+
+    public SoldOrderDetail(int ID, int orderID, int productID, int price, int quantity, Boolean isDelete) {
         this.setID(ID);
         this.setOrderID(orderID);
         this.setProductID(productID);
@@ -31,11 +45,11 @@ public class OrderDetail {
     }
 
     public int getOrderID() {
-        return orderID;
+        return soldOrderID;
     }
 
     public void setOrderID(int orderID) {
-        this.orderID = orderID;
+        this.soldOrderID = orderID;
     }
 
     public int getProductID() {
@@ -46,11 +60,11 @@ public class OrderDetail {
         this.productID = productID;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

@@ -16,25 +16,26 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.CartActivity;
+import com.swd2015.shopdocu.Controller.Activity.CheckoutMainActivity;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.R;
 
 import java.util.List;
 
 /**
- * Created by quangphuong on 11/30/15.
+ * Created by quangphuong on 12/3/15.
  */
-public class CartAdapter extends BaseAdapter {
+public class CartPreviewAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater layoutInflater;
     public List<CartProduct> cartList;
-    private CartActivity cartActivity;
+    private CheckoutMainActivity checkoutMainActivity;
 
-    public CartAdapter(Context context, List<CartProduct> cartList){
+    public CartPreviewAdapter(Context context, List<CartProduct> cartList){
         mContext = context;
         layoutInflater = LayoutInflater.from(mContext);
         this.cartList = cartList;
-        cartActivity = (CartActivity)mContext;
+        checkoutMainActivity = (CheckoutMainActivity)mContext;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class CartAdapter extends BaseAdapter {
         View cartListView;
 
         if (convertView == null) {
-            cartListView = layoutInflater.inflate(R.layout.adapter_cart, null);
+            cartListView = layoutInflater.inflate(R.layout.adapter_cart_preview, null);
         } else {
             cartListView = convertView;
         }
@@ -68,11 +69,10 @@ public class CartAdapter extends BaseAdapter {
         if(cartList != null){
             CartProduct cartProduct = cartList.get(position);
 
-            TextView productTitle = (TextView)cartListView.findViewById(R.id.product_name);
-            TextView productPrice = (TextView)cartListView.findViewById(R.id.product_price);
-            TextView productStatus = (TextView)cartListView.findViewById(R.id.product_status);
+            TextView name = (TextView)cartListView.findViewById(R.id.name);
+            TextView quantity = (TextView)cartListView.findViewById(R.id.quantity);
+            TextView total = (TextView)cartListView.findViewById(R.id.total);
             ImageView productSmallImage = (ImageView) cartListView.findViewById(R.id.product_small_image);
-            Spinner quantityDropdown = (Spinner)cartListView.findViewById(R.id.spinner_quantity);
 
             Glide.with(mContext)
                     .load(cartProduct.getImage()).override(100, 100).centerCrop()
@@ -80,23 +80,11 @@ public class CartAdapter extends BaseAdapter {
                     .error(R.drawable.ic_close_search)         // optional
                     .into(productSmallImage);
 
-            productTitle.setText(cartProduct.getName());
-            productPrice.setText(String.valueOf(cartProduct.getPrice()));
-            productStatus.setText(cartProduct.getStatus());
+            name.setText(cartProduct.getName());
+            quantity.setText(String.valueOf(cartProduct.getQuantity()));
+            total.setText(String.valueOf(cartProduct.getTotal()));
 
-
-            String[] items = new String[]{"1", "2", "3" , "4", "5"};
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, items);
-            quantityDropdown.setAdapter(adapter);
-
-            // Maximum quantity is 5
-            if (cartProduct.getQuantity() <= 5) {
-                quantityDropdown.setSelection(cartProduct.getQuantity() - 1);
-            } else {
-                quantityDropdown.setSelection(4);
-            }
-
-            adjustFontSize(productTitle);
+            adjustFontSize(name);
 
         }
 
@@ -105,7 +93,7 @@ public class CartAdapter extends BaseAdapter {
     }
 
     public void adjustFontSize(TextView productTitle){
-        Display display = cartActivity.getWindowManager().getDefaultDisplay();
+        Display display = checkoutMainActivity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int width = size.x;
@@ -116,7 +104,7 @@ public class CartAdapter extends BaseAdapter {
     }
 
     public int convertPxToDp(float px){
-        Context context = cartActivity.getBaseContext();
+        Context context = checkoutMainActivity.getBaseContext();
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / (metrics.densityDpi / 160f);

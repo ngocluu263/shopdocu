@@ -1,9 +1,9 @@
 package com.swd2015.shopdocu.Controller.JSON.Task;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
+
 import com.swd2015.shopdocu.Controller.Service.CartService;
-import com.swd2015.shopdocu.Model.DAO.OrderedProductDAO;
+import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
 
 /**
  * Created by quangphuong on 11/30/15.
@@ -19,7 +19,12 @@ public class CartTask extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] params) {
-        OrderedProductDAO dao = new OrderedProductDAO(cartService.activity.getBaseContext());
+        CartProductDAO dao;
+        if(cartService.activity != null){
+            dao = new CartProductDAO(cartService.activity.getBaseContext());
+        } else {
+            dao = new CartProductDAO(cartService.fragment.getActivity());
+        }
         cartService.setCartList(dao.getAllCart());
         return null;
     }

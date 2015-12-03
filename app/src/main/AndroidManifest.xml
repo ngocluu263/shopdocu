@@ -56,7 +56,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Controller.Activity.Checkout1Activity"
+        <activity android:name=".Controller.Activity.CheckoutMainActivity"
             android:label="@string/checkout_1_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

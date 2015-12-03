@@ -11,15 +11,19 @@ import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
 import android.view.View;
 import android.widget.BaseAdapter;
+
+import com.swd2015.shopdocu.Controller.Util.SeenTask;
 import com.swd2015.shopdocu.Ga.SearchActivity;
 import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
+import com.swd2015.shopdocu.Model.DTO.Product;
+
 import java.util.ArrayList;
 
 /**
  * Created by Quang on 20/11/2015.
  */
 public class ProductService {
-    Activity activity;
+    public Activity activity;
     BaseAdapter baseAdapter;
     public ProductService(Activity activity){
         this.activity = activity;
@@ -78,7 +82,8 @@ public class ProductService {
                         .into(productDetailActivity.productLargeImage);
 
                 productDetailActivity.smallImageListView.setVisibility(View.VISIBLE);
-                productDetailActivity.smallImageListView.setAdapter(new ProductDetailAdapter(productDetailActivity,product.getImage()));
+                productDetailActivity.smallImageListView.setAdapter(new ProductDetailAdapter(productDetailActivity, product.getImage()));
+                saveSeenProduct(product);
                 break;
             case "MainActivity":
                 MainActivity mainActivity = (MainActivity) activity;
@@ -102,5 +107,10 @@ public class ProductService {
                 searchActivity.searchResultGridView.setAdapter(new ShowSearchedResultAdapter(searchActivity, productList));
                 break;
         }
+    }
+
+    public void saveSeenProduct(JSON_Product jsonProduct){
+        SeenTask seenTask = new SeenTask(this, new Product(jsonProduct));
+        seenTask.execute();
     }
 }
