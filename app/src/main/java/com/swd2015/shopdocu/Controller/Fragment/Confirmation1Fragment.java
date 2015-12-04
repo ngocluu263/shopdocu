@@ -29,7 +29,6 @@ public class Confirmation1Fragment extends Fragment {
     public Customer customer;
     public List<CartProduct> cartProducts;
     public List<SoldOrderDetail> soldOrderDetails;
-    public CartService cartService = new CartService(this);
 
     public static TextView totalPayment;
     public static Button confirmationButton1;
@@ -59,7 +58,7 @@ public class Confirmation1Fragment extends Fragment {
         customerPhone.setText(customer.getPhone());
         customerEmail.setText(customer.getEmail());
 
-
+        CartService cartService = new CartService(this);
         cartService.getCartList();
 
         confirmationButton1.setOnClickListener(new View.OnClickListener() {

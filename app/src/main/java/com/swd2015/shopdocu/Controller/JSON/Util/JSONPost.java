@@ -40,19 +40,19 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by quangphuong on 12/2/15.
  */
 public class JSONPost extends AsyncTask<String, String, String> {
-
+    Gson gson = new Gson();
+    String json;
     public JSONTask API;
     CheckoutInfo checkoutInfo;
 
     public JSONPost(JSONTask task, CheckoutInfo checkoutInfo) {
         this.API = task;
         this.checkoutInfo = checkoutInfo;
+        this.json = gson.toJson(checkoutInfo, CheckoutInfo.class);
     }
 
     @Override
     protected String doInBackground(String... params) {
-        Gson gson = new Gson();
-        String json = gson.toJson(checkoutInfo, CheckoutInfo.class);
         URL url = null;
         String response = "";
         try {
@@ -68,6 +68,8 @@ public class JSONPost extends AsyncTask<String, String, String> {
             OutputStream outputStream = new BufferedOutputStream(conn.getOutputStream());
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(outputStream, "UTF-8"));
+
+            System.out.println("JSON Sent Object: " + json);
 
             writer.write(json);
             writer.flush();

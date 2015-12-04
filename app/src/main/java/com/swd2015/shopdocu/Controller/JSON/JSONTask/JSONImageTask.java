@@ -1,4 +1,4 @@
-package com.swd2015.shopdocu.Controller.JSON.Task;
+package com.swd2015.shopdocu.Controller.JSON.JSONTask;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

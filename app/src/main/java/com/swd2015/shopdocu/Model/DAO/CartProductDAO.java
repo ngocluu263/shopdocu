@@ -130,4 +130,11 @@ public class CartProductDAO extends DBHandler {
         }
         return cartProductList;
     }
+
+    public boolean deleteCart(int productID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean result = db.delete(DBConfig.TABLE_CART_PRODUCT, DBConfig.PRODUCT_ID + "=" + productID, null) > 0;
+        db.close();
+        return result;
+    }
 }

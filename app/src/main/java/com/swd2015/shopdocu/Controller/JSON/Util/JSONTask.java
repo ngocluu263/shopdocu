@@ -11,7 +11,6 @@ public enum JSONTask {
     GET_CUSTOMER_BY_ID("http://swd2015api.azurewebsites.net/api/customer/getcustomerbyid"),
     ADD_SOLD_PRODUCT("http://swd2015api.azurewebsites.net/api/OrderDetail/CreateSoldOrderDetail"),
     ADD_CUSTOMER("http://swd2015api.azurewebsites.net/api/customer/CreateAccount");
-    ;
 
     private final String text;
 

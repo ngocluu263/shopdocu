@@ -125,9 +125,6 @@ public class ProductDetailActivity extends Activity {
 
         }
 
-        System.out.println("productDetailContainerHeight---- : " + productDetailContainerHeight);
-        System.out.println("buyButtonSectionHeight---- : " + buyButtonSectionHeight);
-
         productDetailContainer.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, productDetailContainerHeight));
 

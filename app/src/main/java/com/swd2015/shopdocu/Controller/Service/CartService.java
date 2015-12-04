@@ -8,7 +8,8 @@ import com.swd2015.shopdocu.Controller.Activity.CartActivity;
 import com.swd2015.shopdocu.Controller.Adapter.CartAdapter;
 import com.swd2015.shopdocu.Controller.Adapter.CartPreviewAdapter;
 import com.swd2015.shopdocu.Controller.Fragment.Confirmation1Fragment;
-import com.swd2015.shopdocu.Controller.JSON.Task.CartTask;
+import com.swd2015.shopdocu.Controller.Task.CartTask;
+import com.swd2015.shopdocu.Controller.Util.DBTask;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 
 import java.util.ArrayList;
@@ -28,10 +29,11 @@ public class CartService {
 
     public CartService(Fragment fragment) {
         this.fragment = fragment;
+        this.activity = fragment.getActivity();
     }
 
     public void getCartList() {
-        CartTask cartTask = new CartTask(this);
+        CartTask cartTask = new CartTask(this, DBTask.GET_ALL_CART);
         cartTask.execute();
     }
 
@@ -67,5 +69,10 @@ public class CartService {
             totalQuantity += product.getQuantity();
             totalPayment += totalQuantity * product.getPrice();
         }
+    }
+
+    public void deleteCart(int productID){
+        CartTask cartTask = new CartTask(productID, DBTask.DELETE_CART);
+        cartTask.execute();
     }
 }

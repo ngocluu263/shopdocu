@@ -1,18 +1,18 @@
 package com.swd2015.shopdocu.Controller.Service;
 
 import android.app.Activity;
-import android.widget.ImageView;
+
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
 import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
 import com.swd2015.shopdocu.Controller.Adapter.ProductDetailAdapter;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
+import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
 import android.view.View;
 import android.widget.BaseAdapter;
 
-import com.swd2015.shopdocu.Controller.Util.SeenTask;
+import com.swd2015.shopdocu.Controller.Task.SeenTask;
 import com.swd2015.shopdocu.Ga.SearchActivity;
 import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
 import com.swd2015.shopdocu.Model.DTO.Product;

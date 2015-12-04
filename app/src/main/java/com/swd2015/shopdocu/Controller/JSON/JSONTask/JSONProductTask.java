@@ -1,4 +1,4 @@
-package com.swd2015.shopdocu.Controller.JSON.Task;
+package com.swd2015.shopdocu.Controller.JSON.JSONTask;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 

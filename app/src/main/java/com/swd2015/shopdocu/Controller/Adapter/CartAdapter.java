@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.CartActivity;
+import com.swd2015.shopdocu.Controller.Service.CartService;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.R;
 
@@ -66,12 +68,13 @@ public class CartAdapter extends BaseAdapter {
         }
 
         if(cartList != null){
-            CartProduct cartProduct = cartList.get(position);
+            final CartProduct cartProduct = cartList.get(position);
 
             TextView productTitle = (TextView)cartListView.findViewById(R.id.product_name);
             TextView productPrice = (TextView)cartListView.findViewById(R.id.product_price);
             TextView productStatus = (TextView)cartListView.findViewById(R.id.product_status);
             ImageView productSmallImage = (ImageView) cartListView.findViewById(R.id.product_small_image);
+            ImageButton deleteButton = (ImageButton)cartListView.findViewById(R.id.delete_button);
             Spinner quantityDropdown = (Spinner)cartListView.findViewById(R.id.spinner_quantity);
 
             Glide.with(mContext)
@@ -97,6 +100,13 @@ public class CartAdapter extends BaseAdapter {
             }
 
             adjustFontSize(productTitle);
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cartActivity.cartService.deleteCart(cartProduct.getID());
+                }
+            });
 
         }
 
