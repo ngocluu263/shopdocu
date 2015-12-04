@@ -19,3 +19,4 @@ gradle.properties
 gradle/wrapper/gradle-wrapper.properties
 gradlew.bat
 settings.gradle
+viewPagerIndicatorLibrary/*
