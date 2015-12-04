@@ -137,4 +137,16 @@ public class CartProductDAO extends DBHandler {
         db.close();
         return result;
     }
+
+    public void updateCartQuantity(int productID, int quantity){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        if (isOrderExist(productID)){
+            ContentValues values = new ContentValues();
+            values.put(DBConfig.ORDER_QUANTITY, quantity);
+            db.update(DBConfig.TABLE_CART_PRODUCT, values,
+                    DBConfig.PRODUCT_ID + "=" + productID, null);
+        }
+        db.close();
+    }
 }

@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Created by quangphuong on 11/29/15.
  */
 public class CartActivity extends AppCompatActivity {
-    public CartService cartService = new CartService(this);
+    public CartService cartService;
     public static ListView cartListView;
     public static TextView totalQuantity;
     public static TextView totalPayment;
@@ -47,7 +47,7 @@ public class CartActivity extends AppCompatActivity {
         totalQuantity = (TextView)findViewById(R.id.total_quantity);
         totalPayment = (TextView)findViewById(R.id.total_payment);
         orderButton = (Button)findViewById(R.id.order_button);
-
+        cartService = new CartService(this);
         cartService.getCartList();
 
         orderButton.setOnClickListener(new View.OnClickListener() {

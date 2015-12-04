@@ -3,6 +3,7 @@ package com.swd2015.shopdocu.Controller.Service;
 import android.app.Activity;
 import android.app.Fragment;
 import android.view.View;
+import android.widget.BaseAdapter;
 
 import com.swd2015.shopdocu.Controller.Activity.CartActivity;
 import com.swd2015.shopdocu.Controller.Adapter.CartAdapter;
@@ -20,8 +21,13 @@ import java.util.ArrayList;
 public class CartService {
     public Activity activity;
     public Fragment fragment;
+    public BaseAdapter adapter;
     public int totalQuantity;
     public int totalPayment;
+
+    public CartService(BaseAdapter adapter) {
+        this.adapter = adapter;
+    }
 
     public CartService(Activity activity) {
         this.activity = activity;
@@ -71,8 +77,20 @@ public class CartService {
         }
     }
 
-    public void deleteCart(int productID){
-        CartTask cartTask = new CartTask(productID, DBTask.DELETE_CART);
+    public void deleteCart(BaseAdapter adapter, int productID){
+        this.adapter = adapter;
+        CartTask cartTask = new CartTask(this, productID, DBTask.DELETE_CART);
+        cartTask.execute();
+
+    }
+
+    public void resetListView(){
+        adapter.notifyDataSetInvalidated();
+    }
+
+    public void updateQuantityCart(BaseAdapter adapter, int productID, int quantity){
+        this.adapter = adapter;
+        CartTask cartTask = new CartTask(this, productID, quantity, DBTask.UPDATE_CART);
         cartTask.execute();
     }
 }

@@ -8,6 +8,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
@@ -59,7 +60,7 @@ public class CartAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View cartListView;
+        final View cartListView;
 
         if (convertView == null) {
             cartListView = layoutInflater.inflate(R.layout.adapter_cart, null);
@@ -89,7 +90,8 @@ public class CartAdapter extends BaseAdapter {
 
 
             String[] items = new String[]{"1", "2", "3" , "4", "5"};
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, items);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
+                    android.R.layout.simple_spinner_dropdown_item, items);
             quantityDropdown.setAdapter(adapter);
 
             // Maximum quantity is 5
@@ -100,12 +102,28 @@ public class CartAdapter extends BaseAdapter {
             }
 
             adjustFontSize(productTitle);
-
+            final CartAdapter cartAdapter = this;
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cartActivity.cartService.deleteCart(cartProduct.getID());
+                    cartActivity.cartService.deleteCart(cartAdapter, cartProduct.getID());
                 }
+            });
+
+            quantityDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
+                                           int position, long id) {
+                    int quantity = position + 1;
+                    cartActivity.cartService.updateQuantityCart(cartAdapter, cartProduct.getID(),
+                            quantity);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // your code here
+                }
+
             });
 
         }
