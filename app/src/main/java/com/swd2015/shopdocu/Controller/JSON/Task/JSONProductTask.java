@@ -1,4 +1,4 @@
-package com.swd2015.shopdocu.Controller.JSON.JSONTask;
+package com.swd2015.shopdocu.Controller.JSON.Task;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 
@@ -21,23 +21,14 @@ public class JSONProductTask extends JSONParser {
         this.API = task;
     }
 
-    public JSONProductTask(ProductService productService, JSONTask task, String... params){
+    public JSONProductTask(ProductService productService, JSONTask task, String... params) {
         this.productService = productService;
         this.API = task;
         StringBuilder sb = new StringBuilder();
-        for (String param:params) {
+        for (String param : params) {
             sb.append("/" + param);
             this.ID = sb.toString();
         }
-
-    public JSONProductTask(ProductService productService, JSONTask task, int ID){
-        this.productService = productService;
-        this.API = task;
-        StringBuilder sb = new StringBuilder();
-        for (String param:params) {
-            sb.append("/" + param);
-        }
-        this.ID = String.valueOf(sb.toString());
     }
 
     @Override
@@ -54,7 +45,7 @@ public class JSONProductTask extends JSONParser {
                 JSON_Product p = gson.fromJson(json, JSON_Product.class);
                 productService.setProduct(p);
                 break;
-            case GET_SEARCH_PRODUCTS:
+            case GET_SEARCHED_PRODUCTS:
                 JSON_Product[] searchedProducts = gson.fromJson(json, JSON_Product[].class);
                 productService.setSearchedProducts(new ArrayList<>(Arrays.asList(searchedProducts)));
                 break;
@@ -65,12 +56,6 @@ public class JSONProductTask extends JSONParser {
             case GET_HOT_PRODUCTS:
                 JSON_Product[] hotProducts = gson.fromJson(json, JSON_Product[].class);
                 productService.setHotProduct(new ArrayList<>(Arrays.asList(hotProducts)));
-                break;
-            case GET_PRODUCT:
-                JSON_Product p = gson.fromJson(json, JSON_Product.class);
-                if(p != null){
-                    productService.setProduct(p);
-                }
                 break;
         }
     }

@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
@@ -62,7 +63,7 @@ public class ProductDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-//        productID = getIntent().getExtras().getInt("productID");
+        productID = getIntent().getExtras().getInt("productID");
 
         productTitle = (TextView) findViewById(R.id.product_name);
         productPrice = (TextView) findViewById(R.id.productPrice);
@@ -78,7 +79,7 @@ public class ProductDetailActivity extends Activity {
         toggleFavoriteArray.add(R.drawable.ic_blank_heart);
         toggleFavoriteArray.add(R.drawable.ic_red_heart);
 
-        productService.getProductByID(6);
+        productService.getProductByID(productID);
 
         adjustViewSize();
 
@@ -159,7 +160,7 @@ public class ProductDetailActivity extends Activity {
         buyButtonParam.setMargins(0, 0, 5, 0);
         buyButton.setLayoutParams(buyButtonParam);
 
-        Drawable buyButtonImg = getApplicationContext().getResources().getDrawable( R.drawable.ic_shopping_cart );
+        Drawable buyButtonImg = getApplicationContext().getResources().getDrawable(R.drawable.ic_shopping_cart);
         buyButtonImg.setBounds(0, 0, 60, 60);
         buyButton.setCompoundDrawables(buyButtonImg, null, null, null);
 
@@ -167,6 +168,13 @@ public class ProductDetailActivity extends Activity {
         addToCartImg.setBounds(0, 0, 60, 60);
         addToCartButton.setCompoundDrawables(addToCartImg, null, null, null);
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        onBackPressed();
+        finish();
     }
 
 }

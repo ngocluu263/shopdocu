@@ -3,33 +3,25 @@ package com.swd2015.shopdocu.Controller.Service;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.FavoriteProductActivity;
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
-import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONCustomerTask;
 import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
 import com.swd2015.shopdocu.Controller.Activity.SeenProductActivity;
 import com.swd2015.shopdocu.Controller.Adapter.ProductDetailAdapter;
 import com.swd2015.shopdocu.Controller.Adapter.ProductGridViewAdapter;
-import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONProductTask;
+import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
 
-import com.swd2015.shopdocu.Ga.RequestSellFragment;
 import com.swd2015.shopdocu.Ga.SearchFragment;
 
 import com.swd2015.shopdocu.R;
-import com.swd2015.shopdocu.Ga.SearchFragment;
-import com.swd2015.shopdocu.Minh.HomePage_Fragment;
 
 import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
 import com.swd2015.shopdocu.Minh.BanGheCapheFragment;
@@ -48,27 +40,19 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import com.swd2015.shopdocu.Controller.Activity.MainActivity;
-import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
-import android.view.View;
-import android.widget.BaseAdapter;
 
 import com.swd2015.shopdocu.Controller.Task.FavoriteTask;
 import com.swd2015.shopdocu.Controller.Task.SeenTask;
 import com.swd2015.shopdocu.Controller.Util.DBTask;
-import com.swd2015.shopdocu.Ga.SearchActivity;
-import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
 import com.swd2015.shopdocu.Model.DTO.Product;
-import java.util.ArrayList;
+
 import java.util.List;
 
 /**
  * Created by Quang on 20/11/2015.
  */
 public class ProductService{
-    Activity activity;
+    public Activity activity;
     Context mContext;
     BaseAdapter baseAdapter;
     Fragment fragment;
@@ -97,8 +81,8 @@ public class ProductService{
         jsonTask.execute();
     }
 
-    public void setAllProduct(ArrayList<JSON_Product> productList){
-        switch (fragment.getClass().getSimpleName()){
+    public void setAllProduct(ArrayList<JSON_Product> productList) {
+        switch (fragment.getClass().getSimpleName()) {
             case "SearchFragment":
                 SearchFragment searchFragment = (SearchFragment) fragment;
 
@@ -107,16 +91,9 @@ public class ProductService{
                     searchFragment.listProductsName.add(productList.get(i).getName());
                 }
                 searchFragment.searchTextView.setAdapter(new ArrayAdapter<String>(
-                                            searchFragment.getActivity().getApplicationContext(),
-                                            R.layout.list_searched_product_suggestion,
-                                            searchFragment.listProductsName));
-
-        switch (activity.getClass().getSimpleName()){
-            case "MainActivity":
-                MainActivity mainActivity = (MainActivity) activity;
-
-                // Ví dụ: get product đầu tiên và set Description của nó vào MainActivity
-                mainActivity.example = productList.get(0).getDescription();
+                        searchFragment.getActivity().getApplicationContext(),
+                        R.layout.list_searched_product_suggestion,
+                        searchFragment.listProductsName));
                 break;
         }
     }
@@ -129,7 +106,6 @@ public class ProductService{
 
     public void setProduct(JSON_Product product) {
         switch (activity.getClass().getSimpleName()) {
->>>>>>> Quang
             case "ProductDetailActivity":
                 ProductDetailActivity productDetailActivity = (ProductDetailActivity) activity;
 
@@ -155,7 +131,6 @@ public class ProductService{
 
     public void getSearchedProducts(String productName, int categoryID) {
         JSONProductTask jsonTask = new JSONProductTask(this,
-<<<<<<< HEAD
 				JSONTask.GET_SEARCHED_PRODUCTS, productName, String.valueOf(categoryID));
         jsonTask.execute();
     }
@@ -264,7 +239,7 @@ public class ProductService{
         }//end if supportV4Fragment !=null
     }
 
-}
+
     public void getNewProducts(){
         JSONProductTask jsonTask = new JSONProductTask(this, JSONTask.GET_NEW_PRODUCTS);
         jsonTask.execute();
@@ -277,7 +252,7 @@ public class ProductService{
         homePageFragment.listDataNewProduct= new ArrayList<ProductForAdapter>();
         for(JSON_Product product:homePageFragment.listProduct ){
             homePageFragment.productForAdapter
-                    =new ProductForAdapter(formatName(product.getName())
+                    =new ProductForAdapter(product.getID(),formatName(product.getName())
                     , formatPrice(product.getPrice())
                     ,product.getImage().get(0).toString());
             homePageFragment.listDataNewProduct.add(homePageFragment.productForAdapter);
@@ -285,7 +260,7 @@ public class ProductService{
 
         //New product
         homePageFragment.newProductAdapter=
-                new ProductAdapter(homePageFragment.getActivity().getApplicationContext()
+                new ProductAdapter(homePageFragment.getActivity()
                         ,homePageFragment.listDataNewProduct);
         homePageFragment.layoutManager=new LinearLayoutManager(homePageFragment.getActivity());
         homePageFragment.layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -304,13 +279,13 @@ public class ProductService{
         homePageFragment2.listDataHotProduct= new ArrayList<ProductForAdapter>();
         for(JSON_Product product:productList ){
             homePageFragment2.hotProductForAdapter
-                    =new ProductForAdapter(formatName(product.getName())
+                    =new ProductForAdapter(product.getID(),formatName(product.getName())
                     , formatPrice(product.getPrice())
                     ,product.getImage().get(0).toString());
             homePageFragment2.listDataHotProduct.add(homePageFragment2.hotProductForAdapter);
         }
         homePageFragment2.hotProductAdapter=
-                new ProductAdapter(homePageFragment2.getActivity().getApplicationContext()
+                new ProductAdapter(homePageFragment2.getActivity()
                         ,homePageFragment2.listDataHotProduct);
         homePageFragment2.layoutManager2=new LinearLayoutManager(homePageFragment2.getActivity());
         homePageFragment2.layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -333,18 +308,6 @@ public class ProductService{
         String sPrice=formatter.format(amount);
         sPrice = sPrice.replace(',','.');
         return sPrice + " VND";
-    }
-	
-	=======
-    public void setSearchedProducts(ArrayList<JSON_Product> productList) {
-        switch (activity.getClass().getSimpleName()) {
-            case "SearchActivity":
-                SearchActivity searchActivity = (SearchActivity) activity;
-                searchActivity.searchResultGridView.setVisibility(View.VISIBLE);
-                System.out.println("QWERT " + productList.size());
-                searchActivity.searchResultGridView.setAdapter(new ShowSearchedResultAdapter(searchActivity, productList));
-                break;
-        }
     }
 
     public void saveSeenProduct(JSON_Product jsonProduct) {

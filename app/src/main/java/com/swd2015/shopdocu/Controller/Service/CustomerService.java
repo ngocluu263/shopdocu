@@ -1,10 +1,14 @@
 package com.swd2015.shopdocu.Controller.Service;
 
-import android.support.v4.app.Fragment;
+
+
+import android.app.Fragment;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
+import com.swd2015.shopdocu.Controller.JSON.Task.JSONCustomerTask;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONPostTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
+import com.swd2015.shopdocu.Ga.RequestSellCustomerFragment;
 import com.swd2015.shopdocu.Minh.LoginFragment;
 import com.swd2015.shopdocu.Minh.SignupFragment;
 
@@ -13,6 +17,7 @@ import com.swd2015.shopdocu.Minh.SignupFragment;
  */
 public class CustomerService {
     Fragment fragment;
+    android.support.v4.app.Fragment fragmentv4;
 
     /**
      * Constructor: CustomerService(Fragment fragment)
@@ -23,6 +28,10 @@ public class CustomerService {
      */
     public CustomerService(Fragment fragment) {
         this.fragment = fragment;
+    }
+
+    public CustomerService(android.support.v4.app.Fragment fragmentv4) {
+        this.fragmentv4 = fragmentv4;
     }
 
     /**
@@ -47,11 +56,11 @@ public class CustomerService {
      * ++PhucLHSE61219_20151203
      */
     public void setCustomer(JSON_Customer customer) {
-        switch (fragment.getClass().getSimpleName()) {
+        switch (fragmentv4.getClass().getSimpleName()) {
             case "RequestSellCustomerFragment":
                 if (customer != null) {
                     RequestSellCustomerFragment requestSellCustomerFragment =
-                                                            (RequestSellCustomerFragment) fragment;
+                                                            (RequestSellCustomerFragment) fragmentv4;
 
                     //Get customer information and set to view (RequestSellCustomerFragment)
                     requestSellCustomerFragment.customerNameEditText

@@ -61,11 +61,11 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem)
     {
         onBackPressed();
+        finish();
         return true;
     }
 

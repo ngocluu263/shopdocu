@@ -1,6 +1,8 @@
 package com.swd2015.shopdocu.Minh;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
 import com.swd2015.shopdocu.R;
 
 import java.util.Collections;
@@ -19,6 +22,7 @@ import java.util.List;
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     LayoutInflater inflater;
+    Activity activity;
     private Context mContext;
     List<ProductForAdapter> listProduct= Collections.emptyList();
 
@@ -26,6 +30,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         inflater=LayoutInflater.from(context);
         listProduct=data;
         mContext=context;
+        activity = (Activity) mContext;
     }
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,7 +41,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-        ProductForAdapter product=listProduct.get(position);
+        final ProductForAdapter product = listProduct.get(position);
 
         ImageView productImageView = (ImageView) holder.image;
         Glide.with(mContext)
@@ -47,6 +52,26 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         productImageView.setScaleType(ImageView.ScaleType.FIT_XY);
         holder.price.setText(product.getPrice());
         holder.name.setText(product.getName());
+
+        productImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToProductDetail(product.getID());
+            }
+        });
+
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToProductDetail(product.getID());
+            }
+        });
+    }
+
+    public void goToProductDetail(int productID){
+        Intent intent = new Intent(mContext, ProductDetailActivity.class);
+        intent.putExtra("productID",productID);
+        activity.startActivity(intent);
     }
 
     @Override

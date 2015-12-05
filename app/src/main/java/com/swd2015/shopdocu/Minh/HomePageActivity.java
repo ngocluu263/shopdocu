@@ -1,8 +1,10 @@
 package com.swd2015.shopdocu.Minh;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +21,10 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.swd2015.shopdocu.Controller.Activity.FavoriteProductActivity;
+import com.swd2015.shopdocu.Controller.Activity.SeenProductActivity;
+import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.Ga.RequestSellFragment;
 import com.swd2015.shopdocu.Ga.SearchFragment;
 import com.swd2015.shopdocu.R;
@@ -48,8 +54,8 @@ public class HomePageActivity extends AppCompatActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home_page);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
+//        setSupportActionBar(toolbar);
         //toolbar.setTitle("");
         //toolbar.setBackground(new ColorDrawable(Color.parseColor("#7CD175")));
         actionBar=getSupportActionBar();
@@ -91,15 +97,16 @@ public class HomePageActivity extends AppCompatActivity {
 
         listNav.setItemChecked(0, true);
         drawerLayout.closeDrawer(drawerPane);
-
+        final Activity activity = this;
         //set listener for navigation item (slide-in menu)
         listNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //replace the fragment with the selection corresponding
                 FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 //region switch position
+                Intent intent;
                 switch (position) {
                     case 0: {
                         fragmentTransaction.replace(R.id.main, homePageFragment).commit();
@@ -109,19 +116,20 @@ public class HomePageActivity extends AppCompatActivity {
                         break;
                     }
                     case 1: {
-                        Toast.makeText(getBaseContext(), "You have click Đơn hàng đã mua", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(activity, FavoriteProductActivity.class);
+                        startActivity(intent);
                         break;
                     }
                     case 2: {
-                        Toast.makeText(getBaseContext(), "You have click Đơn hàng đã bán", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(activity, SeenProductActivity.class);
+                        startActivity(intent);
                         break;
                     }
                     case 3: {
-                        Toast.makeText(getBaseContext(), "You have click Sản phẩm yêu thích", Toast.LENGTH_SHORT).show();
+
                         break;
                     }
                     case 4: {
-                        Toast.makeText(getBaseContext(), "You have click Hỗ trợ", Toast.LENGTH_SHORT).show();
                         break;
                     }
                 }

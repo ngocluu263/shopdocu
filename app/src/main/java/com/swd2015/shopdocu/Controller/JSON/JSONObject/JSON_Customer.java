@@ -11,26 +11,23 @@ public class JSON_Customer {
     @SerializedName("ID")
     private int customerID;
     @SerializedName("FullName")
-    private String name;
-    @SerializedName("Gender")
-    private String gender;
+    private String customerName;
     @SerializedName("Email")
-    private String email;
-    @SerializedName("Address")
-    private String address;
+    private String customerEmail;
     @SerializedName("PhoneNumber")
-    private String phone;
-    @SerializedName("isGuest")
-    private Boolean isGuest;
-    @SerializedName("Password")
-    private String password;
+    private String customerPhoneNumber;
     @SerializedName("Birthday")
-    private Date birthday;
+    private String customerBirthday;
+    @SerializedName("Gender")
+    private String customerGender;
+    @SerializedName("Address")
+    private String customerAddress;
+    @SerializedName("IsGuest")
+    private String isGuest;
     @SerializedName("ImageURL")
     private String customerImageURL;
 
     public JSON_Customer (){
-
 
     }
 
@@ -47,34 +44,21 @@ public class JSON_Customer {
         this.isGuest = isGuest;
         this.customerImageURL = customerImageURL;
     }
-    public JSON_Customer(int ID,String fullName,String email,String phoneNumber,Date birthday,String  gender,String address,String avatar){
-        this.ID=ID;
-        this.name=fullName;
-        this.email=email;
-        this.phone=phoneNumber;
-        this.birthday=birthday;
-        this.gender=gender;
-        this.address=address;
-        this.avatar=avatar;
+
+    public String getCustomerName(){
+        return customerName;
     }
 
-    public int getID(){return this.ID;}
-    public String getName(){return this.name;}
-    public String getEmail(){return this.email;}
-    public String getPhoneNumber(){return this.phone;}
-    public String getGender(){return this.gender;}
-    public String getAddress(){return this.address;}
-    public String getAvatar(){return this.avatar;}
-    public Date getBirthday(){return  this.birthday;}
+    public void setCustomerName(String customerName){
+        this.customerName = customerName;
+    }
 
     public String getCustomerEmail(){
         return customerEmail;
     }
 
-
-    public void setName(String fullName) {
-        this.name = fullName;
-
+    public void setCustomerEmail(String customerEmail){
+        this.customerEmail = customerEmail;
     }
 
     public String getCustomerPhoneNumber(){
@@ -97,10 +81,8 @@ public class JSON_Customer {
         return customerGender;
     }
 
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phone = phoneNumber;
-
+    public void setCustomerGender(String customerGender){
+        this.customerGender = customerGender;
     }
 
     public String getCustomerAddress(){

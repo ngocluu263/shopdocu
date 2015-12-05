@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.swd2015.shopdocu" >
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -60,32 +60,26 @@
             android:label="@string/title_seen_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Controller.Activity.UserDetailActivity"
             android:label="@string/title_activity_home_page" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
-
     </activity>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 
         <uses-feature android:name="android.hardware.camera"
                       android:required="true" />
 
-        <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
                                                         android:maxSdkVersion="18" />
-        <activity android:name=".Minh.LoginActivity" 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".Controller.Activity.FavoriteProductActivity"
             android:label="@string/title_favorite_activity">
             <intent-filter>

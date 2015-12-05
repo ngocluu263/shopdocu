@@ -1,25 +1,16 @@
-package com.swd2015.shopdocu.Controller.JSON.JSONTask;
+package com.swd2015.shopdocu.Controller.JSON.Task;
 
 import com.google.gson.Gson;
-
-import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONParser;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
 import com.swd2015.shopdocu.Controller.Service.CustomerService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by PhucLHSE61219 on 24/11/2015.
  */
 public class JSONCustomerTask extends JSONParser {
     CustomerService customerService;
-
-    public JSONCustomerTask(CustomerService customerService, JSONTask task){
-        this.customerService = customerService;
-        this.API = task;
-    }
 
     public JSONCustomerTask(CustomerService customerService, JSONTask task, String... params){
         this.customerService = customerService;
@@ -40,10 +31,5 @@ public class JSONCustomerTask extends JSONParser {
                 customerService.setCustomer(customer);
                 break;
         }
-    }
-
-    @Override
-    protected String doInBackground(String... params) {
-        return super.doInBackground(params);
     }
 }

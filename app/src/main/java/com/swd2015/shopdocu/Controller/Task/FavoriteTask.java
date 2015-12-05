@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class FavoriteTask extends AsyncTask {
     ProductService productService;
+
     Product product;
     DBTask dbTask;
 

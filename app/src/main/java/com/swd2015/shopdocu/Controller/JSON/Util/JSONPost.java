@@ -55,6 +55,13 @@ public class JSONPost extends AsyncTask<String, String, String> {
     String json;
     public JSONTask API;
     CheckoutInfo checkoutInfo;
+    JSON_PurchasedOrder purchasedOrder;
+
+    public JSONPost(JSONTask task, JSON_PurchasedOrder purchasedOrder) {
+        this.API = task;
+        this.purchasedOrder = purchasedOrder;
+        json = gson.toJson(this.purchasedOrder, JSON_PurchasedOrder.class);
+    }
 
     public JSONPost(JSONTask task, CheckoutInfo checkoutInfo) {
         this.API = task;
