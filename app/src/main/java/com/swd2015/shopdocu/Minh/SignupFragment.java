@@ -55,7 +55,7 @@ public class SignupFragment extends Fragment {
             public void onClick(View v) {
 
                 customerService.createAccount(edtEmail.getText().toString(),
-                        edtPass.getText().toString(),edtName.getText().toString().replace(' ','_'));
+                        edtPass.getText().toString(), edtName.getText().toString().replace(' ', '_'));
             }
         });
 
@@ -68,5 +68,27 @@ public class SignupFragment extends Fragment {
         return v;
     }
 
-
+//    @Override
+//    public Dialog onCreateDialog(Bundle savedInstanceState) {
+//
+//        AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+//        builder.setTitle("Thông báo");
+//        // builder.setIcon(R.drawable.koala );
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                FragmentManager fragmentManager= getActivity().getFragmentManager();
+//                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+//                LoginFragment loginFragment = new LoginFragment();
+//                Bundle bundle=new Bundle();
+//                bundle.putString("email",customer.getEmail());
+//                loginFragment.setArguments(bundle);
+//
+//                fragmentTransaction.replace(R.id.main,loginFragment).commit();
+//
+//            }
+//        });
+//        builder.setMessage("Bạn đã đăng nhập thành công");
+//        return builder.create();
+//    }
 }

@@ -1,16 +1,12 @@
 package com.swd2015.shopdocu.Controller.Service;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONPostTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
 import com.swd2015.shopdocu.Minh.LoginFragment;
 import com.swd2015.shopdocu.Minh.SignupFragment;
-import com.swd2015.shopdocu.R;
 
 /**
  * Created by Minh on 11/28/2015.
@@ -52,14 +48,21 @@ public class CustomerService {
         SignupFragment signupFragment= (SignupFragment) fragment;
         signupFragment.customer=customer;
         if (customer!=null){
-            FragmentManager fragmentManager= fragment.getActivity().getFragmentManager();
-            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-            LoginFragment loginFragment = new LoginFragment();
-            Bundle bundle=new Bundle();
-            bundle.putString("email",customer.getEmail());
-            loginFragment.setArguments(bundle);
+//            FragmentManager fragmentManager= fragment.getActivity().getFragmentManager();
+//            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+//            fragmentTransaction.remove(signupFragment);
+//            signupFragment.show(fragmentManager,"dialog");
 
-            fragmentTransaction.replace(R.id.main,loginFragment).commit();
+            signupFragment.getActivity().showDialog(1);
+
+//            FragmentManager fragmentManager= fragment.getActivity().getFragmentManager();
+//            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+//            LoginFragment loginFragment = new LoginFragment();
+//            Bundle bundle=new Bundle();
+//            bundle.putString("email",customer.getEmail());
+//            loginFragment.setArguments(bundle);
+//
+//            fragmentTransaction.replace(R.id.main,loginFragment).commit();
 
             //System.out.println("Post thanh cong");
             //System.out.println(customer.getGender());
