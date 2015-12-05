@@ -2,8 +2,6 @@ package com.swd2015.shopdocu.Minh;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -172,22 +170,12 @@ public class HomePageActivity extends AppCompatActivity {
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.main,
                                                                new SearchFragment()).commit();
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    fragmentManager.beginTransaction().replace(R.id.main,
-//                                                            new RequestSellFragment()).commit();
-                    //Intent intent = new Intent(this, SearchFragment.class);
-//                    Fragment searchFragment = new SearchFragment();
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                    fragmentTransaction.replace(R.id.search, searchFragment);
-//                    fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.commit();
-                    //FragmentManager fragmentManager = getFragmentManager();
-                    //fragmentManager.beginTransaction().replace(R.id.main, new SearchFragment()).commit();
                     return true;
                 }
                 case 1:{
-                    Toast.makeText(getBaseContext(),"Cart Icon",Toast.LENGTH_SHORT).show();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.main,
+                                                            new RequestSellFragment()).commit();
                     return true;
                 }
             }

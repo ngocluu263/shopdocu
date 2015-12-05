@@ -103,7 +103,7 @@ public class ProductService{
 
     public void getSearchedProducts(String productName, int categoryID){
         JSONProductTask jsonTask = new JSONProductTask(this,
-                        JSONTask.GET_SEARCHED_PRODUCTS, productName, String.valueOf(categoryID));
+                        JSONTask.GET_SEARCH_PRODUCTS, productName, String.valueOf(categoryID));
         jsonTask.execute();
     }
 
