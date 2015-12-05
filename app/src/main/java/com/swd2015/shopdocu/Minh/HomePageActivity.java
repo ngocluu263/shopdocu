@@ -221,6 +221,8 @@ public class HomePageActivity extends AppCompatActivity {
             menuItem2.setIcon(R.drawable.cart_icon);
             menuItem2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
+
+
     }
 
     //

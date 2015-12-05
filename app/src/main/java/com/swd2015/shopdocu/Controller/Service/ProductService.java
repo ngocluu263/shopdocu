@@ -1,7 +1,6 @@
 package com.swd2015.shopdocu.Controller.Service;
 
 import android.app.Activity;
-<<<<<<< HEAD
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,11 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.BaseAdapter;
-
+import android.widget.ImageView;
+import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONCustomerTask;
+import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
+import com.swd2015.shopdocu.Controller.JSON.Task.JSONImageTask;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
 
@@ -42,20 +45,17 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-=======
-
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
 
 import java.util.ArrayList;
->>>>>>> origin/Khiem_2
+import java.util.List;
 
 /**
  * Created by Quang on 20/11/2015.
  */
-<<<<<<< HEAD
 public class ProductService{
     Activity activity;
     Context mContext;
@@ -80,14 +80,6 @@ public class ProductService{
     public ProductService(BaseAdapter baseAdapter){
         this.baseAdapter = baseAdapter;
     }
-=======
-public class ProductService {
-    Activity activity;
-
-    public ProductService(Activity activity){
-        this.activity = activity;
-    }
->>>>>>> origin/Khiem_2
 
     public void getAllProduct(){
         JSONProductTask jsonTask = new JSONProductTask(this, JSONTask.GET_ALL_PRODUCT);
@@ -95,7 +87,6 @@ public class ProductService {
     }
 
     public void setAllProduct(ArrayList<JSON_Product> productList){
-<<<<<<< HEAD
         switch (fragment.getClass().getSimpleName()){
             case "SearchFragment":
                 SearchFragment searchFragment = (SearchFragment) fragment;
@@ -109,26 +100,10 @@ public class ProductService {
                                             R.layout.list_searched_product_suggestion,
                                             searchFragment.listProductsName));
 
-=======
->>>>>>> origin/Khiem_2
         switch (activity.getClass().getSimpleName()){
             case "MainActivity":
                 MainActivity mainActivity = (MainActivity) activity;
 
-<<<<<<< HEAD
-                 //Ví dụ: get product đầu tiên và set Description của nó vào MainActivity
-                mainActivity.example = productList.get(0).getDescription();
-                break;
-        }
-        //HomePage_Fragment homePage_fragment=(HomePage_Fragment) fragment;
-       // homePage_fragment.listProduct=productList;
-
-    }
-
-    public void getProductByID(int ID){
-        JSONProductTask jsonTask = new JSONProductTask(this, JSONTask.GET_PRODUCT_BY_ID,
-                                                                                String.valueOf(ID));
-=======
                 // Ví dụ: get product đầu tiên và set Description của nó vào MainActivity
                 mainActivity.example = productList.get(0).getDescription();
                 break;
@@ -136,20 +111,33 @@ public class ProductService {
     }
 
     public void getProductByID(int ID){
-        JSONProductTask jsonTask = new JSONProductTask(this,JSONTask.GET_PRODUCT, ID);
->>>>>>> origin/Khiem_2
+        JSONProductTask jsonTask = new JSONProductTask(this,JSONTask.GET_PRODUCT_BY_ID, String.valueOf(ID));
         jsonTask.execute();
     }
 
     public void setProduct(JSON_Product product){
         switch (activity.getClass().getSimpleName()){
-            case "MainActivity":
-                MainActivity mainActivity = (MainActivity) activity;
-                mainActivity.product = product;
+            case "ProductDetailActivity":
+                ProductDetailActivity productDetailActivity = (ProductDetailActivity) activity;
+
+                productDetailActivity.product = product;
+                productDetailActivity.productTitle.setText(product.getName());
+
+                Glide.with(productDetailActivity)
+                        .load(product.getImage().get(0))
+                        .into(productDetailActivity.productLargeImage);
+                Glide.with(productDetailActivity)
+                        .load(product.getImage().get(0)).override(100, 100).centerCrop()
+                        .into(productDetailActivity.productSmallImage1);
+                Glide.with(productDetailActivity)
+                        .load(product.getImage().get(1)).override(100, 100).centerCrop()
+                        .into(productDetailActivity.productSmallImage2);
+                Glide.with(productDetailActivity)
+                        .load(product.getImage().get(2)).override(100, 100).centerCrop()
+                        .into(productDetailActivity.productSmallImage2);
                 break;
         }
     }
-<<<<<<< HEAD
 
     public void getSearchedProducts(String productName, int categoryID){
         JSONProductTask jsonTask = new JSONProductTask(this,
@@ -332,6 +320,3 @@ public class ProductService {
         return sPrice + " VND";
     }
     }
-=======
-}
->>>>>>> origin/Khiem_2

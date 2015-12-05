@@ -55,7 +55,6 @@ public class JSONParser extends AsyncTask<String, String, String> {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException ex){
-            ex.printStackTrace();
             try {
                 jsonObject = new JSONObject(jsonText);
                 return jsonObject.toString();
