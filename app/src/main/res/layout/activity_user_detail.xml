@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="1dp"
+    android:background="@color/colorUserDetail"
+    tools:context="com.swd2015.shopdocu.Khiem.UserDetail">
+
+    <FrameLayout
+        android:layout_width="400dp"
+        android:layout_height="65dp"
+        android:background="#FFFFFC"
+        android:layout_marginTop="0.5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/frameLayout_base">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageView_avatar"
+            android:src="@drawable/useravatar"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="13dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full name"
+            android:id="@+id/FullName"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="18dp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:background="#FFFFFC"
+
+        android:layout_below="@+id/frameLayout_base"
+        android:layout_marginTop="0.8dp"
+        android:layout_alignLeft="@+id/frameLayout_base"
+        android:layout_alignStart="@+id/frameLayout_base">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:id="@+id/Email"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="9dp" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_Email"
+            android:text="sdsadada"
+            android:layout_marginTop="37dp"
+            android:layout_marginLeft="53dp"
+            android:background="@drawable/shadow_box"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điện thoại"
+            android:id="@+id/Phone"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="70dp" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_Phone"
+            android:text="sdsadada"
+            android:layout_marginTop="98dp"
+            android:layout_marginLeft="53dp"
+            android:background="@drawable/shadow_box"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày sinh"
+            android:id="@+id/DOB"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="131dp" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_DOB"
+            android:text="sdsadada"
+            android:layout_marginTop="159dp"
+            android:layout_marginLeft="53dp"
+            android:background="@drawable/shadow_box"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ"
+            android:id="@+id/Address"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="194dp" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/editText_Address"
+            android:text="sdsadada"
+            android:layout_marginTop="222dp"
+            android:layout_marginLeft="53dp"
+            android:background="@drawable/shadow_box"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giới tính"
+            android:id="@+id/Gender"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="279dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Male"
+            android:layout_marginTop="307dp"
+            android:layout_marginLeft="15dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Female"
+            android:layout_marginTop="307dp"
+            android:layout_marginLeft="103dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Other"
+            android:layout_marginTop="307dp"
+            android:layout_marginLeft="208dp" />
+
+    </FrameLayout>
+</RelativeLayout>
+
+<!--<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/Username"
+            android:hint="@string/Username"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/button"
+            android:layout_alignEnd="@+id/button" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/Password"
+            android:hint="@string/Password"
+            android:layout_below="@+id/Username"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/Username"
+            android:layout_alignEnd="@+id/Username" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/Email"
+            android:hint="@string/Email"
+            android:layout_below="@+id/Password"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/Password"
+            android:layout_alignEnd="@+id/Password" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/Phone"
+            android:hint="@string/Phone"
+            android:layout_below="@+id/Email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/Email"
+            android:layout_alignEnd="@+id/Email" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_finish"
+            android:id="@+id/button"
+            android:layout_marginTop="93dp"
+            android:layout_below="@+id/rdOther"
+            android:layout_toRightOf="@+id/dateofbirth"
+            android:layout_toEndOf="@+id/dateofbirth" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/dateofbirth"
+            android:hint="@string/dateofbirth"
+            android:layout_below="@+id/Phone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:id="@+id/rdMale"
+            android:layout_alignBaseline="@+id/button"
+            android:layout_alignBottom="@+id/button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:id="@+id/rdFemale"
+            android:layout_alignBaseline="@+id/button"
+            android:layout_alignBottom="@+id/button"
+            android:layout_toLeftOf="@+id/button"
+            android:layout_toStartOf="@+id/button" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other"
+            android:id="@+id/rdOther"
+            android:layout_below="@+id/dateofbirth"
+            android:layout_alignRight="@+id/button"
+            android:layout_alignEnd="@+id/button"
+            android:layout_marginTop="75dp" />
+    </RelativeLayout>
+
+</LinearLayout> -->
+

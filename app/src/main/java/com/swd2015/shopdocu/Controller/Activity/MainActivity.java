@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
         ProductService productService = new ProductService(this);
         productService.getAllProduct();
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

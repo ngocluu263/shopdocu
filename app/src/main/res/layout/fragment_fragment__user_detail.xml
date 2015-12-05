@@ -1,0 +1,179 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="2dp"
+    android:background="@color/colorUserDetail"
+    tools:context="com.swd2015.shopdocu.Khiem.fragment_UserDetail">
+
+    <FrameLayout
+        android:layout_width="400dp"
+        android:layout_height="65dp"
+        android:background="#FFFFFC"
+        android:layout_marginTop="0.5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/frameLayout_base">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageView_avatar"
+            android:src="@drawable/useravatar"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="13dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fullname"
+            android:id="@+id/FullName"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="18dp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:background="#FFFFFC"
+
+        android:layout_below="@+id/frameLayout_base"
+        android:layout_marginTop="0.8dp"
+        android:layout_alignLeft="@+id/frameLayout_base"
+        android:layout_alignStart="@+id/frameLayout_base">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Email"
+            android:id="@+id/Email"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="9dp" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_Email"
+            android:inputType="text"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="53dp" />
+            <!--android:background="@drawable/shadow_box"-->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điện thoại"
+            android:id="@+id/Phone"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="70dp" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_Phone"
+            android:inputType="text"
+            android:layout_marginTop="82dp"
+            android:layout_marginLeft="53dp"/>
+            <!--android:background="@drawable/shadow_box"-->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày sinh"
+            android:id="@+id/DOB"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="131dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/Image_DOB"
+            android:src="@drawable/user_detail_dob"
+
+            android:layout_marginTop="152.5dp"
+            android:layout_marginLeft="18dp"
+            />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_DOB"
+            android:inputType="text"
+            android:layout_marginTop="143dp"
+            android:layout_marginLeft="53dp"/>
+            <!--android:background="@drawable/shadow_box"-->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ"
+            android:id="@+id/Address"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="194dp" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/editText_Address"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="203dp"
+            android:layout_marginLeft="53dp" />
+            <!--android:background="@drawable/shadow_box"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giới tính"
+            android:id="@+id/Gender"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="255dp" />
+        <RadioGroup
+            android:id="@+id/rdGroup_Gender"
+            android:layout_marginTop="288dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:id="@+id/rdMale"
+                android:text="Male"
+                android:layout_marginLeft="15dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:id="@+id/rdFemale"
+                android:text="Female"
+                android:layout_marginLeft="41dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:id="@+id/rdOther"
+                android:text="Other"
+                android:layout_marginLeft="45dp" />
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Cập Nhật"
+            android:id="@+id/bt_Update"
+            android:layout_marginTop="328dp"
+            android:layout_marginLeft="115dp"
+            android:background="@color/colorUpdateButton"
+            android:textColor="@color/colorUpdateLetter"
+            android:textSize="20dp"
+            />
+
+    </FrameLayout>
+
+</RelativeLayout>

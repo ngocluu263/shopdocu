@@ -29,6 +29,11 @@ public class JSONProductTask extends JSONParser {
             sb.append("/" + param);
             this.ID = sb.toString();
         }
+
+    public JSONProductTask(ProductService productService, JSONTask task, int ID){
+        this.productService = productService;
+        this.API = task;
+        this.ID = String.valueOf(ID);
     }
 
     @Override
@@ -54,6 +59,10 @@ public class JSONProductTask extends JSONParser {
             case GET_HOT_PRODUCTS:
                 JSON_Product[] hotProducts = gson.fromJson(json, JSON_Product[].class);
                 productService.setHotProduct(new ArrayList<>(Arrays.asList(hotProducts)));
+                break;
+            case GET_PRODUCT:
+                JSON_Product p = gson.fromJson(json, JSON_Product.class);
+                productService.setProduct(p);
                 break;
         }
     }

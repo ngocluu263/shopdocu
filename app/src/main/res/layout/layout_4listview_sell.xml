@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/NameID"
+    android:text="Mã đơn hàng: #"
+    android:textColor="@color/colorOrderID"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="5dp"
+    />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/SellID"
+    android:text="NONE"
+    android:textColor="@color/colorOrderID"
+    android:layout_toRightOf="@+id/NameID"
+    android:layout_marginTop="5dp"
+    android:layout_alignParentTop="true"
+    />
+
+<ListView
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:id="@+id/ProductSellList"
+
+    android:layout_gravity="left|top"
+    android:layout_below="@+id/SellID"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="0dp"
+    tools:listitem="@layout/adapter_sold_productname">
+
+</ListView>
+<!-- <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:id="@+id/ProductName"
+     android:text="kahdsjkhakd"
+     android:textColor="black"
+     android:layout_below="@+id/SellID"
+     android:layout_marginLeft="12dp"
+     android:layout_marginTop="5dp"
+     /> -->
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/Date"
+    android:text="Ngày đặt hàng: "
+    android:textColor="@color/colorOrderDate"
+    android:layout_below="@+id/ProductSellList"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="5dp"
+    />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/SellDate"
+    android:text="NONE"
+    android:textColor="@color/colorOrderDate"
+    android:layout_toRightOf="@+id/Date"
+    android:layout_below="@+id/ProductSellList"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="5.5dp"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/Sum"
+    android:text="Tổng tiền: "
+    android:textColor="@color/colorOrderPrice"
+    android:layout_below="@+id/SellDate"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="5dp"
+    />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/OrderSellPrice"
+    android:text="NONE"
+    android:textColor="@color/colorOrderPrice"
+    android:layout_below="@+id/SellDate"
+    android:layout_toRightOf="@+id/Sum"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="5dp"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/SellUnit"
+    android:text="đ"
+    android:textColor="@color/colorOrderPrice"
+    android:layout_toRightOf="@+id/OrderSellPrice"
+    android:layout_below="@+id/SellDate"
+    android:layout_marginLeft="2dp"
+    android:layout_marginTop="5dp" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/Status"
+    android:text="Trạng thái: "
+    android:textColor="@color/colorOrderStatus"
+    android:layout_below="@+id/OrderSellPrice"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="5dp"
+    />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/OrderSellStatus"
+    android:text="NONE"
+    android:textColor="@color/colorOrderStatus"
+    android:layout_below="@+id/OrderSellPrice"
+    android:layout_toRightOf="@+id/Status"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="5dp" />
+</RelativeLayout>

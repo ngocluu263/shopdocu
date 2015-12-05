@@ -113,4 +113,10 @@
     <string name="confirm_rs_button">Đồng ý</string>
     <string name="confirm_rs_msg_is_success">Đăng bán thành công!</string>
     <string name="confirm_rs_msg_is_fail">Có lỗi xảy ra. Vui lòng thử lại!</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Email">example: example@example.com</string>
+    <string name="Phone"></string>
+    <string name="button_finish">Finish</string>
+    <string name="dateofbirth">01/01/1900</string>
 </resources>

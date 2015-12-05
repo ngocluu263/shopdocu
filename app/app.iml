@@ -99,8 +99,11 @@
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="httpclient-android-4.3.5.1" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="glide-3.5.2" level="project" />
     <orderEntry type="module" module-name="viewPagerIndicatorLibrary" exported="" />
+=======
+>>>>>>> origin/Khiem_2
     <orderEntry type="library" exported="" name="org.apache.http.legacy-android-23" level="project" />
   </component>
 </module>

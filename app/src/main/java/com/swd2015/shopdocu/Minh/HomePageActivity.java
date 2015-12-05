@@ -19,7 +19,6 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.swd2015.shopdocu.Ga.RequestSellFragment;
 import com.swd2015.shopdocu.Ga.SearchFragment;
 import com.swd2015.shopdocu.R;
@@ -40,6 +39,8 @@ public class HomePageActivity extends AppCompatActivity {
     public ActionBar actionBar;
     ActionBarDrawerToggle actionBarDrawerToggle;
     public android.support.v7.widget.Toolbar toolbar;
+
+    ProductService productService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

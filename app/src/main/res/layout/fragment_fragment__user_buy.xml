@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="2dp"
+    android:background="@color/colorUserDetail"
+    tools:context="com.swd2015.shopdocu.Khiem.fragment_UserBuy">
+
+    <FrameLayout
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:background="#FFFFFC"
+        android:layout_marginTop="0.5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/frameLayout_base">
+
+        <Button
+            android:layout_width="192dp"
+            android:layout_height="66dp"
+            android:text="Mua"
+            android:id="@+id/Buy"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="-4.5dp"
+            />
+
+        <Button
+            android:layout_width="192dp"
+            android:layout_height="66dp"
+            android:text="Bán"
+            android:id="@+id/Sell"
+            android:layout_marginLeft="192dp"
+            android:layout_marginTop="-4.5dp"
+            />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:background="#FFFFFC"
+
+        android:layout_below="@+id/frameLayout_base"
+        android:layout_marginTop="2dp"
+        android:layout_alignLeft="@+id/frameLayout_base"
+        android:layout_alignStart="@+id/frameLayout_base" >
+
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView4Buy"
+
+            android:layout_gravity="left|top"
+            tools:listitem="@layout/layout_4listview_buy" />
+
+    </FrameLayout>
+
+</RelativeLayout>

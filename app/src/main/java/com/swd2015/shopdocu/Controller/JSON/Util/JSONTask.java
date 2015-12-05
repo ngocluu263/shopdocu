@@ -4,6 +4,7 @@ package com.swd2015.shopdocu.Controller.JSON.Util;
  * Created by Quang on 20/11/2015.
  */
 public enum JSONTask {
+<<<<<<< HEAD
     GET_ALL_PRODUCT("http://swd2015api.azurewebsites.net/api/product"),
     GET_PRODUCT_BY_ID("http://swd2015api.azurewebsites.net/api/product/getproductbyid"),
     GET_SEARCH_PRODUCTS("http://swd2015api.azurewebsites.net/api/product/SearchProduct"),
@@ -17,8 +18,13 @@ public enum JSONTask {
     CHECK_LOGIN("http://swd2015api.azurewebsites.net/api/Customer/CheckLogin"),
     CREATE_ACCOUNT("http://swd2015api.azurewebsites.net/api/Customer/CreateAccount"),
 
-    ;
+    //Customer detail
+    GET_USER_DETAIL("http://swd2015-001-site1.1tempurl.com/api/customer/GetCustomerByID/"),
 
+    //Customer order
+    GET_USER_SOLD("http://swd2015-001-site1.1tempurl.com/api/OrderDetail/GetAllSoldOrderDetailsByCustomerID/"),
+    GET_USER_PURCHASE("http://swd2015-001-site1.1tempurl.com/api/PurchasedOrder/GetAllPurchasedOrderDetailsByCustomerID/")
+    ;
 
     private final String text;
 
