@@ -29,7 +29,6 @@ import java.util.Comparator;
 public class ProductService{
     Activity activity;
     Fragment fragment;
-    Context mContext;
 
     public ProductService(Activity activity){
         this.activity = activity;
@@ -78,7 +77,7 @@ public class ProductService{
 
     public void getSearchedProducts(String productName, int categoryID){
         JSONProductTask jsonTask = new JSONProductTask(this,
-                        JSONTask.GET_SEARCHED_PRODUCTS, productName, String.valueOf(categoryID));
+                        JSONTask.GET_SEARCH_PRODUCTS, productName, String.valueOf(categoryID));
         jsonTask.execute();
     }
 

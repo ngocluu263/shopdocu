@@ -1,51 +1,40 @@
 <RelativeLayout
     android:id="@+id/request_sell_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RequestSellActivity">
+    android:layout_height="match_parent">
 
-    <!--<android.support.v7.widget.Toolbar-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-        <!--android:id="@+id/request_sell_toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:background="?attr/colorPrimary"-->
-        <!--android:elevation="6dp"-->
-        <!--android:minHeight="?attr/actionBarSize"-->
-        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
-        <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
+    <ImageView
+        android:id="@+id/rs_tab_layout_bar_image"
+        android:src="@drawable/rs_tab_layout_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/request_sell_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:background="?attr/colorPrimary"
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        android:background="@color/colorWhite"
+        android:visibility="invisible"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/request_sell_pager"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/rs_product_information"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/request_sell_tab_layout"/>
+        android:layout_below="@+id/request_sell_tab_layout"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp" >
 
-    <fragment android:name="com.swd2015.shopdocu.Ga.RequestSellProductFragment"
-        android:id="@+id/request_sell_product_fragment"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:textColor="@color/colorAccent" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/request_sell_pager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/colorWhite"/>
 
-    <fragment android:name="com.swd2015.shopdocu.Ga.RequestSellCustomerFragment"
-        android:id="@+id/request_sell_customer_fragment"
-        android:layout_weight="2"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:textColor="@color/colorAccent" />
+    </RelativeLayout>
 
 </RelativeLayout>

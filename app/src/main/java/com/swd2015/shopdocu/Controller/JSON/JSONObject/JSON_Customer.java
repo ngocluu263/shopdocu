@@ -22,6 +22,8 @@ public class JSON_Customer {
     private String customerGender;
     @SerializedName("Address")
     private String customerAddress;
+    @SerializedName("IsGuest")
+    private String isGuest;
     @SerializedName("ImageURL")
     private String customerImageURL;
 
@@ -31,7 +33,7 @@ public class JSON_Customer {
 
     public JSON_Customer(int customerID, String customerName, String customerEmail,
                          String customerPhoneNumber, String customerBirthday, String customerGender,
-                         String customerAddress, String customerImageURL) {
+                         String customerAddress, String isGuest, String customerImageURL) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
@@ -39,6 +41,7 @@ public class JSON_Customer {
         this.customerBirthday = customerBirthday;
         this.customerGender = customerGender;
         this.customerAddress = customerAddress;
+        this.isGuest = isGuest;
         this.customerImageURL = customerImageURL;
     }
 
@@ -90,8 +93,16 @@ public class JSON_Customer {
         this.customerAddress = customerAddress;
     }
 
+    public String getCustomerIsGuest(){
+        return isGuest;
+    }
+
+    public void setCustomerIsGuest(String isGuest){
+        this.isGuest = isGuest;
+    }
+
     public String getCustomerImageURL(){
-        return customerGender;
+        return customerImageURL;
     }
 
     public void setCustomerImageURL(String customerImageURL){
