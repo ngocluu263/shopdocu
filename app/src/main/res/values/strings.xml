@@ -106,4 +106,6 @@
     <string name="confirmation_message_2">Liên hệ qua hotline: 0123456789 nếu bạn cần chúng tôi hỗ trợ. </string>
     <string name="thankyou_message">Xin cảm ơn.</string>
 
+    // SEEN PRODUCT ACTIVITY STRING
+    <string name="title_seen_activity">Sản phẩm đã xem</string>
 </resources>

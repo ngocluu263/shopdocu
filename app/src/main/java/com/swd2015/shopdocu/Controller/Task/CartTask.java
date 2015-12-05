@@ -49,6 +49,7 @@ public class CartTask extends AsyncTask {
                 break;
             case UPDATE_CART:
                 dao.updateCartQuantity(productID, quantity);
+//                cartService.resetListView();
                 break;
         }
         return null;

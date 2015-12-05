@@ -37,6 +37,7 @@ public class Product {
             e.printStackTrace();
         }
         this.setImage(jsonProduct.getImage().get(0));
+        this.setStatus(jsonProduct.getStatus());
     }
 
     public Product(int ID, String name, Float price, String description, Integer category, Date createDate, String image) {

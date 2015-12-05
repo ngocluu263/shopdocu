@@ -30,7 +30,7 @@ import com.swd2015.shopdocu.R;
  */
 public class ProductDetailActivity extends Activity {
     ProductService productService = new ProductService(this);
-    public static int productID;
+    public int productID;
     public static TextView productTitle;
     public static ImageView productLargeImage;
     public static GridView smallImageListView;
@@ -54,6 +54,8 @@ public class ProductDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
+        productID = getIntent().getExtras().getInt("productID");
+
         productTitle = (TextView) findViewById(R.id.product_name);
         productPrice = (TextView) findViewById(R.id.productPrice);
         productStatus = (TextView) findViewById(R.id.productStatus);
@@ -67,7 +69,7 @@ public class ProductDetailActivity extends Activity {
 
         smallImageListView = (GridView) findViewById(R.id.product_small_image_list);
 
-        productService.getProductByID(6);
+        productService.getProductByID(productID);
 
         adjustViewSize();
 

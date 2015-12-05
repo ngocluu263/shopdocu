@@ -48,10 +48,7 @@ public class CartProductDAO extends DBHandler {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        int incrementingID = numberOfRecord();
-        if(incrementingID != 0){
-            incrementingID++;
-        }
+
 
 //        values.put(DBConfig.ORDER_ID, incrementingID);
 //        values.put(DBConfig.PRODUCT_ID, order.getID());
@@ -71,6 +68,10 @@ public class CartProductDAO extends DBHandler {
             db.update(DBConfig.TABLE_CART_PRODUCT, values,
                     DBConfig.PRODUCT_ID + "=" + order.getID(), null);
         } else {
+            int incrementingID = numberOfRecord();
+            if(incrementingID != 0){
+                incrementingID++;
+            }
             values.put(DBConfig.ORDER_ID, incrementingID);
             values.put(DBConfig.PRODUCT_ID, order.getID());
             values.put(DBConfig.ORDER_QUANTITY, 1);
@@ -108,7 +109,6 @@ public class CartProductDAO extends DBHandler {
                     " FROM " + DBConfig.TABLE_CART_PRODUCT, null);
             if (cursor.moveToFirst()){
                 CartProduct product = new CartProduct();
-                int count = 0;
                 while (cursor.isAfterLast() == false){
                     product.setOrderID(cursor.getInt(cursor.getColumnIndex(DBConfig.ORDER_ID)));
                     product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.PRODUCT_ID)));
@@ -120,8 +120,6 @@ public class CartProductDAO extends DBHandler {
                     product.setQuantity(cursor.getInt(cursor.getColumnIndex(DBConfig.ORDER_QUANTITY)));
                     cartProductList.add(product);
                     cursor.moveToNext();
-                    count++;
-                    System.out.println("Hello world " + count);
                 }
             }
         } finally {

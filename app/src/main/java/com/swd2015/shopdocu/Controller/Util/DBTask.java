@@ -6,5 +6,7 @@ package com.swd2015.shopdocu.Controller.Util;
 public enum DBTask{
     GET_ALL_CART,
     DELETE_CART,
-    UPDATE_CART
+    UPDATE_CART,
+    ADD_SEEN_PRODUCT,
+    GET_SEEN_PRODUCT
 }

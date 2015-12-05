@@ -5,19 +5,24 @@ import android.app.Activity;
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.MainActivity;
 import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
+import com.swd2015.shopdocu.Controller.Activity.SeenProductActivity;
 import com.swd2015.shopdocu.Controller.Adapter.ProductDetailAdapter;
+import com.swd2015.shopdocu.Controller.Adapter.ProductGridViewAdapter;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONProductTask;
 import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
+
 import android.view.View;
 import android.widget.BaseAdapter;
 
 import com.swd2015.shopdocu.Controller.Task.SeenTask;
+import com.swd2015.shopdocu.Controller.Util.DBTask;
 import com.swd2015.shopdocu.Ga.SearchActivity;
 import com.swd2015.shopdocu.Ga.ShowSearchedResultAdapter;
 import com.swd2015.shopdocu.Model.DTO.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Quang on 20/11/2015.
@@ -25,20 +30,22 @@ import java.util.ArrayList;
 public class ProductService {
     public Activity activity;
     BaseAdapter baseAdapter;
-    public ProductService(Activity activity){
+
+    public ProductService(Activity activity) {
         this.activity = activity;
     }
-    public ProductService(BaseAdapter baseAdapter){
+
+    public ProductService(BaseAdapter baseAdapter) {
         this.baseAdapter = baseAdapter;
     }
 
-    public void getAllProduct(){
+    public void getAllProduct() {
         JSONProductTask jsonTask = new JSONProductTask(this, JSONTask.GET_ALL_PRODUCT);
         jsonTask.execute();
     }
 
-    public void setAllProduct(ArrayList<JSON_Product> productList){
-        switch (activity.getClass().getSimpleName()){
+    public void setAllProduct(ArrayList<JSON_Product> productList) {
+        switch (activity.getClass().getSimpleName()) {
             case "ShowSearchedResultAdapter":
                 System.out.println("GA GAM GU");
                 ShowSearchedResultAdapter showSearchedResultAdapter =
@@ -60,14 +67,14 @@ public class ProductService {
         }
     }
 
-    public void getProductByID(int ID){
+    public void getProductByID(int ID) {
         JSONProductTask jsonTask = new JSONProductTask(this, JSONTask.GET_PRODUCT_BY_ID,
-                                                                                String.valueOf(ID));
+                String.valueOf(ID));
         jsonTask.execute();
     }
 
-    public void setProduct(JSON_Product product){
-        switch (activity.getClass().getSimpleName()){
+    public void setProduct(JSON_Product product) {
+        switch (activity.getClass().getSimpleName()) {
             case "ProductDetailActivity":
                 ProductDetailActivity productDetailActivity = (ProductDetailActivity) activity;
 
@@ -92,14 +99,14 @@ public class ProductService {
         }
     }
 
-    public void getSearchedProducts(String productName, int categoryID){
+    public void getSearchedProducts(String productName, int categoryID) {
         JSONProductTask jsonTask = new JSONProductTask(this,
-                        JSONTask.GET_SEARCHED_PRODUCTS, productName, String.valueOf(categoryID));
+                JSONTask.GET_SEARCHED_PRODUCTS, productName, String.valueOf(categoryID));
         jsonTask.execute();
     }
 
-    public void setSearchedProducts(ArrayList<JSON_Product> productList){
-        switch (activity.getClass().getSimpleName()){
+    public void setSearchedProducts(ArrayList<JSON_Product> productList) {
+        switch (activity.getClass().getSimpleName()) {
             case "SearchActivity":
                 SearchActivity searchActivity = (SearchActivity) activity;
                 searchActivity.searchResultGridView.setVisibility(View.VISIBLE);
@@ -109,8 +116,22 @@ public class ProductService {
         }
     }
 
-    public void saveSeenProduct(JSON_Product jsonProduct){
-        SeenTask seenTask = new SeenTask(this, new Product(jsonProduct));
+    public void saveSeenProduct(JSON_Product jsonProduct) {
+        SeenTask seenTask = new SeenTask(this, new Product(jsonProduct), DBTask.ADD_SEEN_PRODUCT);
         seenTask.execute();
+    }
+
+    public void getAllSeenProduct() {
+        SeenTask seenTask = new SeenTask(this, DBTask.GET_SEEN_PRODUCT);
+        seenTask.execute();
+    }
+
+    public void setAllSeenProduct(List<Product> productList) {
+        switch (activity.getClass().getSimpleName()) {
+            case "SeenProductActivity":
+                SeenProductActivity seenProductActivity = (SeenProductActivity)activity;
+                seenProductActivity.gridView.setAdapter(new ProductGridViewAdapter(seenProductActivity,productList));
+                break;
+        }
     }
 }

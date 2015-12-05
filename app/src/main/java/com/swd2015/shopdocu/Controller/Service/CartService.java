@@ -43,28 +43,37 @@ public class CartService {
         cartTask.execute();
     }
 
-    public void setCartList(ArrayList<CartProduct> cartList) {
+    public void setCartList(final ArrayList<CartProduct> cartList) {
         if (fragment == null) {
             switch (activity.getClass().getSimpleName()) {
                 case "CartActivity":
-                    CartActivity cartActivity = (CartActivity) activity;
-                    cartActivity.cartListView.setVisibility(View.VISIBLE);
-                    cartActivity.cartListView.setAdapter(new CartAdapter(cartActivity, cartList));
-                    cartActivity.cartList = cartList;
-                    calculatePayment(cartList);
-                    cartActivity.totalQuantity.setText(String.valueOf(totalQuantity));
-                    cartActivity.totalPayment.setText(String.valueOf(totalPayment));
+                    final CartActivity cartActivity = (CartActivity) activity;
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            cartActivity.cartListView.setVisibility(View.VISIBLE);
+                            cartActivity.cartListView.setAdapter(new CartAdapter(cartActivity, cartList));
+                            cartActivity.cartList = cartList;
+                            calculatePayment(cartList);
+                            cartActivity.totalQuantity.setText(String.valueOf(totalQuantity));
+                            cartActivity.totalPayment.setText(String.valueOf(totalPayment));
+                        }
+                    });
                     break;
             }
         } else {
             switch (fragment.getClass().getSimpleName()) {
                 case "Confirmation1Fragment":
-                    Confirmation1Fragment confirmation1Fragment = (Confirmation1Fragment)fragment;
-//                    confirmation1Fragment.cartListPreview.setVisibility(View.VISIBLE);
-                    confirmation1Fragment.cartListPreview.setAdapter(new CartPreviewAdapter(fragment.getActivity(), cartList));
-                    confirmation1Fragment.cartProducts = cartList;
-                    calculatePayment(cartList);
-                    confirmation1Fragment.totalPayment.setText(String.valueOf(totalPayment));
+                    final Confirmation1Fragment confirmation1Fragment = (Confirmation1Fragment) fragment;
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            confirmation1Fragment.cartListPreview.setAdapter(new CartPreviewAdapter(fragment.getActivity(), cartList));
+                            confirmation1Fragment.cartProducts = cartList;
+                            calculatePayment(cartList);
+                            confirmation1Fragment.totalPayment.setText(String.valueOf(totalPayment));
+                        }
+                    });
                     break;
             }
         }
@@ -77,18 +86,23 @@ public class CartService {
         }
     }
 
-    public void deleteCart(BaseAdapter adapter, int productID){
+    public void deleteCart(BaseAdapter adapter, int productID) {
         this.adapter = adapter;
         CartTask cartTask = new CartTask(this, productID, DBTask.DELETE_CART);
         cartTask.execute();
 
     }
 
-    public void resetListView(){
-        adapter.notifyDataSetInvalidated();
+    public void resetListView() {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
-    public void updateQuantityCart(BaseAdapter adapter, int productID, int quantity){
+    public void updateQuantityCart(BaseAdapter adapter, int productID, int quantity) {
         this.adapter = adapter;
         CartTask cartTask = new CartTask(this, productID, quantity, DBTask.UPDATE_CART);
         cartTask.execute();

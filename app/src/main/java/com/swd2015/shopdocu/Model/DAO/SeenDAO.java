@@ -5,12 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.Model.DTO.Product;
 import com.swd2015.shopdocu.Model.Util.DBConfig;
 import com.swd2015.shopdocu.Model.Util.DBHandler;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by quangphuong on 12/2/15.
@@ -42,23 +46,10 @@ public class SeenDAO extends DBHandler {
         return true;
     }
 
-
     public void addSeenProduct(Product product){
         SQLiteDatabase db = this.getWritableDatabase();
-
-        if (isProductExist(product.getID())){
-            db.close();
-            return;
-        }
-
-        int incrementingID = numberOfRecord();
-        if(incrementingID != 0){
-            incrementingID++;
-        }
-
         ContentValues values = new ContentValues();
-        values.put(DBConfig.SEEN_PRODUCT_ID, incrementingID);
-        values.put(DBConfig.PRODUCT_ID, product.getID());
+
         values.put(DBConfig.PRODUCT_NAME, product.getName());
         values.put(DBConfig.PRODUCT_CATEGORY, product.getCategory());
         values.put(DBConfig.PRODUCT_DESCRIPTION, product.getDescription());
@@ -69,7 +60,53 @@ public class SeenDAO extends DBHandler {
         values.put(DBConfig.PRODUCT_STATUS, product.getStatus());
         values.put(DBConfig.PRODUCT_IMAGE, product.getImage());
 
-        db.insert(DBConfig.TABLE_SEEN_PRODUCT, null, values);
+        if (isProductExist(product.getID())){
+            db.update(DBConfig.TABLE_SEEN_PRODUCT, values,
+                    DBConfig.PRODUCT_ID + "=" + product.getID(), null);
+        } else {
+            int incrementingID = numberOfRecord();
+            if(incrementingID != 0){
+                incrementingID++;
+            }
+            values.put(DBConfig.SEEN_PRODUCT_ID, incrementingID);
+            values.put(DBConfig.PRODUCT_ID, product.getID());
+            db.insert(DBConfig.TABLE_SEEN_PRODUCT, null, values);
+        }
+
         db.close();
+    }
+
+    public ArrayList<Product> getAllSeenProduct(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+        ArrayList<Product> seenProductList = new ArrayList<>();
+        try {
+            cursor = db.rawQuery("SELECT *" +
+                    " FROM " + DBConfig.TABLE_SEEN_PRODUCT, null);
+            if (cursor.moveToFirst()){
+                Product product = new Product();
+                while (cursor.isAfterLast() == false){
+                    product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.SEEN_PRODUCT_ID)));
+                    product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.PRODUCT_ID)));
+                    product.setName(cursor.getString(cursor.getColumnIndex(DBConfig.PRODUCT_NAME)));
+                    product.setCategory(cursor.getInt(cursor.getColumnIndex(DBConfig.PRODUCT_CATEGORY)));
+                    product.setStatus(cursor.getString(cursor.getColumnIndex(DBConfig.PRODUCT_STATUS)));
+                    product.setImage(cursor.getString(cursor.getColumnIndex(DBConfig.PRODUCT_IMAGE)));
+                    product.setPrice(cursor.getFloat(cursor.getColumnIndex(DBConfig.PRODUCT_PRICE)));
+                    product.setDescription(cursor.getString(cursor.getColumnIndex(DBConfig.PRODUCT_DESCRIPTION)));
+                    DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+                    Date date = df.parse(cursor.getString(cursor.getColumnIndex(DBConfig.PRODUCT_CREATEDATE)));
+                    product.setCreateDate(date);
+                    seenProductList.add(product);
+                    cursor.moveToNext();
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } finally {
+            cursor.close();
+            db.close();
+        }
+        return seenProductList;
     }
 }
