@@ -108,4 +108,7 @@
 
     // SEEN PRODUCT ACTIVITY STRING
     <string name="title_seen_activity">Sản phẩm đã xem</string>
+
+    // FAVORITE PRODUCT ACTIVITY STRING
+    <string name="title_favorite_activity">Sản phẩm yêu thích</string>
 </resources>

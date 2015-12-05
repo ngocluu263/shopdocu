@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.swd2015.shopdocu.Controller.Activity.FavoriteProductActivity;
 import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
 import com.swd2015.shopdocu.Controller.Activity.SeenProductActivity;
 import com.swd2015.shopdocu.Model.DTO.Product;
@@ -22,12 +23,13 @@ import java.util.List;
  * Created by quangphuong on 12/4/15.
  */
 public class ProductGridViewAdapter extends BaseAdapter {
-    SeenProductActivity seenProductActivity;
+    Activity activity;
+    FavoriteProductActivity favoriteProductActivity;
     List<Product> productList;
     private LayoutInflater layoutInflater;
 
-    public ProductGridViewAdapter(SeenProductActivity activity, List<Product> productList){
-        this.seenProductActivity = activity;
+    public ProductGridViewAdapter(Activity activity, List<Product> productList){
+        this.activity = activity;
         this.layoutInflater = LayoutInflater.from(activity);
         this.productList = productList;
     }
@@ -65,7 +67,7 @@ public class ProductGridViewAdapter extends BaseAdapter {
 
         final Product product = productList.get(position);
 
-        Glide.with(seenProductActivity)
+        Glide.with(activity)
                 .load(product.getImage()).override(170, 120).centerCrop()
                 .placeholder(R.drawable.ic_shopping_cart) // optional
                 .error(R.drawable.ic_close_search)         // optional
@@ -92,8 +94,8 @@ public class ProductGridViewAdapter extends BaseAdapter {
     }
 
     public void goToProductDetail(int productID){
-        Intent intent = new Intent(seenProductActivity, ProductDetailActivity.class);
+        Intent intent = new Intent(activity, ProductDetailActivity.class);
         intent.putExtra("productID", productID);
-        seenProductActivity.startActivity(intent);
+        activity.startActivity(intent);
     }
 }

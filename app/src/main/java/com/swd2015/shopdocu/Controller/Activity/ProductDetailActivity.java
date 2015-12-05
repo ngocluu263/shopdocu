@@ -12,6 +12,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -24,6 +25,11 @@ import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.Model.DTO.Product;
 import com.swd2015.shopdocu.R;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Quang on 21-Nov-15.
@@ -41,6 +47,7 @@ public class ProductDetailActivity extends Activity {
     public static RelativeLayout buyButtonSection;
     public static Button buyButton;
     public static Button addToCartButton;
+    public static ImageButton favoriteButton;
 
     public static int productDetailContainerHeight;
     public static int buyButtonSectionHeight;
@@ -48,13 +55,14 @@ public class ProductDetailActivity extends Activity {
     public static int addToCartButtonWidth;
 
     public JSON_Product product;
+    public static List<Integer> toggleFavoriteArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        productID = getIntent().getExtras().getInt("productID");
+//        productID = getIntent().getExtras().getInt("productID");
 
         productTitle = (TextView) findViewById(R.id.product_name);
         productPrice = (TextView) findViewById(R.id.productPrice);
@@ -64,12 +72,13 @@ public class ProductDetailActivity extends Activity {
         buyButtonSection = (RelativeLayout) findViewById(R.id.buy_button_section);
         buyButton = (Button) findViewById(R.id.buy_button);
         addToCartButton = (Button) findViewById(R.id.add_to_cart_button);
-
+        favoriteButton = (ImageButton) findViewById(R.id.favorite_button);
         productLargeImage = (ImageView) findViewById(R.id.product_large_image);
-
         smallImageListView = (GridView) findViewById(R.id.product_small_image_list);
+        toggleFavoriteArray.add(R.drawable.ic_blank_heart);
+        toggleFavoriteArray.add(R.drawable.ic_red_heart);
 
-        productService.getProductByID(productID);
+        productService.getProductByID(6);
 
         adjustViewSize();
 
@@ -90,6 +99,16 @@ public class ProductDetailActivity extends Activity {
                 CartProduct cartProduct = new CartProduct(new Product(product), product.getStatus());
                 CartProductDAO cartProductDAO = new CartProductDAO(getBaseContext());
                 cartProductDAO.addOrderedProduct(cartProduct);
+            }
+        });
+
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Collections.reverse(toggleFavoriteArray);
+                favoriteButton.setBackgroundResource(toggleFavoriteArray.get(0));
+
+                productService.toggleFavorite(product);
             }
         });
     }
