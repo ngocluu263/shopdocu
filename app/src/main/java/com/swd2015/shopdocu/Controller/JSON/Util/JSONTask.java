@@ -22,8 +22,9 @@ public enum JSONTask {
 
     //Customer order
     GET_USER_SOLD("http://swd2015-001-site1.1tempurl.com/api/OrderDetail/GetAllSoldOrderDetailsByCustomerID/"),
-    GET_USER_PURCHASE("http://swd2015-001-site1.1tempurl.com/api/PurchasedOrder/GetAllPurchasedOrderDetailsByCustomerID/")
-    ;
+    GET_USER_PURCHASE("http://swd2015-001-site1.1tempurl.com/api/PurchasedOrder/GetAllPurchasedOrderDetailsByCustomerID/"),
+    ADD_SOLD_PRODUCT("http://swd2015api.azurewebsites.net/api/OrderDetail/CreateSoldOrderDetail"),
+    ADD_CUSTOMER("http://swd2015api.azurewebsites.net/api/customer/CreateAccount");
 
     private final String text;
 

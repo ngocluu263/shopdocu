@@ -4,7 +4,6 @@ package com.swd2015.shopdocu.Controller.JSON.Util;
  * Created by Quang on 16-Nov-15.
  */
 import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

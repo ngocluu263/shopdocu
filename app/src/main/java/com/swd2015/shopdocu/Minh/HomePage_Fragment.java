@@ -1,6 +1,5 @@
 package com.swd2015.shopdocu.Minh;
 
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;

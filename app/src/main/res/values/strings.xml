@@ -119,4 +119,48 @@
     <string name="Phone"></string>
     <string name="button_finish">Finish</string>
     <string name="dateofbirth">01/01/1900</string>
+    <string name="money_unit">VNĐ</string>
+
+    // PRODUCT DETAIL ACTIVITY STRING
+    <string name="product_description">Chi tiết sản phẩm</string>
+    <string name="buy_button">MUA NGAY</string>
+    <string name="add_to_cart_button">Thêm vào giỏ hàng</string>
+    <string name="cart_title">Giỏ hàng của bạn</string>
+
+    // CART ACTIVITY STRING
+    <string name="product_name_column_title">Sản phẩm</string>
+    <string name="product_quantity_column_title">Số lượng</string>
+    <string name="total_product_title">TỔNG CỘNG</string>
+    <string name="product"> sản phẩm</string>
+    <string name="order_button">ĐẶT HÀNG</string>
+    <string name="checkout_button">THANH TOÁN</string>
+
+
+    // CHECKOUT FRAGMENT STRING
+    <string name="checkout_1_title">Thanh toán</string>
+    <string name="send_to">Gửi tới:</string>
+
+    // CONFIRMATION 1 FRAGMENT STRING
+    <string name="confirmation_button">Xác nhận thanh toán</string>
+    <string name="total_title">Thành tiền</string>
+    <string name="vat_contain">(Đã bao gồm VAT)</string>
+    <string name="shipping_cost">Phí vận chuyển</string>
+    <string name="free_cost">Miễn phí</string>
+    <string name="customer_info_title">Địa chỉ nhận hàng</string>
+    <string name="quantity_item">Số lượng: </string>
+    <string name="total_item">Tống giá: </string>
+
+    // CONFIRMATION 2 FRAGMENT STRING
+    <string name="back_to_home_button">Trở về trang chủ</string>
+    <string name="thankful_message">Cảm ơn bạn đã đặt hàng</string>
+    <string name="confirmation_message_1">Chúng tôi sẽ liên hệ với bạn
+        trong thời gian sớm nhất. </string>
+    <string name="confirmation_message_2">Liên hệ qua hotline: 0123456789 nếu bạn cần chúng tôi hỗ trợ. </string>
+    <string name="thankyou_message">Xin cảm ơn.</string>
+
+    // SEEN PRODUCT ACTIVITY STRING
+    <string name="title_seen_activity">Sản phẩm đã xem</string>
+
+    // FAVORITE PRODUCT ACTIVITY STRING
+    <string name="title_favorite_activity">Sản phẩm yêu thích</string>
 </resources>

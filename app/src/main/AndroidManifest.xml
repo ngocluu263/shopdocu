@@ -22,49 +22,42 @@
             android:label="@string/title_activity_home_page" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity"
-            android:label="@string/app_name">
+
+        <activity android:name=".Controller.Activity.ProductDetailActivity"
+            android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.RequestForSellActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.RequestForSellCustomerDetailActivity"
-            android:label="@string/app_name">
+        <!--<activity android:name=".Ga.RequestSellActivity" >-->
+            <!--<intent-filter>-->
+
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <activity android:name=".Minh.LoginActivity" >
+        </activity>
+
+        <activity android:name=".Controller.Activity.CartActivity"
+            android:label="@string/cart_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.SearchableActivity"
-            android:label="@string/app_name">
+
+        <activity android:name=".Controller.Activity.CheckoutMainActivity"
+            android:label="@string/checkout_1_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.swd2015.shopdocu.Controller.Activity.ShowSearchResultActivity"
-            android:label="@string/app_name">
+        <activity android:name=".Controller.Activity.SeenProductActivity"
+            android:label="@string/title_seen_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
         </activity>
@@ -89,7 +82,16 @@
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
                                                         android:maxSdkVersion="18" />
-        <activity android:name=".Minh.LoginActivity" >
+        <activity android:name=".Minh.LoginActivity" 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Controller.Activity.FavoriteProductActivity"
+            android:label="@string/title_favorite_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
