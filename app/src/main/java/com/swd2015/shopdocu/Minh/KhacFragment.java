@@ -3,6 +3,7 @@ package com.swd2015.shopdocu.Minh;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,8 @@ public class KhacFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_ban_ghe_caphe, container, false);
         gridResult=(GridView)v.findViewById(R.id.grvSearchResult);
-
+        android.support.v7.app.ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.setTitle("Danh mục khác");
         ProductService productService=new ProductService(this);
         productService.getSearchedProducts(CategoryID.GetCategoryID(CategoryEnum.KHAC));
         return v;

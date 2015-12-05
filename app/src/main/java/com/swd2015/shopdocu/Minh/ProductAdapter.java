@@ -26,7 +26,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         inflater=LayoutInflater.from(context);
         listProduct=data;
         mContext=context;
-
     }
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

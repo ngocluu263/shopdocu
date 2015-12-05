@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,8 @@ public class QuanAnFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_ban_ghe_caphe, container, false);
         gridResult=(GridView)v.findViewById(R.id.grvSearchResult);
-
+        android.support.v7.app.ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.setTitle("Đồ quán ăn");
         ProductService productService=new ProductService(this);
         productService.getSearchedProducts(CategoryID.GetCategoryID(CategoryEnum.DO_QUAN_AN));
         return v;

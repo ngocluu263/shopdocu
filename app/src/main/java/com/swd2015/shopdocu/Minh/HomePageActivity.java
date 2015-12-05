@@ -2,6 +2,7 @@ package com.swd2015.shopdocu.Minh;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ public class HomePageActivity extends AppCompatActivity {
     ListView listNav;
     RelativeLayout profileBox;
     GridView newProductGrid;
-
+    FragmentManager fragmentManager;
     List<NavigationItem> listNavItems;
     List<Fragment> listFragments;
     public ActionBar actionBar;
@@ -52,7 +53,7 @@ public class HomePageActivity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(greenColor)));
-        actionBar.setDisplayShowTitleEnabled(false);
+      //  actionBar.setDisplayShowTitleEnabled(false);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerPane=(RelativeLayout) findViewById(R.id.drawer_pane);
@@ -60,11 +61,12 @@ public class HomePageActivity extends AppCompatActivity {
 
         listNavItems=new ArrayList<NavigationItem>();
         listNavItems.add(new NavigationItem("Trang chủ", R.drawable.home_icon));
+
+        listNavItems.add(new NavigationItem("Sản phẩm yêu thích", R.drawable.heart_icon));
+        listNavItems.add(new NavigationItem("Sản phẩm đã xem", R.drawable.ic_eye));
+
         listNavItems.add(new NavigationItem("Đơn hàng đã mua", R.drawable.purchase_icon));
         listNavItems.add(new NavigationItem("Đơn hàng đã bán", R.drawable.sell_icon));
-       // listNavItems.add(new NavigationItem("Sản phẩm vừa xem", R.drawable.blank_avatar));
-        listNavItems.add(new NavigationItem("Sản phẩm yêu thích", R.drawable.heart_icon));
-        listNavItems.add(new NavigationItem("Hỗ trợ", R.drawable.setting_icon));
 
         NavListAdapter navListAdapter = new NavListAdapter(getApplicationContext()
                 ,R.layout.navigation_list,listNavItems);
@@ -73,6 +75,11 @@ public class HomePageActivity extends AppCompatActivity {
         //This code is useful when you just use 1 activity and manu fragment
         listFragments=  new ArrayList<Fragment>();
       //  listFragments.add(new fragment_about());
+        //listFragments.add();
+        final HomePage_Fragment homePageFragment=new HomePage_Fragment();
+        final LoginFragment loginFragment = new LoginFragment();
+        fragment_about fragment_about=new fragment_about();
+
         listFragments.add(new LoginFragment());
         HomePage_Fragment homePage_fragment=new HomePage_Fragment();
         FragmentManager fragmentManager = getFragmentManager();
@@ -83,21 +90,20 @@ public class HomePageActivity extends AppCompatActivity {
         listNav.setItemChecked(0, true);
         drawerLayout.closeDrawer(drawerPane);
 
-        //set listener for navigation item
+        //set listener for navigation item (slide-in menu)
         listNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //replace the fragment with the selection corresponding
-                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.main,listFragments.get(position)).commit();
-                setTitle("");
-                listNav.setItemChecked(position,true);
-                // listNav.setItemChecked();
-
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
                 //region switch position
                 switch (position) {
                     case 0: {
-                        Toast.makeText(getBaseContext(), "You have click Trang chủ", Toast.LENGTH_SHORT).show();
+                        fragmentTransaction.replace(R.id.main, homePageFragment).commit();
+                        actionBar.setHomeButtonEnabled(false);
+                        actionBar.setDisplayHomeAsUpEnabled(true);
+                        actionBar.setTitle("ShopDoCu.vn");
                         break;
                     }
                     case 1: {
@@ -138,6 +144,7 @@ public class HomePageActivity extends AppCompatActivity {
                 super.onDrawerOpened(drawerView);
             }
         };
+
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         //region Profile Box click listener
         profileBox = (RelativeLayout) findViewById(R.id.profile_box);
@@ -145,7 +152,10 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //check login
-                Toast.makeText(getBaseContext(), "Profile", Toast.LENGTH_SHORT).show();
+                actionBar.setTitle("Đăng nhập");
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main, loginFragment).commit();
                 drawerLayout.closeDrawer(drawerPane);
             }
         });
@@ -166,13 +176,6 @@ public class HomePageActivity extends AppCompatActivity {
         else{
             switch (item.getItemId()){
                 case 0:{
-                    //Intent intent = new Intent(this, SearchFragment.class);
-//                    Fragment searchFragment = new SearchFragment();
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                    fragmentTransaction.replace(R.id.search, searchFragment);
-//                    fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.commit();
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.main, new SearchFragment()).commit();
                     return true;

@@ -99,6 +99,7 @@ public class ProductService {
         jsonTask.execute();
     }
 
+
     public void setSearchedProducts(ArrayList<JSON_Product> productList){
 
         if (supportv4Fragment!=null){
