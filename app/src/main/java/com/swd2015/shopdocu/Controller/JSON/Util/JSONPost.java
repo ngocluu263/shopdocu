@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import com.google.gson.Gson;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_PurchasedOrder;
 import com.swd2015.shopdocu.Ga.RequestSellCustomerFragment;
-
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,7 +20,10 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 /**
+
  * Created by quangphuong on 12/2/15.
+ * Created by Minh on 12/3/2015.
+
  */
 public class JSONPost extends AsyncTask<String, String, String> {
 
@@ -83,6 +85,4 @@ public class JSONPost extends AsyncTask<String, String, String> {
         }
         return "";
     }
-
-
 }

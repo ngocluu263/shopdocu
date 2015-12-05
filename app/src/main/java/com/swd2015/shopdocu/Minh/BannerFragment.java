@@ -58,31 +58,6 @@ public class BannerFragment extends Fragment  {
         listFragments = new ArrayList<>();
         bannerService.getAllBanner();
 
-       // listDataBanner=new ArrayList<>();
-       // for (JSON_Banner banner:listDataBanner) {
-        //   android.support.v4.app.Fragment fragment1=ImageBannerFragment.newInstance(banner.getImage());
-       //     listFragments.add(fragment1);
-       // }
-
-       // android.support.v4.app.FragmentManager fragmentManager=fragmentActivity.getSupportFragmentManager();
-
-       // adapter=new BannerAdapter(fragmentManager,listFragments);
-        //viewPager.setAdapter(adapter);
-
-        //indicator.setViewPager(viewPager);
-
-        // ((CirclePageIndicator) indicator).setSnap(true);
-       //runnable = new Runnable() {
-            //public void run() {
-            //    if( position > listFragments.size()-1){
-              //      position = 0;
-             //   }else{
-              //      position = position+1;
-              //  }
-              //  viewPager.setCurrentItem(position, true);
-              //  handler.postDelayed(runnable, 3000);
-          //  }
-      //  };
         runnable = new Runnable() {
             public void run() {
                 if( position > listFragments.size()-1){

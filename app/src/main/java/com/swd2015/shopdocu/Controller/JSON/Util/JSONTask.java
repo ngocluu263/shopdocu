@@ -11,6 +11,12 @@ public enum JSONTask {
     GET_CUSTOMER_BY_ID("http://swd2015api.azurewebsites.net/api/customer/getcustomerbyid"),
     POST_INSERT_PURCHASED_ORDER(
                         "http://swd2015api.azurewebsites.net/api/PurchasedOrder/AddPurchasedOrder")
+    GET_SEARCHED_PRODUCTS("http://swd2015api.azurewebsites.net/api/product/SearchProduct"), 
+    GET_ALL_BANNER("http://swd2015api.azurewebsites.net/api/Image/Banner/GetAllBanners"),
+    GET_HOT_PRODUCTS("http://swd2015api.azurewebsites.net/api/product/GetHotProducts"),
+    CHECK_LOGIN("http://swd2015api.azurewebsites.net/api/Customer/CheckLogin"),
+    CREATE_ACCOUNT("http://swd2015api.azurewebsites.net/api/Customer/CreateAccount"),
+
     ;
 
 
