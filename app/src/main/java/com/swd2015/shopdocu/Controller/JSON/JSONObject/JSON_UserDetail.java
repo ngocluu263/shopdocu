@@ -1,5 +1,7 @@
 package com.swd2015.shopdocu.Controller.JSON.JSONObject;
 
+import android.support.annotation.NonNull;
+
 import java.util.Date;
 import com.google.gson.annotations.SerializedName;
 

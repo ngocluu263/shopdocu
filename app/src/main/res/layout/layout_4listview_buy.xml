@@ -4,27 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BuyID"
-        android:text="abc"
+        android:id="@+id/NameID"
+        android:text="Mã đơn hàng: #"
         android:textColor="@color/colorOrderID"
         android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BuyID"
+        android:text="NONE"
+        android:textColor="@color/colorOrderID"
+        android:layout_toRightOf="@+id/NameID"
         android:layout_marginTop="5dp"
         android:layout_alignParentTop="true"
         />
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/ProductBuyList"
-
-
         android:layout_below="@+id/BuyID"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="0dp"
-        tools:listitem="@android:layout/simple_list_item_1">
+        tools:listitem="@layout/adapter_purchase_productname">
 
     </ListView>
     <!-- <TextView
@@ -39,23 +48,47 @@
          /> -->
 
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BuyDate"
-        android:text="22/11/2015"
+        android:id="@+id/Date"
+        android:text="Ngày đăng bán: "
         android:textColor="@color/colorOrderDate"
         android:layout_below="@+id/ProductBuyList"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BuyDate"
+        android:text="NONE"
+        android:textColor="@color/colorOrderDate"
+        android:layout_below="@+id/ProductBuyList"
+        android:layout_toRightOf="@+id/Date"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="5.5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Sum"
+        android:text="Tổng tiền: "
+        android:textColor="@color/colorOrderPrice"
+        android:layout_below="@+id/BuyDate"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/OrderBuyPrice"
-        android:text="300000"
+        android:text="NONE"
         android:textColor="@color/colorOrderPrice"
         android:layout_below="@+id/BuyDate"
-        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/Sum"
+        android:layout_marginLeft="0dp"
         android:layout_marginTop="5dp"/>
 
     <TextView
@@ -72,11 +105,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/OrderBuyStatus"
-        android:text="Hủy"
+        android:id="@+id/Status"
+        android:text="Trạng thái: "
         android:textColor="@color/colorOrderStatus"
         android:layout_below="@+id/OrderBuyPrice"
         android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/OrderBuyStatus"
+        android:text="NONE"
+        android:textColor="@color/colorOrderStatus"
+        android:layout_below="@+id/OrderBuyPrice"
+        android:layout_toRightOf="@+id/Status"
+        android:layout_marginLeft="0dp"
         android:layout_marginTop="5dp" />
 
 </RelativeLayout>

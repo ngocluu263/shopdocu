@@ -31,10 +31,15 @@ public class UserDetailService {
             case "UserDetailActivity":
                 UserDetailActivity userDetailActivity = (UserDetailActivity) activity;
                 userDetailActivity.userDetail = userDetail;
+
+                String dob = userDetail.getDOB().substring(0, 10);
+
+
+
                 userDetailActivity.txtFullname.setText(userDetail.getFullname());
                 userDetailActivity.edTxtEmail.setText(userDetail.getEmail());
                 userDetailActivity.edTxtPhone.setText(userDetail.getPhone());
-                userDetailActivity.edTxtDOB.setText(userDetail.getDOB());
+                userDetailActivity.edTxtDOB.setText(dob);
                 userDetailActivity.edTxtAddress.setText(userDetail.getAddress());
                 userDetailActivity.gender = userDetail.getGender();
                 if (userDetailActivity.gender.equalsIgnoreCase("Male")){

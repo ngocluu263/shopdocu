@@ -11,7 +11,8 @@ public enum JSONTask {
     GET_USER_DETAIL("http://swd2015-001-site1.1tempurl.com/api/customer/GetCustomerByID/"),
 
     //Customer order
-    GET_USER_SOLD("http://swd2015-001-site1.1tempurl.com/api/OrderDetail/GetAllSoldOrderDetailsByCustomerID/")
+    GET_USER_SOLD("http://swd2015-001-site1.1tempurl.com/api/OrderDetail/GetAllSoldOrderDetailsByCustomerID/"),
+    GET_USER_PURCHASE("http://swd2015-001-site1.1tempurl.com/api/PurchasedOrder/GetAllPurchasedOrderDetailsByCustomerID/")
     ;
 
     private final String text;

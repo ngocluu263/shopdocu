@@ -57,14 +57,8 @@
         </activity>
 
         <activity
-<<<<<<< HEAD
             android:name=".Controller.Activity.UserDetailActivity"
             android:label="@string/title_activity_home_page" >
-=======
-            android:name=".Khiem.UserDetail"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
->>>>>>> origin/Khiem_2
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

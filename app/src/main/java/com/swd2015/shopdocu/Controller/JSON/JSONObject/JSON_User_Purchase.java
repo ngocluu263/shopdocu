@@ -2,12 +2,10 @@ package com.swd2015.shopdocu.Controller.JSON.JSONObject;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 /**
- * Created by khiem on 11/30/2015.
+ * Created by SherHolmes
  */
-public class JSON_User_Sold {
+public class JSON_User_Purchase {
     @SerializedName("OrderID")
     private int OrderID;
     @SerializedName("ProductName")
@@ -19,11 +17,11 @@ public class JSON_User_Sold {
     @SerializedName("OrderStatus")
     private String OrderStatus;
 
-    public JSON_User_Sold(){
+    public JSON_User_Purchase(){
 
     }
 
-    public JSON_User_Sold(int OrderID, String ProductName, String CreateDate, String Total, String OrderStatus){
+    public JSON_User_Purchase(int OrderID, String ProductName, String CreateDate, String Total, String OrderStatus){
         this.OrderID = OrderID;
         this.ProductName = ProductName;
         this.CreateDate = CreateDate;

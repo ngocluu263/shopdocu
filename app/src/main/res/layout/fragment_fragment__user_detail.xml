@@ -36,7 +36,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="390dp"
         android:background="#FFFFFC"
 
         android:layout_below="@+id/frameLayout_base"
@@ -46,7 +46,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="Email"
             android:id="@+id/Email"
             android:layout_marginLeft="13dp"
@@ -56,10 +56,11 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/editText_Email"
-            android:text=""
-            android:layout_marginTop="37dp"
-            android:layout_marginLeft="53dp"
-            android:background="@drawable/shadow_box"/>
+            android:inputType="text"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="53dp" />
+            <!--android:background="@drawable/shadow_box"-->
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,10 +74,11 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/editText_Phone"
-            android:text=""
-            android:layout_marginTop="98dp"
-            android:layout_marginLeft="53dp"
-            android:background="@drawable/shadow_box"/>
+            android:inputType="text"
+            android:layout_marginTop="82dp"
+            android:layout_marginLeft="53dp"/>
+            <!--android:background="@drawable/shadow_box"-->
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,14 +88,25 @@
             android:layout_marginLeft="13dp"
             android:layout_marginTop="131dp" />
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/Image_DOB"
+            android:src="@drawable/user_detail_dob"
+
+            android:layout_marginTop="152.5dp"
+            android:layout_marginLeft="18dp"
+            />
+
         <EditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/editText_DOB"
-            android:text=""
-            android:layout_marginTop="159dp"
-            android:layout_marginLeft="53dp"
-            android:background="@drawable/shadow_box"/>
+            android:inputType="text"
+            android:layout_marginTop="143dp"
+            android:layout_marginLeft="53dp"/>
+            <!--android:background="@drawable/shadow_box"-->
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,10 +120,10 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:id="@+id/editText_Address"
-            android:text=""
-            android:layout_marginTop="222dp"
-            android:layout_marginLeft="53dp"
-            android:background="@drawable/shadow_box"/>
+            android:inputType="textMultiLine"
+            android:layout_marginTop="203dp"
+            android:layout_marginLeft="53dp" />
+            <!--android:background="@drawable/shadow_box"-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -118,10 +131,10 @@
             android:text="Giới tính"
             android:id="@+id/Gender"
             android:layout_marginLeft="13dp"
-            android:layout_marginTop="279dp" />
+            android:layout_marginTop="255dp" />
         <RadioGroup
             android:id="@+id/rdGroup_Gender"
-            android:layout_marginTop="307dp"
+            android:layout_marginTop="288dp"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:orientation="horizontal">
@@ -148,6 +161,18 @@
                 android:layout_marginLeft="45dp" />
 
         </RadioGroup>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Cập Nhật"
+            android:id="@+id/bt_Update"
+            android:layout_marginTop="328dp"
+            android:layout_marginLeft="115dp"
+            android:background="@color/colorUpdateButton"
+            android:textColor="@color/colorUpdateLetter"
+            android:textSize="20dp"
+            />
 
     </FrameLayout>
 
