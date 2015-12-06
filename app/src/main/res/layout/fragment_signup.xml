@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eaeaea"
-    tools:context="com.swd2015.shopdocu.Minh.SignupFragment"
+    tools:context="com.swd2015.shopdocu.Controller.Fragment.SignupFragment"
     >
 
 

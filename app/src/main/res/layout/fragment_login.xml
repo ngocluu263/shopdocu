@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#efeeee"
     android:id="@+id/loginFragment"
-    tools:context="com.swd2015.shopdocu.Minh.LoginFragment">
+    tools:context="com.swd2015.shopdocu.Controller.Fragment.LoginFragment">
 
     <ImageView
         android:layout_width="180dp"

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#d2cfcf"
-    tools:context="com.swd2015.shopdocu.Minh.Test"
+    tools:context="com.swd2015.shopdocu.Test.FragmentTest"
    >
 
 

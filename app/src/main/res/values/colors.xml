@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#FFFFFF</color>
+    <color name="orange">#EB7F00</color>
+    <color name="red">#ff0000</color>
+    <color name="gray">#3E423A</color>
+    <color name="lightGray">#B4BEC2</color>
+    <color name="blueDark">#1695A3</color>
+    <color name="lightWhite">#EDEFF0</color>
     <color name="colorPrimary">#45BF55</color>
     <color name="colorPrimaryDark">#167F39</color>
     <color name="colorAccent">#000000</color>
     <color name="colorSearchedPrice">#940315</color>
     <color name="colorLightWhite">#d3d3d3</color>
+    <color name="colorWhite">#EEEEEE</color>
+    <color name="colorUserDetail">#DEF2DE</color>
+    <color name="colorOrderID">#FF7256</color>
+    <color name="colorOrderDate">#9DB099</color>
+    <color name="colorOrderPrice">#FF5D47</color>
+    <color name="colorOrderStatus">#000000</color>
+    <color name="colorBoxBorder">#000000</color>
+    <color name="colorUpdateButton">#21D577</color>
+    <color name="colorUpdateLetter">#FFFFFF</color>
+    <color name="colorButtonSelect">#C5FFCB</color>
+    <color name="darkYellow">#F7E967</color>
 </resources>

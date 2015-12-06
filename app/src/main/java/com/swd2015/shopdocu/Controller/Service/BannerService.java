@@ -4,11 +4,11 @@ import android.app.Fragment;
 import android.os.Handler;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Banner;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONBannerTask;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
-import com.swd2015.shopdocu.Minh.BannerAdapter;
-import com.swd2015.shopdocu.Minh.BannerFragment;
-import com.swd2015.shopdocu.Minh.ImageBannerFragment;
+import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONBannerTask;
+import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONTask;
+import com.swd2015.shopdocu.Controller.Adapter.BannerAdapter;
+import com.swd2015.shopdocu.Controller.Fragment.BannerFragment;
+import com.swd2015.shopdocu.Controller.Fragment.ImageBannerFragment;
 
 import java.util.ArrayList;
 

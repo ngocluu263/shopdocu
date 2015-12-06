@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/search"
+    android:id="@+id/search_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.swd2015.shopdocu.Ga.SearchFragment">
 
     <AutoCompleteTextView
         android:id="@+id/input_key_search_bar"
         android:hint="@string/search_hint"
-        android:layout_width="370dp"
+        android:layout_width="fill_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="#EEEEEE"
         android:layout_below="@+id/search_results_progress_bar"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:digits="@string/prevent_special_characters"
+        android:inputType="textCapCharacters"
+        android:capitalize="sentences" />
 
     <ImageView
         android:id="@+id/button_search_view"
@@ -27,53 +28,68 @@
         android:layout_alignBottom="@+id/input_key_search_bar"
         android:layout_alignRight="@+id/input_key_search_bar"
         android:layout_alignEnd="@+id/input_key_search_bar"
-        android:layout_alignTop="@+id/input_key_search_bar" />
+        android:layout_alignTop="@+id/input_key_search_bar"
+        android:layout_marginRight="10dp"/>
 
     <TextView
         android:id="@+id/category_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="15dp"
         android:text="Danh mục:"
         android:textSize="20sp"
-        android:textStyle="bold|italic"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/input_key_search_bar"
-        android:layout_alignLeft="@+id/input_key_search_bar"
-        android:layout_alignStart="@+id/input_key_search_bar" />
+        android:textStyle="bold|italic" />
 
     <Spinner
         android:id="@+id/category_spinner"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@+id/category_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:layout_marginTop="65dp"
         android:layout_alignRight="@+id/input_key_search_bar"
-        android:layout_alignEnd="@+id/input_key_search_bar"
-        android:layout_alignBottom="@+id/category_text_view"
-        android:background="@color/colorPrimary"
-        android:touchscreenBlocksFocus="false" />
+        android:entries="@array/search_category_spinner"
+        android:layout_toRightOf="@+id/alignCenter"
+        android:layout_toEndOf="@+id/alignCenter" />
+
+    <View
+        android:id="@+id/category_spinner_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        android:layout_below="@+id/category_spinner"
+        android:layout_alignRight="@+id/input_key_search_bar"
+        android:layout_toRightOf="@+id/alignCenter"
+        android:layout_toEndOf="@+id/alignCenter" />
 
     <TextView
         android:id="@+id/orderBy_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="15dp"
         android:text="Sắp xếp theo:"
         android:textSize="20sp"
-        android:textStyle="bold|italic"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/category_text_view"
-        android:layout_alignLeft="@+id/category_text_view"
-        android:layout_alignStart="@+id/category_text_view" />
-
+        android:textStyle="bold|italic" />
 
     <Spinner
         android:id="@+id/orderBy_spinner"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@+id/orderBy_text_view"
-        android:layout_alignEnd="@+id/category_spinner"
-        android:layout_alignBottom="@+id/orderBy_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:layout_marginTop="110dp"
         android:layout_alignRight="@+id/input_key_search_bar"
-        android:background="@color/colorPrimary"/>
+        android:layout_toRightOf="@+id/alignCenter"
+        android:layout_toEndOf="@+id/alignCenter"
+        android:entries="@array/orderBy_spinner" />
+
+    <View
+        android:id="@+id/orderBy_spinner_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        android:layout_below="@+id/orderBy_spinner"
+        android:layout_alignRight="@+id/input_key_search_bar"
+        android:layout_toRightOf="@+id/alignCenter"
+        android:layout_toEndOf="@+id/alignCenter" />
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/search_results_grid_view"
@@ -118,5 +134,11 @@
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
         android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alignCenter"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
