@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONPost;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
+import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONPost;
+import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONTask;
 import com.swd2015.shopdocu.Controller.Service.CartService;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.Model.DTO.CheckoutInfo;

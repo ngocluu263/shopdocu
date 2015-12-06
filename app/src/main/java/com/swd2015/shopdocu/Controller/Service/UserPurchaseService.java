@@ -3,16 +3,11 @@ package com.swd2015.shopdocu.Controller.Service;
 import android.app.Activity;
 
 import com.swd2015.shopdocu.Controller.Activity.UserPurchaseActivity;
-import com.swd2015.shopdocu.Controller.Activity.UserSoldActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_User_Purchase;
-import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_User_Sold;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONUserPurchaseTask;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONUserSoldTask;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
-import com.swd2015.shopdocu.Khiem.UserPurchaseAdapter;
-import com.swd2015.shopdocu.Khiem.UserSoldAdapter;
-import com.swd2015.shopdocu.Khiem.User_PurchaseObj;
-import com.swd2015.shopdocu.Khiem.User_SoldObj;
+import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONUserPurchaseTask;
+import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONTask;
+import com.swd2015.shopdocu.Controller.Adapter.UserPurchaseAdapter;
+import com.swd2015.shopdocu.Controller.Util.Object.User_PurchaseObj;
 
 import java.util.ArrayList;
 import java.util.List;

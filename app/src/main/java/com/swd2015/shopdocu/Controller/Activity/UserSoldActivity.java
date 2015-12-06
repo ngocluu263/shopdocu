@@ -4,12 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_User_Sold;
 import com.swd2015.shopdocu.Controller.Service.UserSoldService;
-import com.swd2015.shopdocu.Khiem.UserSoldAdapter;
 import com.swd2015.shopdocu.R;
-
-import java.util.ArrayList;
 
 /**
  * Created by SherHolmes

@@ -84,8 +84,8 @@ public class SeenDAO extends DBHandler {
             cursor = db.rawQuery("SELECT *" +
                     " FROM " + DBConfig.TABLE_SEEN_PRODUCT, null);
             if (cursor.moveToFirst()){
-                Product product = new Product();
                 while (cursor.isAfterLast() == false){
+                    Product product = new Product();
                     product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.SEEN_PRODUCT_ID)));
                     product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.PRODUCT_ID)));
                     product.setName(cursor.getString(cursor.getColumnIndex(DBConfig.PRODUCT_NAME)));

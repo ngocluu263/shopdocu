@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Minh.HomePageActivity"
+            android:name=".Controller.Activity.HomePageActivity"
             android:label="@string/title_activity_home_page" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,7 @@
 
             <!--</intent-filter>-->
         <!--</activity>-->
-        <activity android:name=".Minh.LoginActivity" >
+        <activity android:name=".Controller.Activity.LoginActivity" >
         </activity>
 
         <activity android:name=".Controller.Activity.CartActivity"

@@ -4,12 +4,8 @@ import android.app.Activity;
 
 import com.swd2015.shopdocu.Controller.Activity.UserDetailActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_UserDetail;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONProductTask;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONUserDetailTask;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
-import com.swd2015.shopdocu.Khiem.UserDetail;
-
-import java.util.ArrayList;
+import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONUserDetailTask;
+import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONTask;
 
 /**
  * Created by SherHolmes

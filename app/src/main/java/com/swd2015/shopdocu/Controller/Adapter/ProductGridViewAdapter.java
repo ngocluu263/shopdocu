@@ -30,7 +30,7 @@ public class ProductGridViewAdapter extends BaseAdapter {
 
     public ProductGridViewAdapter(Activity activity, List<Product> productList){
         this.activity = activity;
-        this.layoutInflater = LayoutInflater.from(activity);
+        this.layoutInflater = LayoutInflater.from(activity.getApplicationContext());
         this.productList = productList;
     }
 

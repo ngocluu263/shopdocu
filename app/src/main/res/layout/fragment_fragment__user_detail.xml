@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:paddingTop="2dp"
     android:background="@color/colorUserDetail"
-    tools:context="com.swd2015.shopdocu.Khiem.fragment_UserDetail">
+    tools:context="com.swd2015.shopdocu.Controller.Fragment.UserDetailFragment">
 
     <FrameLayout
         android:layout_width="400dp"

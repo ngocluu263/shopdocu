@@ -4,8 +4,8 @@ package com.swd2015.shopdocu.Controller.Service;
 import android.support.v4.app.Fragment;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_PurchasedOrder;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONPost;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
+import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONPost;
+import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONTask;
 
 /**
  * Created by PhucLHSE61219 on 03/12/2015.

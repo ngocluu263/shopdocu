@@ -2,7 +2,6 @@ package com.swd2015.shopdocu.Controller.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -10,12 +9,8 @@ import android.widget.TextView;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_UserDetail;
 import com.swd2015.shopdocu.Controller.Service.UserDetailService;
-import com.swd2015.shopdocu.Controller.Service.Validate;
+import com.swd2015.shopdocu.Controller.Util.Validator;
 import com.swd2015.shopdocu.R;
-
-import org.apache.http.client.utils.URLEncodedUtilsHC4;
-
-import java.util.ArrayList;
 
 /**
  * Created by SherHolmes
@@ -62,7 +57,7 @@ public class UserDetailActivity extends AppCompatActivity {
         rdFemale = (RadioButton) findViewById(R.id.rdFemale);
         rdOther = (RadioButton) findViewById(R.id.rdOther);
 
-        Validate v = new Validate();
+        Validator v = new Validator();
         System.out.println(v.checkAddress("abcbksjhdkh09808098"));
         System.out.println(v.checkAddress("ajshd askd 098 !#@#"));
         System.out.println(v.checkAddress("jjhhgjh gjhgjh"));

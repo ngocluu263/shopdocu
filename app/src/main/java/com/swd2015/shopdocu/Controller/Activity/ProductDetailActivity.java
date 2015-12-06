@@ -55,7 +55,7 @@ public class ProductDetailActivity extends Activity {
     public static int buyButtonWidth;
     public static int addToCartButtonWidth;
 
-    public JSON_Product product;
+    public static JSON_Product product;
     public static List<Integer> toggleFavoriteArray = new ArrayList<>();
 
     @Override
@@ -81,8 +81,6 @@ public class ProductDetailActivity extends Activity {
 
         productService.getProductByID(productID);
 
-        adjustViewSize();
-
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 CartProduct cartProduct = new CartProduct(new Product(product), product.getStatus());
@@ -106,12 +104,16 @@ public class ProductDetailActivity extends Activity {
         favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Collections.reverse(toggleFavoriteArray);
-                favoriteButton.setBackgroundResource(toggleFavoriteArray.get(0));
-
+                if (productService.alreadyFavorited(productID)) {
+                    favoriteButton.setBackgroundResource(R.drawable.ic_blank_heart);
+                } else {
+                    favoriteButton.setBackgroundResource(R.drawable.ic_red_heart);
+                }
                 productService.toggleFavorite(product);
             }
         });
+
+        adjustViewSize();
     }
 
     public int convertPxToDp(float px){
@@ -168,13 +170,6 @@ public class ProductDetailActivity extends Activity {
         addToCartImg.setBounds(0, 0, 60, 60);
         addToCartButton.setCompoundDrawables(addToCartImg, null, null, null);
 
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        onBackPressed();
-        finish();
     }
 
 }

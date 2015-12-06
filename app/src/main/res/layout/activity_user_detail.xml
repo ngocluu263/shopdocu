@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="1dp"
-    android:background="@color/colorUserDetail"
-    tools:context="com.swd2015.shopdocu.Khiem.UserDetail">
+    android:background="@color/colorUserDetail">
 
     <FrameLayout
         android:layout_width="400dp"

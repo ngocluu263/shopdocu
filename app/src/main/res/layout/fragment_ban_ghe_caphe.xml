@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="1000dp"
-    tools:context="com.swd2015.shopdocu.Minh.BanGheCapheFragment">
+    tools:context="com.swd2015.shopdocu.Controller.Fragment.BanGheCapheFragment">
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

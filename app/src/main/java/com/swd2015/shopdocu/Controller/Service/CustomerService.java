@@ -5,12 +5,12 @@ package com.swd2015.shopdocu.Controller.Service;
 import android.app.Fragment;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONCustomerTask;
-import com.swd2015.shopdocu.Controller.JSON.Task.JSONPostTask;
-import com.swd2015.shopdocu.Controller.JSON.Util.JSONTask;
-import com.swd2015.shopdocu.Ga.RequestSellCustomerFragment;
-import com.swd2015.shopdocu.Minh.LoginFragment;
-import com.swd2015.shopdocu.Minh.SignupFragment;
+import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONCustomerTask;
+import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONPostTask;
+import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONTask;
+import com.swd2015.shopdocu.Controller.Fragment.RequestSellCustomerFragment;
+import com.swd2015.shopdocu.Controller.Fragment.LoginFragment;
+import com.swd2015.shopdocu.Controller.Fragment.SignupFragment;
 
 /**
  * Created by Minh on 11/28/2015.

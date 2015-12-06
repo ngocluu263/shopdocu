@@ -10,6 +10,7 @@ import com.swd2015.shopdocu.Model.DTO.Product;
 import com.swd2015.shopdocu.Model.Util.DBConfig;
 import com.swd2015.shopdocu.Model.Util.DBHandler;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,15 +45,21 @@ public class FavoriteDAO extends DBHandler {
             return false;
         }
         cursor.close();
+        try {
+            db.close();
+        } catch (Exception e){
+            System.out.println("Connection already close 1!");
+        }
         return true;
     }
 
     public void addFavorite(Product product){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = null;
 
         if (isProductExist(product.getID())){
             deleteFavorite(product.getID());
         } else {
+            db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put(DBConfig.PRODUCT_ID, product.getID());
             values.put(DBConfig.PRODUCT_NAME, product.getName());
@@ -71,7 +78,11 @@ public class FavoriteDAO extends DBHandler {
             values.put(DBConfig.FAVORITE_ID, incrementingID);
             db.insert(DBConfig.TABLE_FAVORITE, null, values);
         }
-        db.close();
+        try {
+            db.close();
+        } catch (Exception e){
+            System.out.println("Connection already close 2!");
+        }
     }
 
     public boolean deleteFavorite(int productID){
@@ -88,8 +99,8 @@ public class FavoriteDAO extends DBHandler {
             cursor = db.rawQuery("SELECT *" +
                     " FROM " + DBConfig.TABLE_FAVORITE, null);
             if (cursor.moveToFirst()){
-                Product product = new Product();
                 while (cursor.isAfterLast() == false){
+                    Product product = new Product();
                     product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.FAVORITE_ID)));
                     product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.PRODUCT_ID)));
                     product.setName(cursor.getString(cursor.getColumnIndex(DBConfig.PRODUCT_NAME)));

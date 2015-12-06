@@ -1,7 +1,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.swd2015.shopdocu.Minh.HomePage_Fragment"
+    tools:context="com.swd2015.shopdocu.Controller.Fragment.HomePage_Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <RelativeLayout

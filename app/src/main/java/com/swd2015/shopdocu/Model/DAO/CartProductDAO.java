@@ -108,8 +108,8 @@ public class CartProductDAO extends DBHandler {
             cursor = db.rawQuery("SELECT *" +
                     " FROM " + DBConfig.TABLE_CART_PRODUCT, null);
             if (cursor.moveToFirst()){
-                CartProduct product = new CartProduct();
                 while (cursor.isAfterLast() == false){
+                    CartProduct product = new CartProduct();
                     product.setOrderID(cursor.getInt(cursor.getColumnIndex(DBConfig.ORDER_ID)));
                     product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.PRODUCT_ID)));
                     product.setName(cursor.getString(cursor.getColumnIndex(DBConfig.PRODUCT_NAME)));

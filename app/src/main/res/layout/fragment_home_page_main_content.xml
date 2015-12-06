@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/homepage_main_content_fragment"
-    tools:context="com.swd2015.shopdocu.Minh.HomePageMainContentFragment">
+    tools:context="com.swd2015.shopdocu.Controller.Fragment.HomePageMainContentFragment">
     <RelativeLayout
         android:id="@+id/banner"
         android:layout_width="match_parent"
