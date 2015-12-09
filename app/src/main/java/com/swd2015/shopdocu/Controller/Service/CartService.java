@@ -21,13 +21,8 @@ import java.util.ArrayList;
 public class CartService {
     public Activity activity;
     public Fragment fragment;
-    public BaseAdapter adapter;
     public int totalQuantity;
     public int totalPayment;
-
-    public CartService(BaseAdapter adapter) {
-        this.adapter = adapter;
-    }
 
     public CartService(Activity activity) {
         this.activity = activity;
@@ -86,24 +81,25 @@ public class CartService {
         }
     }
 
-    public void deleteCart(BaseAdapter adapter, int productID) {
-        this.adapter = adapter;
+    public void deleteCart(int productID) {
         CartTask cartTask = new CartTask(this, productID, DBTask.DELETE_CART);
         cartTask.execute();
 
     }
 
-    public void resetListView() {
+    public void resetListView(final ArrayList<CartProduct> cartList ) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                adapter.notifyDataSetChanged();
+                CartActivity cartActivity = (CartActivity)activity;
+                cartActivity.cartListView.setVisibility(View.INVISIBLE);
+                cartActivity.cartListView.setAdapter(new CartAdapter(cartActivity, cartList));
+                cartActivity.cartListView.setVisibility(View.VISIBLE);
             }
         });
     }
 
-    public void updateQuantityCart(BaseAdapter adapter, int productID, int quantity) {
-        this.adapter = adapter;
+    public void updateQuantityCart(int productID, int quantity) {
         CartTask cartTask = new CartTask(this, productID, quantity, DBTask.UPDATE_CART);
         cartTask.execute();
     }

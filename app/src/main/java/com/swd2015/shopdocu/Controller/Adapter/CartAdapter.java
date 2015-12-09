@@ -102,11 +102,10 @@ public class CartAdapter extends BaseAdapter {
             }
 
             adjustFontSize(productTitle);
-            final CartAdapter cartAdapter = this;
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cartActivity.cartService.deleteCart(cartAdapter, cartProduct.getID());
+                    cartActivity.cartService.deleteCart(cartProduct.getID());
                 }
             });
 
@@ -115,7 +114,7 @@ public class CartAdapter extends BaseAdapter {
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                            int position, long id) {
                     int quantity = position + 1;
-                    cartActivity.cartService.updateQuantityCart(cartAdapter, cartProduct.getID(),
+                    cartActivity.cartService.updateQuantityCart(cartProduct.getID(),
                             quantity);
                 }
 

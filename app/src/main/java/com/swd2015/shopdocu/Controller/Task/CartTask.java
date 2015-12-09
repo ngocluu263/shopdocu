@@ -7,6 +7,9 @@ import com.swd2015.shopdocu.Controller.Adapter.CartAdapter;
 import com.swd2015.shopdocu.Controller.Service.CartService;
 import com.swd2015.shopdocu.Controller.Util.DBTask;
 import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
+import com.swd2015.shopdocu.Model.DTO.CartProduct;
+
+import java.util.ArrayList;
 
 /**
  * Created by quangphuong on 11/30/15.
@@ -45,7 +48,8 @@ public class CartTask extends AsyncTask {
                 break;
             case DELETE_CART:
                 dao.deleteCart(productID);
-                cartService.resetListView();
+                ArrayList<CartProduct> list = dao.getAllCart();
+                cartService.resetListView(list);
                 break;
             case UPDATE_CART:
                 dao.updateCartQuantity(productID, quantity);
