@@ -3,6 +3,7 @@ package com.swd2015.shopdocu.Controller.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,12 +12,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.android.Utils;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_PurchasedOrder;
 import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.Controller.Service.PurchasedOrderService;
+import com.swd2015.shopdocu.Controller.Task.UploadTask;
 import com.swd2015.shopdocu.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -43,9 +51,9 @@ public class RequestSellCustomerFragment extends Fragment {
     public      static String               productName;
     public      static String               productDescription;
     public      static int                  categoryID;
-    public      String                      productImageURL =
-                    "http://img.duniaku.net/wp-content/uploads/2015/07/7017237-one-piece-anime.jpg";
+    public      static String               productImageURL;
     public      static int                  responseCode;
+    public      static Uri                  imageUri;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,18 +105,33 @@ public class RequestSellCustomerFragment extends Fragment {
                             // Get datetime now to set to Create Date of Purchase Order
                             createDate = new Timestamp(System.currentTimeMillis());
 
+
+                            Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(getContext()));
+                            String imageName = cloudinary.randomPublicId();
+                            try {
+                                InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri);
+                                UploadTask uploadTask = new UploadTask(getContext(),inputStream);
+                                uploadTask.execute(imageName);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            List<String> imageList = new ArrayList<String>();
+                            imageList.add(cloudinary.url().generate(imageName));
+
                             //Add information to Purchased O"http://swd2015api.azurewebsites.net/api/PurchasedOrder/AddPurchasedOrderrder
                             JSON_PurchasedOrder purchasedOrder = new JSON_PurchasedOrder(
-                                    customerID,                 // Customer ID
-                                    employeeID,                 // Employee ID
-                                    createDate,                 // Create Date
-                                    rsOrderStatus,              // Order Status
-                                    placeExchange,              // Address - Place Exchange
-                                    productPrice,               // Product Price
-                                    productName,                // Product Name
-                                    productDescription,         // Product Description
-                                    categoryID,                 // Category ID
-                                    productImageURL);           // Product Image
+                                    customerID,                             // Customer ID
+                                    employeeID,                             // Employee ID
+                                    createDate,                             // Create Date
+                                    rsOrderStatus,                          // Order Status
+                                    placeExchange,                          // Address - Place Exchange
+                                    productPrice,                           // Product Price
+                                    productName,                            // Product Name
+                                    productDescription,                     // Product Description
+                                    categoryID,                             // Category ID
+                                    imageList    // Product Image
+                            );
 
                             // Insert Purchased Order do Database
                             purchasedOrderService.insertPurchasedOrder(purchasedOrder);

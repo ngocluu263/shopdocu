@@ -15,9 +15,11 @@
                 <ImageView
                     android:id="@+id/add_product_photos"
                     android:src="@drawable/region_add_product_photos"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_alignBottom="@+id/input_product_name"
+                    android:layout_marginBottom="65dp"
                     android:layout_centerHorizontal="true" />
 
                 <ImageView

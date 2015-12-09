@@ -162,4 +162,7 @@
 
     // FAVORITE PRODUCT ACTIVITY STRING
     <string name="title_favorite_activity">Sản phẩm yêu thích</string>
+
+    <string name="take_product_photo_action">Chụp hình sản phẩm</string>
+    <string name="choose_product_photo_action">Chọn hình từ thư viện</string>
 </resources>

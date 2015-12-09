@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by PhucLHSE61219 on 03/12/2015.
@@ -28,7 +29,7 @@ public class JSON_PurchasedOrder {
     @SerializedName("Category")
     private int category;
     @SerializedName("ImageURL")
-    private String imageURL;
+    private List<String> imageURL;
 
     public JSON_PurchasedOrder(){
 
@@ -36,7 +37,7 @@ public class JSON_PurchasedOrder {
 
     public JSON_PurchasedOrder(int customerID, int employeeID, Timestamp createDate, int orderStatus,
                                String address, int total, String productName, String description,
-                               int category, String imageURL) {
+                               int category, List<String> imageURL) {
         this.customerID = customerID;
         this.employeeID = employeeID;
         this.createDate = createDate;
@@ -121,11 +122,11 @@ public class JSON_PurchasedOrder {
         this.category = category;
     }
 
-    public String getImageURL() {
+    public List<String> getImageURL() {
         return imageURL;
     }
 
-    public void setImageURL(String imageURL) {
+    public void setImageURL(List<String> imageURL) {
         this.imageURL = imageURL;
     }
 }

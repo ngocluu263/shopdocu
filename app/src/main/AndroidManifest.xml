@@ -87,6 +87,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="CLOUDINARY_URL" android:value="cloudinary://915884751789362:kzJWJ1S6K9nMEEs4YkARi-bR2Q8@shopdocu"/>
     </application>
 
 </manifest>
