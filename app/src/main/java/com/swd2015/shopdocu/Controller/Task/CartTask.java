@@ -42,18 +42,20 @@ public class CartTask extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] params) {
         CartProductDAO dao = new CartProductDAO(cartService.activity.getBaseContext());
+        ArrayList<CartProduct> list;
         switch (dbTask) {
             case GET_ALL_CART:
                 cartService.setCartList(dao.getAllCart());
                 break;
             case DELETE_CART:
                 dao.deleteCart(productID);
-                ArrayList<CartProduct> list = dao.getAllCart();
+                list = dao.getAllCart();
                 cartService.resetListView(list);
                 break;
             case UPDATE_CART:
                 dao.updateCartQuantity(productID, quantity);
-//                cartService.resetListView();
+                list = dao.getAllCart();
+                cartService.resetListView(list);
                 break;
         }
         return null;

@@ -75,8 +75,8 @@
             <ImageButton
                 android:layout_alignParentRight="true"
                 android:layout_alignBottom="@id/spliter3"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:id="@+id/favorite_button"
                 android:background="@drawable/ic_blank_heart"
                 />
@@ -223,7 +223,7 @@
             android:layout_height="match_parent"
             android:text="@string/buy_button"
             android:id="@+id/buy_button"
-            android:background="@color/orange"
+            android:background="@drawable/button_buy_selector"
             android:layout_marginRight="10dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -236,7 +236,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:background="@color/colorPrimaryDark" />
+            android:background="@drawable/button_selector" />
     </RelativeLayout>
 
 

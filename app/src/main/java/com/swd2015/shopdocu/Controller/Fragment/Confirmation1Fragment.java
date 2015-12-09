@@ -1,7 +1,9 @@
 package com.swd2015.shopdocu.Controller.Fragment;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +41,8 @@ public class Confirmation1Fragment extends Fragment {
     public static TextView customerEmail;
     public static ListView cartListPreview;
 
+    AlertDialog.Builder comfirmRSBuilder;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,28 +62,45 @@ public class Confirmation1Fragment extends Fragment {
         customerPhone.setText(customer.getPhone());
         customerEmail.setText(customer.getEmail());
 
+        comfirmRSBuilder = new AlertDialog.Builder(this.getActivity());
+
         CartService cartService = new CartService(this);
         cartService.getCartList();
 
-        confirmationButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestConfirmation();
+        // Set Confirm message when user click Request Sell button
+        comfirmRSBuilder.setMessage(R.string.delete_cart_confirm);
 
+        // Button Cancel request sell -> do nothing
+        comfirmRSBuilder.setPositiveButton(R.string.cancel_rs_button, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Do nothing
+            }
+        });
+        // Button Confirm request sell -> save Purchased Order to Database
+        comfirmRSBuilder.setNegativeButton(R.string.delete_confirm_button, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                requestConfirmation();
                 Confirmation2Fragment confirmation2Fragment = new Confirmation2Fragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.main, confirmation2Fragment).addToBackStack(null).commit();
             }
         });
 
+
+        confirmationButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create the AlertDialog
+                AlertDialog dialog = comfirmRSBuilder.create();
+                dialog.show();
+            }
+        });
+
         confirmationButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestConfirmation();
-
-                Confirmation2Fragment confirmation2Fragment = new Confirmation2Fragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.main, confirmation2Fragment).addToBackStack(null).commit();
+                AlertDialog dialog = comfirmRSBuilder.create();
+                dialog.show();
             }
         });
 

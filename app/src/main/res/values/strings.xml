@@ -125,6 +125,8 @@
     <string name="buy_button">MUA NGAY</string>
     <string name="add_to_cart_button">Thêm vào giỏ hàng</string>
     <string name="cart_title">Giỏ hàng của bạn</string>
+    <string name="add_to_cart_message">Đã thêm vào giỏ hàng</string>
+    <string name="add_to_favorite_message">Đã thêm vào danh sách yêu thích</string>
 
     // CART ACTIVITY STRING
     <string name="product_name_column_title">Sản phẩm</string>
@@ -133,7 +135,8 @@
     <string name="product"> sản phẩm</string>
     <string name="order_button">ĐẶT HÀNG</string>
     <string name="checkout_button">THANH TOÁN</string>
-
+    <string name="delete_cart_confirm">Bạn có muốn xóa sản phẩm này?</string>
+    <string name="delete_confirm_button">Xóa</string>
 
     // CHECKOUT FRAGMENT STRING
     <string name="checkout_1_title">Thanh toán</string>

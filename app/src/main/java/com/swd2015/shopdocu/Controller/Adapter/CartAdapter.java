@@ -1,6 +1,8 @@
 package com.swd2015.shopdocu.Controller.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.util.DisplayMetrics;
@@ -32,6 +34,7 @@ public class CartAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     public List<CartProduct> cartList;
     private CartActivity cartActivity;
+    AlertDialog.Builder comfirmRSBuilder;
 
     public CartAdapter(Context context, List<CartProduct> cartList){
         mContext = context;
@@ -69,6 +72,7 @@ public class CartAdapter extends BaseAdapter {
         }
 
         if(cartList != null){
+            comfirmRSBuilder = new AlertDialog.Builder(cartActivity);
             final CartProduct cartProduct = cartList.get(position);
 
             TextView productTitle = (TextView)cartListView.findViewById(R.id.product_name);
@@ -89,7 +93,7 @@ public class CartAdapter extends BaseAdapter {
             productStatus.setText(cartProduct.getStatus());
 
 
-            String[] items = new String[]{"1", "2", "3" , "4", "5"};
+            String[] items = new String[]{"1", "2", "3" , "4", "5", "6", "7", "8", "9", "10"};
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
                     android.R.layout.simple_spinner_dropdown_item, items);
             quantityDropdown.setAdapter(adapter);
@@ -105,9 +109,26 @@ public class CartAdapter extends BaseAdapter {
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cartActivity.cartService.deleteCart(cartProduct.getID());
-                }
-            });
+                    // Set Confirm message when user click Request Sell button
+                    comfirmRSBuilder.setMessage(R.string.delete_cart_confirm);
+
+                    // Button Cancel request sell -> do nothing
+                    comfirmRSBuilder.setPositiveButton(R.string.cancel_rs_button, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Do nothing
+                        }
+                    });
+                    // Button Confirm request sell -> save Purchased Order to Database
+                    comfirmRSBuilder.setNegativeButton(R.string.delete_confirm_button, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            cartActivity.cartService.deleteCart(cartProduct.getID());
+                        }
+                    });
+
+                    AlertDialog dialog = comfirmRSBuilder.create();
+                    dialog.show();
+                    }
+                });
 
             quantityDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -150,4 +171,7 @@ public class CartAdapter extends BaseAdapter {
 
         return (int) dp;
     }
+
+
+
 }
