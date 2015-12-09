@@ -1,16 +1,31 @@
 package com.swd2015.shopdocu.Controller.Service;
 
 
-
+import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.swd2015.shopdocu.Controller.Activity.HomePageActivity;
+import com.swd2015.shopdocu.Controller.Activity.UserPurchaseActivity;
+import com.swd2015.shopdocu.Controller.Activity.UserSoldActivity;
+import com.swd2015.shopdocu.Controller.Fragment.HomePage_Fragment;
+import com.swd2015.shopdocu.Controller.Fragment.LoginFragment;
+import com.swd2015.shopdocu.Controller.Fragment.RequestSellCustomerFragment;
+import com.swd2015.shopdocu.Controller.Fragment.RequestSellFragment;
+import com.swd2015.shopdocu.Controller.Fragment.SignupFragment;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
 import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONCustomerTask;
 import com.swd2015.shopdocu.Controller.JSON.JSONTask.JSONPostTask;
 import com.swd2015.shopdocu.Controller.JSON.JSONUtil.JSONTask;
-import com.swd2015.shopdocu.Controller.Fragment.RequestSellCustomerFragment;
-import com.swd2015.shopdocu.Controller.Fragment.LoginFragment;
-import com.swd2015.shopdocu.Controller.Fragment.SignupFragment;
+import com.swd2015.shopdocu.Controller.Util.Object.NavigationItem;
+import com.swd2015.shopdocu.Model.DAO.UserDAO;
+import com.swd2015.shopdocu.Model.DTO.Customer;
+import com.swd2015.shopdocu.R;
 
 /**
  * Created by Minh on 11/28/2015.
@@ -18,6 +33,7 @@ import com.swd2015.shopdocu.Controller.Fragment.SignupFragment;
 public class CustomerService {
     Fragment fragment;
     android.support.v4.app.Fragment fragmentv4;
+    Activity activity;
 
     /**
      * Constructor: CustomerService(Fragment fragment)
@@ -34,6 +50,9 @@ public class CustomerService {
         this.fragmentv4 = fragmentv4;
     }
 
+    public CustomerService(Activity activity) {
+        this.activity = activity;
+    }
     /**
      * Method: getCustomerById(int ID)
      *
@@ -56,22 +75,42 @@ public class CustomerService {
      * ++PhucLHSE61219_20151203
      */
     public void setCustomer(JSON_Customer customer) {
-        switch (fragmentv4.getClass().getSimpleName()) {
-            case "RequestSellCustomerFragment":
-                if (customer != null) {
-                    RequestSellCustomerFragment requestSellCustomerFragment =
-                                                            (RequestSellCustomerFragment) fragmentv4;
 
-                    //Get customer information and set to view (RequestSellCustomerFragment)
-                    requestSellCustomerFragment.customerNameEditText
-                                                .setText(customer.getCustomerName());
-                    requestSellCustomerFragment.customerAddressEditText
-                                               .setText(customer.getCustomerAddress());
-                    requestSellCustomerFragment.customerEmailEditText
-                                               .setText(customer.getCustomerEmail());
-                    requestSellCustomerFragment.customerPhoneNumberEditText
-                                               .setText(customer.getCustomerPhoneNumber());
+        if (fragmentv4!=null) {
+            switch (fragmentv4.getClass().getSimpleName()) {
+                case "RequestSellCustomerFragment":
+                    if (customer != null) {
+                        RequestSellCustomerFragment requestSellCustomerFragment =
+                                (RequestSellCustomerFragment) fragmentv4;
+
+                        //Get customer information and set to view (RequestSellCustomerFragment)
+                        requestSellCustomerFragment.customerNameEditText
+                                .setText(customer.getCustomerName());
+                        requestSellCustomerFragment.customerAddressEditText
+                                .setText(customer.getCustomerAddress());
+                        requestSellCustomerFragment.customerEmailEditText
+                                .setText(customer.getCustomerEmail());
+                        requestSellCustomerFragment.customerPhoneNumberEditText
+                                .setText(customer.getCustomerPhoneNumber());
+                    }
+            }
+        }
+        else if(activity!=null){
+            if (customer!=null){// get user tu json thanh cong
+                HomePageActivity homePageActivity=(HomePageActivity)activity;
+                homePageActivity.userName.setText(customer.getCustomerName());
+
+               // ImageView productImageView = (ImageView) holder.image;
+                if (customer.getCustomerImageURL()!=null){
+                    homePageActivity.avartar.setBackgroundResource(0);
+                    Glide.with(homePageActivity.getBaseContext())
+                            .load(customer.getCustomerImageURL())
+                            .placeholder(R.drawable.logo)
+                            .error(R.drawable.ic_close_search)
+                            .into(homePageActivity.avartar);
+                    homePageActivity.avartar.setScaleType(ImageView.ScaleType.FIT_XY);
                 }
+            }
         }
     }
 
@@ -83,13 +122,74 @@ public class CustomerService {
     public void setCheckLogin(JSON_Customer customer){
         LoginFragment loginFragment=(LoginFragment) fragment;
         loginFragment.user=customer;
+        //dang nhap thanh cong
         if (customer!=null){
+            //add customer to DB local
+            UserDAO userDAO=new UserDAO(loginFragment.getActivity().getBaseContext());
+            int ID=customer.getCustomerID();
+            String email=customer.getCustomerEmail();
+            String name = customer.getCustomerName();
+            String avatarURL=customer.getCustomerImageURL();
+            Customer customerDBLocal=
+                    new Customer(ID,name,email);
+            userDAO.addUserInfo(customerDBLocal);
 
-            //System.out.println("Post thanh cong");
-            //System.out.println(customer.getGender());
+            if (loginFragment.action!=null){
+                //ve trang dang ban
+
+                FragmentManager fragmentManager= loginFragment.getActivity().getFragmentManager();
+                String action=loginFragment.action;
+                switch (action){
+                    case "RequestSell":{
+                        Bundle bundle=new Bundle();
+                        bundle.putInt("UserID",ID);
+                        RequestSellFragment requestSellFragment = new RequestSellFragment();
+                        requestSellFragment.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.main,
+                                requestSellFragment).commit();
+                        break;
+                    }
+                    case "HomePage":{
+                        //Chinh sua lai thong tin user tren profilebox
+                        HomePageActivity homePageActivity=
+                                (HomePageActivity)loginFragment.getActivity();
+                        if (homePageActivity.listNavItems.size()<=5){
+                            homePageActivity.listNavItems.
+                                    add(new NavigationItem("Đăng xuất", R.drawable.ic_signout));
+                        }
+                        homePageActivity.userName.setText(name);
+                        if (avatarURL!=null){
+                            Glide.with(homePageActivity.getBaseContext())
+                                    .load(customer.getCustomerImageURL())
+                                    .placeholder(R.drawable.logo)
+                                    .error(R.drawable.ic_close_search)
+                                    .into(homePageActivity.avartar);
+                            homePageActivity.avartar.setScaleType(ImageView.ScaleType.FIT_XY);
+                        }
+                        //chuyen fragment
+                        fragmentManager.beginTransaction().replace(R.id.main,
+                                new HomePage_Fragment()).commit();
+                        break;
+                    }
+                    case "UserPurchase":{
+                        Intent intent = new Intent(loginFragment.getActivity(), UserPurchaseActivity.class);
+                        intent.putExtra("UserID", ID);
+                        loginFragment.getActivity().startActivity(intent);
+                        break;
+                    }
+                    case "UserSold":{
+                        Intent intent = new Intent(loginFragment.getActivity(), UserSoldActivity.class);
+                        intent.putExtra("UserID", ID);
+                        loginFragment.getActivity().startActivity(intent);
+                        break;
+                    }
+                }
+            }
         }
+        //TH dang nhap ko thanh cong
         else
         {
+            //pop up bao loi
             //System.out.println("Khong thanh cong. Fail");
         }
     }
@@ -105,24 +205,17 @@ public class CustomerService {
         SignupFragment signupFragment= (SignupFragment) fragment;
         signupFragment.customer=customer;
         if (customer!=null){
-//            FragmentManager fragmentManager= fragment.getActivity().getFragmentManager();
-//            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-//            fragmentTransaction.remove(signupFragment);
-//            signupFragment.show(fragmentManager,"dialog");
-
-            signupFragment.getActivity().showDialog(1);
-
-//            FragmentManager fragmentManager= fragment.getActivity().getFragmentManager();
-//            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-//            LoginFragment loginFragment = new LoginFragment();
-//            Bundle bundle=new Bundle();
-//            bundle.putString("email",customer.getEmail());
-//            loginFragment.setArguments(bundle);
 //
-//            fragmentTransaction.replace(R.id.main,loginFragment).commit();
 
-            //System.out.println("Post thanh cong");
-            //System.out.println(customer.getGender());
+            FragmentManager fragmentManager= fragment.getActivity().getFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            LoginFragment loginFragment = new LoginFragment();
+            Bundle bundle=new Bundle();
+            bundle.putString("email",customer.getCustomerEmail());
+            loginFragment.setArguments(bundle);
+
+            fragmentTransaction.replace(R.id.main,loginFragment).commit();
+
         }
 
 

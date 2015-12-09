@@ -4,6 +4,7 @@ package com.swd2015.shopdocu.Controller.Fragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.swd2015.shopdocu.Controller.Activity.HomePageActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Customer;
 import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.R;
@@ -26,9 +28,11 @@ public class LoginFragment extends Fragment {
     public CustomerService customerService=new CustomerService(this);
     EditText edtEmail,edtPassword;
     CheckBox checkPass;
-    TextView resetPass,signup;
+    TextView signup;
     Button btnLogin;
     public JSON_Customer user;
+    public String action;
+
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -44,12 +48,24 @@ public class LoginFragment extends Fragment {
         edtPassword=(EditText)v.findViewById(R.id.edtPassword);
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         checkPass=(CheckBox) v.findViewById(R.id.chkShowPassword);
-
         Bundle bundle = this.getArguments();
+
+        HomePageActivity activity=(HomePageActivity)getActivity();
+        android.support.v7.app.ActionBar actionBar=activity.actionBar;
+        ActionBarDrawerToggle toggle=activity.actionBarDrawerToggle;
+        toggle.setDrawerIndicatorEnabled(true);
+
+        actionBar.setTitle("Đăng nhập");
+        actionBar.setHomeButtonEnabled(false);
+
+
         if (bundle!=null){
             String email = bundle.getString("email");
-            edtEmail.setText(email);
-            edtPassword.requestFocus();
+            if (email!=null){
+                edtEmail.setText(email);
+                edtPassword.requestFocus();
+            }
+            action=bundle.getString("action");
         }
         //set listener for Login Button
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +92,6 @@ public class LoginFragment extends Fragment {
         //endregion
 
         signup=(TextView) v.findViewById(R.id.txtSignUp);
-        resetPass = (TextView) v.findViewById(R.id.txtForgetPass);
 
         //set listener for sign up link
         signup.setOnClickListener(new View.OnClickListener() {
@@ -92,13 +107,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        //set listener for reset password link
-        resetPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
 
         return v;

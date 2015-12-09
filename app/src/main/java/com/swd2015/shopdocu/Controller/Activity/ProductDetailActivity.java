@@ -1,6 +1,5 @@
 package com.swd2015.shopdocu.Controller.Activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -9,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
@@ -19,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
@@ -28,14 +25,12 @@ import com.swd2015.shopdocu.Model.DTO.Product;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by Quang on 21-Nov-15.
  */
-public class ProductDetailActivity extends Activity {
+public class ProductDetailActivity extends NavigationActivity {
     ProductService productService = new ProductService(this);
     public int productID;
     public static TextView productTitle;
@@ -58,11 +53,19 @@ public class ProductDetailActivity extends Activity {
     public static JSON_Product product;
     public static List<Integer> toggleFavoriteArray = new ArrayList<>();
 
+    //for toolbar and navigation item
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+        //region toolbar and navigation item
+        createNavigation();
+        //endregion
 
+        //region main activity
         productID = getIntent().getExtras().getInt("productID");
 
         productTitle = (TextView) findViewById(R.id.product_name);
@@ -114,6 +117,8 @@ public class ProductDetailActivity extends Activity {
         });
 
         adjustViewSize();
+        //endregion
+
     }
 
     public int convertPxToDp(float px){
@@ -171,5 +176,12 @@ public class ProductDetailActivity extends Activity {
         addToCartButton.setCompoundDrawables(addToCartImg, null, null, null);
 
     }
+
+    //set listenr for menu , search and cart icon
+
+
+
+    //add menu item
+
 
 }

@@ -2,8 +2,6 @@ package com.swd2015.shopdocu.Controller.JSON.JSONObject;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 /**
  * Created by PhucLHSE61219 on 28/11/2015.
  */
@@ -44,6 +42,7 @@ public class JSON_Customer {
         this.isGuest = isGuest;
         this.customerImageURL = customerImageURL;
     }
+    public int getCustomerID(){return customerID;}
 
     public String getCustomerName(){
         return customerName;

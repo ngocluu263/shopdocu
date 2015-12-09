@@ -31,6 +31,7 @@ public abstract class DBConfig {
     public static final String USER_NAME = "FullName";
     public static final String USER_GENDER = "Gender";
     public static final String USER_EMAIL = "Email";
+    public static final String USER_BIRTHDAY = "Birthday";
     public static final String USER_ADDRESS = "Address";
     public static final String USER_PHONE = "PhoneNumber";
     public static final String USER_PASSWORD = "Password";

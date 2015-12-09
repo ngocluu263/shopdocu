@@ -45,7 +45,7 @@ public class ImageBannerFragment extends Fragment {
 
         Glide.with(getContext())
                 .load(imgURL)
-                .placeholder(R.drawable.ic_shopping_cart)
+                .placeholder(R.drawable.logo)
                 .error(R.drawable.ic_close_search)
                 .into(imgView);
         imgView.setScaleType(ImageView.ScaleType.FIT_XY);

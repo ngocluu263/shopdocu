@@ -22,16 +22,18 @@ public class Customer implements Serializable{
     private String gender;
     @SerializedName("Email")
     private String email;
+    @SerializedName("Birthday")
+    private String birthday;
     @SerializedName("Address")
     private String address;
     @SerializedName("PhoneNumber")
     private String phone;
     @SerializedName("isGuest")
     private Boolean isGuest;
-
     @SerializedName("Password")
     private String password;
-
+    @SerializedName("ImageURL")
+    private String avatar;
     public Customer() {
     }
 
@@ -43,12 +45,18 @@ public class Customer implements Serializable{
         this.isGuest = true;
     }
 
+    public Customer(int ID,String name,String email){
+        this.ID=ID;
+        this.name=name;
+        this.email=email;
+    }
 
-    public Customer(int ID, String name, String gender, String email, String address, String phone, Boolean isGuest) {
+    public Customer(int ID, String name, String gender, String email,String birthday, String address, String phone, Boolean isGuest) {
         this.ID = ID;
         this.name = name;
         this.gender = gender;
         this.email = email;
+        this.birthday=birthday;
         this.address = address;
         this.phone = phone;
         this.isGuest = isGuest;
@@ -60,6 +68,8 @@ public class Customer implements Serializable{
     public int getID() {
         return ID;
     }
+
+
 
     /**
      * @param ID the ID to set
@@ -152,9 +162,23 @@ public class Customer implements Serializable{
         this.isGuest = isGuest;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
 
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
     public String getPassword() {
         return password;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public void setPassword(String password) {

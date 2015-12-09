@@ -1,7 +1,11 @@
-<ScrollView
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.swd2015.shopdocu.Controller.Fragment.HomePage_Fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <RelativeLayout
@@ -63,3 +67,10 @@
     </RelativeLayout>
 </RelativeLayout>
 </ScrollView>
+    <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_sell" />
+</android.support.design.widget.CoordinatorLayout>

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.swd2015.shopdocu.Controller.Service.UserPurchaseService;
-import com.swd2015.shopdocu.Controller.Service.UserSoldService;
 import com.swd2015.shopdocu.R;
 
 /**
@@ -23,7 +22,12 @@ public class UserPurchaseActivity extends AppCompatActivity {
         purchaseListView = (ListView) findViewById(R.id.listView4Buy);
 
         UserPurchaseService userPurchaseService = new UserPurchaseService(this);
-        userPurchaseService.getUserPurchaseDetail(3);
+        int userID=4;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userID = extras.getInt("UserID");
+        }
+        userPurchaseService.getUserPurchaseDetail(userID);
 
 
 
