@@ -3,9 +3,12 @@ package com.swd2015.shopdocu.Controller.Fragment;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -16,10 +19,9 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 
 import com.swd2015.shopdocu.Controller.Adapter.FragmentAdapter;
+import com.swd2015.shopdocu.Model.DAO.UserDAO;
+import com.swd2015.shopdocu.Model.DTO.Customer;
 import com.swd2015.shopdocu.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,31 +68,52 @@ public class HomePage_Fragment extends Fragment implements
                              Bundle savedInstanceState) {
          v= inflater.inflate(R.layout.fragment_home_page, container, false);
         i++;
-        // init tabhost
         this.initializeTabHost(savedInstanceState);
-        // init ViewPager
-       // this.initializeViewPager();
+
+
         homePageMainContentFragment = new HomePageMainContentFragment();
         fragmentManager=fragmentActivity.getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.homepage_main_content,homePageMainContentFragment);
+        fragmentTransaction.replace(R.id.homepage_main_content, homePageMainContentFragment);
         fragmentTransaction.commit();
 
+        //regionhandle Floating button
+        final RequestSellFragment requestSellFragment = new RequestSellFragment();
+        FloatingActionButton fab = (FloatingActionButton)v.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManagerFAB = getFragmentManager();
+                FragmentTransaction fragmentTransactionFAB = fragmentManagerFAB.beginTransaction();
+                UserDAO userDAO=new UserDAO(getActivity().getBaseContext());
+
+                //get user from DB local
+                Customer customer=userDAO.getUser();
+                if (customer!=null){ // user da dang nhap
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("UserID",customer.getID());
+                    requestSellFragment.setArguments(bundle);
+                    fragmentTransactionFAB.replace(R.id.main, requestSellFragment);
+                    fragmentTransactionFAB.commit();
+                }
+                else { //chua dang nhap
+                    Bundle bundle=new Bundle();
+                    bundle.putString("action", "RequestSell");
+
+                    LoginFragment loginFragment=new LoginFragment();
+                    loginFragment.setArguments(bundle);
+                    fragmentTransactionFAB.replace(R.id.main,loginFragment).commit();
+                }
+//
+//                requestSellFragment.setArguments(bundle);
+
+            }
+        });
+        //endregion
         return v;
     }
 
-    private void initializeViewPager() {
-        List<android.support.v4.app.Fragment> fragments =new ArrayList<>();
-        fragments.add(new AboutFragment());
-        fragments.add(new HomePageMainContentFragment());
-        this.fragmentAdapter = new FragmentAdapter(
-                fragmentActivity.getSupportFragmentManager(), fragments);
-        this.viewPager = (ViewPager) v.findViewById(R.id.viewPagerContent);
-        this.viewPager.setAdapter(this.fragmentAdapter);
-        this.viewPager.setCurrentItem(1,true);
-        this.viewPager.setOnPageChangeListener(this);
 
-    }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void initializeTabHost(Bundle args) {

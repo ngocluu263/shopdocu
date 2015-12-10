@@ -24,6 +24,7 @@ public class SignupFragment extends Fragment {
     Button btnCreateAccount;
     public JSON_Customer customer;
     public CustomerService customerService=new CustomerService(this);
+    public String action;
     public SignupFragment() {
         // Required empty public constructor
     }
@@ -38,17 +39,20 @@ public class SignupFragment extends Fragment {
         edtEmail=(EditText)v.findViewById(R.id.edtEmail);
         edtPass=(EditText)v.findViewById(R.id.edtPassword);
         edtPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
-
-       // getActivity().getClass().getSimpleName();
+        //regionchange title,add back button
         HomePageActivity activity=(HomePageActivity)getActivity();
         android.support.v7.app.ActionBar actionBar=activity.actionBar;
         ActionBarDrawerToggle toggle=activity.actionBarDrawerToggle;
         toggle.setDrawerIndicatorEnabled(false);
-
         actionBar.setTitle("Đăng kí tài khoản");
         actionBar.setHomeButtonEnabled(true);
+        //endregion
 
+        final Bundle bundle = this.getArguments();
+        if (bundle!=null){
+             action = bundle.getString("action");
+
+        }
 
         btnCreateAccount = (Button) v.findViewById(R.id.btnSignup);
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
@@ -61,35 +65,8 @@ public class SignupFragment extends Fragment {
         });
 
 
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-
-       // edtPass.setText(MD5Encrypt.encryptMD5(edtPass.getText().toString()));
-
-
         return v;
     }
 
-//    @Override
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//
-//        AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-//        builder.setTitle("Thông báo");
-//        // builder.setIcon(R.drawable.koala );
-//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                FragmentManager fragmentManager= getActivity().getFragmentManager();
-//                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-//                LoginFragment loginFragment = new LoginFragment();
-//                Bundle bundle=new Bundle();
-//                bundle.putString("email",customer.getEmail());
-//                loginFragment.setArguments(bundle);
-//
-//                fragmentTransaction.replace(R.id.main,loginFragment).commit();
-//
-//            }
-//        });
-//        builder.setMessage("Bạn đã đăng nhập thành công");
-//        return builder.create();
-//    }
+
 }

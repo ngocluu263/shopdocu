@@ -3,16 +3,18 @@ package com.swd2015.shopdocu.Controller.Fragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.swd2015.shopdocu.Controller.Activity.HomePageActivity;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.Controller.Util.ProgressDialogTask;
 import com.swd2015.shopdocu.R;
@@ -44,6 +46,15 @@ public class SearchFragment extends Fragment {
 
         //Initialization TextView and Spinner to set data for Search function
         searchTextView = (AutoCompleteTextView) view.findViewById(R.id.input_key_search_bar);
+
+        //regionchange title,add back button
+        HomePageActivity activity=(HomePageActivity)getActivity();
+        android.support.v7.app.ActionBar actionBar=activity.actionBar;
+        ActionBarDrawerToggle toggle=activity.actionBarDrawerToggle;
+        toggle.setDrawerIndicatorEnabled(false);
+        actionBar.setTitle("Tìm kiếm");
+        actionBar.setHomeButtonEnabled(true);
+        //endregion
 
         //Initialization ProductService
         final ProductService productService = new ProductService(this);

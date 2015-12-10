@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <merger version="3"><dataSet config="main"><source path="D:\FPT\SAD\SDC\Check_20151209\shopdocu\viewPagerIndicatorLibrary\src\main\assets"/></dataSet><dataSet config="debug"><source path="D:\FPT\SAD\SDC\Check_20151209\shopdocu\viewPagerIndicatorLibrary\src\debug\assets"/></dataSet></merger>
+=======
+<merger version="3"><dataSet config="main"><source path="C:\Users\Minh\Desktop\ShopDoCu\shopdocu-master\viewPagerIndicatorLibrary\src\main\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Minh\Desktop\ShopDoCu\shopdocu-master\viewPagerIndicatorLibrary\src\debug\assets"/></dataSet></merger>
+>>>>>>> origin/Minh

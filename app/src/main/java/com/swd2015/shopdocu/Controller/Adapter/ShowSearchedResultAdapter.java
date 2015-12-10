@@ -1,7 +1,9 @@
 package com.swd2015.shopdocu.Controller.Adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.Util.FormatNameAndPrice;
 import com.swd2015.shopdocu.R;
@@ -20,11 +23,14 @@ import java.util.ArrayList;
  * Created by PhucLHSE61219 on 21/11/2015.
  */
 public class ShowSearchedResultAdapter extends BaseAdapter {
+    Activity activity;
     private Context mContext;
     private LayoutInflater layoutInflater;
     public ArrayList<JSON_Product> searchedProductList;
 
-    public ShowSearchedResultAdapter(Context c, ArrayList<JSON_Product> searchedProductList) {
+    public ShowSearchedResultAdapter(Context c,
+                                     ArrayList<JSON_Product> searchedProductList, Activity activity) {
+        this.activity = activity;
         mContext = c;
         layoutInflater = LayoutInflater.from(mContext);
         this.searchedProductList = searchedProductList;
@@ -57,12 +63,13 @@ public class ShowSearchedResultAdapter extends BaseAdapter {
         }
 
         if (searchedProductList != null) {
+            final JSON_Product product = searchedProductList.get(position);
             //Set searched Product Image to Grid View
             ImageView productImageView = (ImageView) searchGridView.findViewById(
                                                                 R.id.search_results_product_image);
             Glide.with(mContext)
                  .load(searchedProductList.get(position).getImage().get(0).toString())
-                 .placeholder(R.drawable.ic_shopping_cart)
+                 .placeholder(R.drawable.logo)
                  .error(R.drawable.ic_close_search)
                  .into(productImageView);
 
@@ -75,6 +82,13 @@ public class ShowSearchedResultAdapter extends BaseAdapter {
             //Set searched Product Price to Grid View
             TextView productPriceTextView = (TextView) searchGridView.findViewById(
                                                                 R.id.search_results_product_price);
+            productImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToProductDetail(product.getID());
+                }
+            });
+
             productPriceTextView.setText
                     (FormatNameAndPrice.FormatPrice(searchedProductList.get(position).getPrice()));
         } else {
@@ -82,6 +96,12 @@ public class ShowSearchedResultAdapter extends BaseAdapter {
         }
 
         return searchGridView;
+    }
+
+    public void goToProductDetail(int productID){
+        Intent intent = new Intent(activity, ProductDetailActivity.class);
+        intent.putExtra("productID", productID);
+        activity.startActivity(intent);
     }
 }
 

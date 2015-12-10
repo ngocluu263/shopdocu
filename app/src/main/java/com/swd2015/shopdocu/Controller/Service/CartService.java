@@ -107,4 +107,12 @@ public class CartService {
         CartTask cartTask = new CartTask(this, productID, quantity, DBTask.UPDATE_CART);
         cartTask.execute();
     }
+	public boolean cartHasProduct(){
+        CartProductDAO cartProductDAO = new CartProductDAO(activity.getApplicationContext());
+        if (cartProductDAO.numberOfRecord() != 0) {
+            return true;
+        }
+        return false;
+    }
+	
 }

@@ -1,12 +1,14 @@
 package com.swd2015.shopdocu.Controller.Fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.swd2015.shopdocu.Controller.Activity.HomePageActivity;
 import com.swd2015.shopdocu.R;
 
 /**
@@ -25,7 +27,8 @@ public class Confirmation2Fragment extends Fragment {
         backToHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), HomePageActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         return confirmation2View;

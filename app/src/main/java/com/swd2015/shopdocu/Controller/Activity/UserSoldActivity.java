@@ -22,7 +22,13 @@ public class UserSoldActivity extends AppCompatActivity {
         soldListView = (ListView) findViewById(R.id.listView4Sell);
 
         UserSoldService userSoldService = new UserSoldService(this);
-        userSoldService.getUserSoldDetail(3);
+        int userID=3;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userID = extras.getInt("UserID");
+        }
+
+        userSoldService.getUserSoldDetail(userID);
 
 
 

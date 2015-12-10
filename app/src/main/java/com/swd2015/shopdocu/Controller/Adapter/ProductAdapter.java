@@ -47,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         ImageView productImageView = (ImageView) holder.image;
         Glide.with(mContext)
                 .load(product.getImage())
-                .placeholder(R.drawable.ic_shopping_cart)
+                .placeholder(R.drawable.logo)
                 .error(R.drawable.ic_close_search)
                 .into(productImageView);
         productImageView.setScaleType(ImageView.ScaleType.FIT_XY);

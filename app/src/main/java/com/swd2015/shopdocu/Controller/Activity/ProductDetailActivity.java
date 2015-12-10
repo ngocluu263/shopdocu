@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
@@ -19,23 +18,24 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
+import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
+import com.swd2015.shopdocu.Controller.Util.Object.NavigationItem;
 import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
+import com.swd2015.shopdocu.Model.DAO.UserDAO;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
+import com.swd2015.shopdocu.Model.DTO.Customer;
 import com.swd2015.shopdocu.Model.DTO.Product;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by Quang on 21-Nov-15.
  */
-public class ProductDetailActivity extends Activity {
+public class ProductDetailActivity extends NavigationActivity {
     ProductService productService = new ProductService(this);
     public int productID;
     public static TextView productTitle;
@@ -58,11 +58,21 @@ public class ProductDetailActivity extends Activity {
     public static JSON_Product product;
     public static List<Integer> toggleFavoriteArray = new ArrayList<>();
 
+    //for toolbar and navigation item
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+        // toolbar and navigation item
+        createNavigation();
 
+        avatar= (ImageView)findViewById(R.id.avatar);
+        userName= (TextView) findViewById((R.id.avartarName));
+
+        //region main activity
         productID = getIntent().getExtras().getInt("productID");
 
         productTitle = (TextView) findViewById(R.id.product_name);
@@ -114,6 +124,29 @@ public class ProductDetailActivity extends Activity {
         });
 
         adjustViewSize();
+        //endregion
+        final Activity activity = this;
+        final UserDAO userDAO=new UserDAO(getBaseContext());
+        Customer customer=userDAO.getUser();
+        if (customer!=null){
+            if (listNavItems.size()<=5){
+                listNavItems.add(new NavigationItem("Đăng xuất", R.drawable.ic_signout));
+            }
+            CustomerService customerService=new CustomerService(activity);
+            customerService.getCustomerById(customer.getID());
+        }
+        //regionchange title,add back button
+//        HomePageActivity activity=(HomePageActivity)getActivity();
+//        android.support.v7.app.ActionBar actionBar=activity.actionBar;
+//        ActionBarDrawerToggle toggle=activity.actionBarDrawerToggle;
+//        toggle.setDrawerIndicatorEnabled(false);
+//        actionBar.setTitle("Đăng kí tài khoản");
+//        actionBar.setHomeButtonEnabled(true);
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        actionBar.setTitle("Thông tin sản phẩm");
+        actionBar.setHomeButtonEnabled(true);
+        //endregion
+
     }
 
     public int convertPxToDp(float px){
@@ -171,5 +204,12 @@ public class ProductDetailActivity extends Activity {
         addToCartButton.setCompoundDrawables(addToCartImg, null, null, null);
 
     }
+
+    //set listenr for menu , search and cart icon
+
+
+
+    //add menu item
+
 
 }

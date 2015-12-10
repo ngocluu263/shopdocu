@@ -7,10 +7,10 @@
     tools:context="com.swd2015.shopdocu.Controller.Fragment.LoginFragment">
 
     <ImageView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:id="@+id/imageLogo"
-        android:src="@drawable/home_icon"
+        android:src="@drawable/logo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"/>
@@ -75,15 +75,6 @@
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bạn quên mật khẩu?"
-        android:textColor="#3F9D2F"
-        android:layout_below="@id/txtSignUp"
-        android:id="@+id/txtForgetPass"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

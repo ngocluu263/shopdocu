@@ -36,7 +36,13 @@ public class UserDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_fragment__user_detail);
         UserDetailService userDetailService = new UserDetailService(this);
-        userDetailService.getUserDetail(4);
+
+        int userID=1;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+             userID = extras.getInt("UserID");
+        }
+        userDetailService.getUserDetail(userID);
         ControlEvent();
 
     }

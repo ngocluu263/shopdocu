@@ -1,10 +1,12 @@
 package com.swd2015.shopdocu.Controller.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -18,17 +20,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.swd2015.shopdocu.Controller.Adapter.NavListAdapter;
 import com.swd2015.shopdocu.Controller.Fragment.HomePage_Fragment;
 import com.swd2015.shopdocu.Controller.Fragment.LoginFragment;
-import com.swd2015.shopdocu.Controller.Fragment.AboutFragment;
-import com.swd2015.shopdocu.Controller.Service.ProductService;
-import com.swd2015.shopdocu.Controller.Fragment.RequestSellFragment;
 import com.swd2015.shopdocu.Controller.Fragment.SearchFragment;
+import com.swd2015.shopdocu.Controller.Service.CustomerService;
+import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.Controller.Util.Object.NavigationItem;
+import com.swd2015.shopdocu.Model.DAO.UserDAO;
+import com.swd2015.shopdocu.Model.DTO.Customer;
 import com.swd2015.shopdocu.R;
 
 import java.util.ArrayList;
@@ -42,65 +47,100 @@ public class HomePageActivity extends AppCompatActivity {
     RelativeLayout profileBox;
     GridView newProductGrid;
     FragmentManager fragmentManager;
-    List<NavigationItem> listNavItems;
+    FragmentTransaction fragmentTransaction;
+   public List<NavigationItem> listNavItems;
     List<Fragment> listFragments;
     public ActionBar actionBar;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public android.support.v7.widget.Toolbar toolbar;
     private     ProgressDialog              progressDialog;
+    public ImageView avartar;
+    public TextView userName;
+    public String previousActivity;
+    //public android.support.v7.widget.Toolbar toolbar;
     ProductService productService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home_page);
+        //handle exception
+      //  Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
 
-//        toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
-//        setSupportActionBar(toolbar);
-        //toolbar.setTitle("");
-        //toolbar.setBackground(new ColorDrawable(Color.parseColor("#7CD175")));
+        final UserDAO userDAO=new UserDAO(getBaseContext());
+
+        avartar= (ImageView)findViewById(R.id.avatar);
+        userName= (TextView) findViewById((R.id.avartarName));
+
         actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(greenColor)));
-      //  actionBar.setDisplayShowTitleEnabled(false);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerPane=(RelativeLayout) findViewById(R.id.drawer_pane);
         listNav = (ListView) findViewById(R.id.nav_list);
-
         listNavItems=new ArrayList<NavigationItem>();
         listNavItems.add(new NavigationItem("Trang chủ", R.drawable.home_icon));
-
         listNavItems.add(new NavigationItem("Sản phẩm yêu thích", R.drawable.heart_icon));
         listNavItems.add(new NavigationItem("Sản phẩm đã xem", R.drawable.ic_eye));
-
         listNavItems.add(new NavigationItem("Đơn hàng đã mua", R.drawable.purchase_icon));
         listNavItems.add(new NavigationItem("Đơn hàng đã bán", R.drawable.sell_icon));
-
         NavListAdapter navListAdapter = new NavListAdapter(getApplicationContext()
                 ,R.layout.navigation_list,listNavItems);
         listNav.setAdapter(navListAdapter);
 
-        //This code is useful when you just use 1 activity and manu fragment
-        listFragments=  new ArrayList<Fragment>();
-      //  listFragments.add(new fragment_about());
-        //listFragments.add();
+
+        final SearchFragment searchFragment=new SearchFragment();
         final HomePage_Fragment homePageFragment=new HomePage_Fragment();
         final LoginFragment loginFragment = new LoginFragment();
-        AboutFragment AboutFragment =new AboutFragment();
 
-        listFragments.add(new LoginFragment());
+        //regionXu ly code khi chuyen nhan yeu cau chuyen fragment tu cac activity khac
         HomePage_Fragment homePage_fragment=new HomePage_Fragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main,homePage_fragment).commit();
+        fragmentManager = getFragmentManager();
+        fragmentTransaction=fragmentManager.beginTransaction();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String action = extras.getString("Action");
+            switch (action){
+                case "Search":{
+                    fragmentManager.beginTransaction().replace(R.id.main,searchFragment).commit();
+                    break;
+                }
+                case "HomePage":{
+                    fragmentManager.beginTransaction().replace(R.id.main,homePage_fragment).commit();
+                    break;
+                }
+                case "Login":{
+                    fragmentManager.beginTransaction().replace(R.id.main,loginFragment).commit();
+                    break;
+                }
+                case "UserPurchase":{
+                    Bundle bundle=new Bundle();
+                    bundle.putString("action","UserPurchase");
+                    loginFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.main, loginFragment).commit();
+                    break;
+                }
+                case "UserSold":{
+                    Bundle bundle=new Bundle();
+                    bundle.putString("action","UserSold");
+                    loginFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.main, loginFragment).commit();
+                    break;
+                }
+            }
+        }
+        else{
+            fragmentManager.beginTransaction().replace(R.id.main,homePage_fragment).commit();
+        }
+        //endregion
 
-       // setTitle(listNavItems.get(2).getTitle());
 
         listNav.setItemChecked(0, true);
         drawerLayout.closeDrawer(drawerPane);
         final Activity activity = this;
-        //set listener for navigation item (slide-in menu)
+
+        //regionsetlistener for navigation item (slide-in menu)
         listNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -110,35 +150,83 @@ public class HomePageActivity extends AppCompatActivity {
                 //region switch position
                 Intent intent;
                 switch (position) {
-                    case 0: {
+                    case 0: {//trang chu
                         fragmentTransaction.replace(R.id.main, homePageFragment).commit();
                         actionBar.setHomeButtonEnabled(false);
                         actionBar.setDisplayHomeAsUpEnabled(true);
                         actionBar.setTitle("ShopDoCu.vn");
                         break;
                     }
-                    case 1: {
+                    case 1: { //san pham yeu thich
                         intent = new Intent(activity, FavoriteProductActivity.class);
                         startActivity(intent);
                         break;
                     }
-                    case 2: {
+                    case 2: { //san pham da xem
                         intent = new Intent(activity, SeenProductActivity.class);
                         startActivity(intent);
                         break;
                     }
-                    case 3: {
-
-                        break;
+                    case 3: { //don hang da mua
+                        Customer customer=userDAO.getUser();
+                        if (customer!=null){//user da dang nhap
+                            intent = new Intent(activity, UserPurchaseActivity.class);
+                            intent.putExtra("UserID", customer.getID());
+                            startActivity(intent);
+                            break;
+                        }
+                        else { //user chua dang nhap thi qua trang dang
+                            fragmentManager = getFragmentManager();
+                            fragmentTransaction=fragmentManager.beginTransaction();
+                            Bundle bundle=new Bundle();
+                            bundle.putString("action","UserPurchase");
+                            loginFragment.setArguments(bundle);
+                            fragmentTransaction.replace(R.id.main, loginFragment).commit();
+                            break;
+                        }
                     }
-                    case 4: {
+                    case 4: { //don hang da ban
+                        Customer customer=userDAO.getUser();
+                        if (customer!=null){//user da dang nhap
+                            intent = new Intent(activity, UserSoldActivity.class);
+                            intent.putExtra("UserID", customer.getID());
+                            startActivity(intent);
+                            break;
+                        }
+                        else { //user chua dang nhap thi qua trang dang nhap
+                            fragmentManager = getFragmentManager();
+                            fragmentTransaction=fragmentManager.beginTransaction();
+                            Bundle bundle=new Bundle();
+                            bundle.putString("action","UserSold");
+                            loginFragment.setArguments(bundle);
+                            fragmentTransaction.replace(R.id.main, loginFragment).commit();
+                            break;
+                        }
+                    }
+                    case 5: { // dang xuat
+                        // xoa user khoi db local
+                        new AlertDialog.Builder(loginFragment.getActivity()).
+                                setMessage("Đăng xuất thành công").
+                                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        userDAO.deleteUser();
+                                        listNavItems.remove(5);
+                                        avartar.setImageResource(R.drawable.blank_icon);
+                                        userName.setText("Đăng nhập/Đăng ký");
+                                    }
+                                }).
+                                show();
+
                         break;
                     }
                 }
                 //endregion
+
                 drawerLayout.closeDrawer(drawerPane);
             }
         });
+        //endregion
 
         //create listener for drawer  layout
         actionBarDrawerToggle = new ActionBarDrawerToggle
@@ -156,26 +244,45 @@ public class HomePageActivity extends AppCompatActivity {
                 super.onDrawerOpened(drawerView);
             }
         };
+        //final HomePageActivity homePageActivity=this;
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         //region Profile Box click listener
         profileBox = (RelativeLayout) findViewById(R.id.profile_box);
+
+        Customer customer=userDAO.getUser();
+        if (customer!=null){
+            if (listNavItems.size()<=5){
+                listNavItems.add(new NavigationItem("Đăng xuất", R.drawable.ic_signout));
+            }
+            CustomerService customerService=new CustomerService(activity);
+            customerService.getCustomerById(customer.getID());
+        }
+
         profileBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //check login
-                actionBar.setTitle("Đăng nhập");
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main, loginFragment).commit();
+                Customer customer=userDAO.getUser();
+                if (customer!=null){ //user da dang nhap
+                    //Them nut dang xuat tren navigation item
+                    Intent intent = new Intent(activity, UserDetailActivity.class);
+                    intent.putExtra("UserID", customer.getID());
+                    startActivity(intent);
+                }
+                else{ //user chua dang nhap
+                    actionBar.setTitle("Đăng nhập");
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("action","Homepage");
+                    loginFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.main, loginFragment).commit();
+                }
                 drawerLayout.closeDrawer(drawerPane);
             }
         });
         //endregion
-
-//        newProductGrid = (GridView) findViewById(R.id.newProductGrid);
-        //newProductGrid.setAdapter();
-
     }
 
 
@@ -187,6 +294,26 @@ public class HomePageActivity extends AppCompatActivity {
         }
         else{
             switch (item.getItemId()){
+                //back button
+                case android.R.id.home:
+                {
+                    Bundle extras = getIntent().getExtras();
+                    if (extras!=null) {
+                        previousActivity = extras.getString("PreviousActivity");
+                    }
+                    if (previousActivity==null) {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.main, new HomePage_Fragment()).commit();
+                        //onBackPressed();
+                        break;
+                    }
+                    else
+                    {
+                        onBackPressed();
+                    }
+                }
+                //search icon
                 case 0:{
                     progressDialog = ProgressDialog.show(this,
                                         getResources().getString(R.string.progress_dialog_infor),
@@ -213,6 +340,7 @@ public class HomePageActivity extends AppCompatActivity {
                     }).start();
                     return true;
                 }
+                //cart icon
                 case 1:{
                     progressDialog = ProgressDialog.show(this,
                                         getResources().getString(R.string.progress_dialog_infor),
@@ -225,9 +353,13 @@ public class HomePageActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Intent intent = new Intent(getApplicationContext(),
-                                                                                CartActivity.class);
-                                        startActivity(intent);
+                                        CartService cartService = new CartService(this);
+                    if(cartService.cartHasProduct()) {
+                        Intent intent = new Intent(this, CartActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getBaseContext(), getResources().getText(R.string.cart_has_no_product), Toast.LENGTH_SHORT).show();
+                    }
                                     }
                                 });
                                 Thread.sleep(500);
@@ -237,9 +369,6 @@ public class HomePageActivity extends AppCompatActivity {
                             }
                         }
                     }).start();
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    fragmentManager.beginTransaction().replace(R.id.main,
-//                                                            new RequestSellFragment()).commit();
                     return true;
                 }
             }
@@ -274,8 +403,6 @@ public class HomePageActivity extends AppCompatActivity {
             menuItem2.setIcon(R.drawable.cart_icon);
             menuItem2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
-
-
     }
 
     //
