@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/search_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,15 +7,13 @@
     <AutoCompleteTextView
         android:id="@+id/input_key_search_bar"
         android:hint="@string/search_hint"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#EEEEEE"
-        android:layout_below="@+id/search_results_progress_bar"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/white"
         android:layout_centerHorizontal="true"
-        android:digits="@string/prevent_special_characters"
         android:inputType="textCapCharacters"
         android:capitalize="sentences" />
 
@@ -35,21 +32,24 @@
         android:id="@+id/category_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="15dp"
-        android:text="Danh mục:"
-        android:textSize="20sp"
+        android:layout_below="@+id/input_key_search_bar"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/category_text"
+        android:textColor="@color/colorAccent"
+        android:textSize="18dp"
         android:textStyle="bold|italic" />
 
     <Spinner
         android:id="@+id/category_spinner"
         android:layout_width="match_parent"
         android:layout_height="27dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/category_text_view"
         android:layout_alignRight="@+id/input_key_search_bar"
         android:entries="@array/search_category_spinner"
-        android:layout_toRightOf="@+id/alignCenter"
-        android:layout_toEndOf="@+id/alignCenter" />
+        />
 
     <View
         android:id="@+id/category_spinner_line"
@@ -57,29 +57,30 @@
         android:layout_height="1dp"
         android:background="@color/colorAccent"
         android:layout_below="@+id/category_spinner"
-        android:layout_alignRight="@+id/input_key_search_bar"
-        android:layout_toRightOf="@+id/alignCenter"
-        android:layout_toEndOf="@+id/alignCenter" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
     <TextView
         android:id="@+id/orderBy_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:layout_marginLeft="15dp"
-        android:text="Sắp xếp theo:"
-        android:textSize="20sp"
+        android:layout_below="@+id/category_spinner"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/orderBy_text"
+        android:textColor="@color/colorAccent"
+        android:textSize="18dp"
         android:textStyle="bold|italic" />
 
     <Spinner
         android:id="@+id/orderBy_spinner"
         android:layout_width="match_parent"
         android:layout_height="27dp"
-        android:layout_marginTop="110dp"
+        android:layout_below="@+id/orderBy_text_view"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:layout_alignRight="@+id/input_key_search_bar"
-        android:layout_toRightOf="@+id/alignCenter"
-        android:layout_toEndOf="@+id/alignCenter"
-        android:entries="@array/orderBy_spinner" />
+        android:entries="@array/orderBy_spinner"/>
 
     <View
         android:id="@+id/orderBy_spinner_line"
@@ -87,9 +88,8 @@
         android:layout_height="1dp"
         android:background="@color/colorAccent"
         android:layout_below="@+id/orderBy_spinner"
-        android:layout_alignRight="@+id/input_key_search_bar"
-        android:layout_toRightOf="@+id/alignCenter"
-        android:layout_toEndOf="@+id/alignCenter" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/search_results_grid_view"
@@ -101,30 +101,34 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:layout_gravity="bottom"
-        android:layout_below="@+id/orderBy_text_view"
-        android:layout_marginTop="30dp"
         android:visibility="invisible"
-        android:layout_alignLeft="@+id/orderBy_text_view"
-        android:layout_alignStart="@+id/orderBy_text_view"
-        android:layout_alignRight="@+id/orderBy_spinner"
-        android:layout_alignEnd="@+id/orderBy_spinner" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/orderBy_spinner"
+        android:layout_marginTop="70dp"/>
 
-    <ProgressBar
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/product_found_result_text_view"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/search_results_progress_bar"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="left"
+        android:layout_below="@+id/orderBy_spinner"
+        android:textColor="@color/blueDark"
+        android:layout_marginLeft="45dp" />
 
     <TextView
         android:id="@+id/product_not_found_text_view_1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_below="@+id/orderBy_text_view"
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_below="@+id/orderBy_spinner"/>
 
     <TextView
         android:id="@+id/product_not_found_text_view_2"

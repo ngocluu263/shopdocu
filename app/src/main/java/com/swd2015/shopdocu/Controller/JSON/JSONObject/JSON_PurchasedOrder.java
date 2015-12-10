@@ -28,8 +28,6 @@ public class JSON_PurchasedOrder {
     private String description;
     @SerializedName("Category")
     private int category;
-    @SerializedName("ImageURL")
-    private List<String> imageURL;
 
     public JSON_PurchasedOrder(){
 
@@ -37,7 +35,7 @@ public class JSON_PurchasedOrder {
 
     public JSON_PurchasedOrder(int customerID, int employeeID, Timestamp createDate, int orderStatus,
                                String address, int total, String productName, String description,
-                               int category, List<String> imageURL) {
+                               int category) {
         this.customerID = customerID;
         this.employeeID = employeeID;
         this.createDate = createDate;
@@ -47,7 +45,6 @@ public class JSON_PurchasedOrder {
         this.productName = productName;
         this.description = description;
         this.category = category;
-        this.imageURL = imageURL;
     }
 
     public int getCustomerID() {
@@ -122,11 +119,5 @@ public class JSON_PurchasedOrder {
         this.category = category;
     }
 
-    public List<String> getImageURL() {
-        return imageURL;
-    }
 
-    public void setImageURL(List<String> imageURL) {
-        this.imageURL = imageURL;
-    }
 }

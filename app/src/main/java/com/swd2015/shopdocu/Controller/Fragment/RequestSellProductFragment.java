@@ -69,7 +69,7 @@ public class RequestSellProductFragment extends Fragment {
         addProductImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String [] items = new String[] {
+                final String[] items = new String[] {
                         getResources().getString(R.string.take_product_photo_action),
                         getResources().getString(R.string.choose_product_photo_action)
                 };

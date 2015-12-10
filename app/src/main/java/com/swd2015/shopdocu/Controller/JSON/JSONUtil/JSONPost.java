@@ -3,7 +3,7 @@ package com.swd2015.shopdocu.Controller.JSON.JSONUtil;
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
-import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_PurchasedOrder;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSONRequestSellObject;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -15,6 +15,7 @@ import java.io.OutputStreamWriter;
 //import com.swd2015.shopdocu.Model.DTO.CheckoutInfo;
 //import com.swd2015.shopdocu.Model.DTO.Customer;
 
+import com.swd2015.shopdocu.Controller.Service.PurchasedOrderService;
 import com.swd2015.shopdocu.Model.DTO.CheckoutInfo;
 
 import java.net.HttpURLConnection;
@@ -32,12 +33,14 @@ public class JSONPost extends AsyncTask<String, String, String> {
     String json;
     public JSONTask API;
     CheckoutInfo checkoutInfo;
-    JSON_PurchasedOrder purchasedOrder;
+    JSONRequestSellObject requestSellObject;
+    PurchasedOrderService purchasedOrderService;
 
-    public JSONPost(JSONTask task, JSON_PurchasedOrder purchasedOrder) {
+    public JSONPost(PurchasedOrderService purchasedOrderService,JSONTask task, JSONRequestSellObject requestSellObject) {
+        this.purchasedOrderService = purchasedOrderService;
         this.API = task;
-        this.purchasedOrder = purchasedOrder;
-        json = gson.toJson(this.purchasedOrder, JSON_PurchasedOrder.class);
+        this.requestSellObject = requestSellObject;
+        json = gson.toJson(this.requestSellObject, JSONRequestSellObject.class);
     }
 
     public JSONPost(JSONTask task, CheckoutInfo checkoutInfo) {
@@ -89,6 +92,15 @@ public class JSONPost extends AsyncTask<String, String, String> {
         } catch (IOException e3) {
             e3.printStackTrace();
         }
-        return "";
+        return gson.toJson(response);
+    }
+
+    @Override
+    protected void onPostExecute(String json) {
+        switch (this.API){
+            case POST_INSERT_PURCHASED_ORDER:
+                purchasedOrderService.httpPostResponse(json);
+                break;
+        }
     }
 }

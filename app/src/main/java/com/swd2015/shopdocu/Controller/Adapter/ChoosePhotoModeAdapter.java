@@ -30,7 +30,7 @@ public class ChoosePhotoModeAdapter extends ArrayAdapter<String> {
         textView.setCompoundDrawablePadding((int) TypedValue.applyDimension(
                                                 TypedValue.COMPLEX_UNIT_DIP, 12,
                                                 getContext().getResources().getDisplayMetrics()));
-        textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
+
         return view;
     }
 }

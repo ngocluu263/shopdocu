@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.android.Utils;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSONRequestSellObject;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_PurchasedOrder;
 import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.Controller.Service.PurchasedOrderService;
@@ -51,15 +52,15 @@ public class RequestSellCustomerFragment extends Fragment {
     public      static String               productName;
     public      static String               productDescription;
     public      static int                  categoryID;
-    public      static String               productImageURL;
-    public      static int                  responseCode;
     public      static Uri                  imageUri;
+    public      static AlertDialog.Builder  showMsgBuilder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                                                         Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_request_sell_customer, container, false);
 
+        showMsgBuilder = new AlertDialog.Builder(getActivity());
         customerNameEditText = (EditText) view.findViewById(R.id.input_customer_name);
         customerAddressEditText = (EditText) view.findViewById(R.id.input_customer_address);
         customerEmailEditText = (EditText) view.findViewById(R.id.input_customer_email);
@@ -67,7 +68,7 @@ public class RequestSellCustomerFragment extends Fragment {
 
         //Call service and get customer information to set in view
         CustomerService customerService = new CustomerService(this);
-        customerService.getCustomerById(3);
+        customerService.getCustomerById(55);
 
         final PurchasedOrderService purchasedOrderService = new PurchasedOrderService(this);
         requestSellButton = (Button) view.findViewById(R.id.request_sell_button);
@@ -101,67 +102,45 @@ public class RequestSellCustomerFragment extends Fragment {
                         customerPhone = customerPhoneNumberEditText.getText().toString();
 
                         // Validate customer information and create Purchased Order in Database
-                        if (!validateInput(customerName, customerAddress, customerEmail, customerPhone)) {
+                        if (!validateInput(customerName, customerAddress, customerEmail,
+                                                                                   customerPhone)) {
                             // Get datetime now to set to Create Date of Purchase Order
                             createDate = new Timestamp(System.currentTimeMillis());
 
-
-                            Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(getContext()));
+                            Cloudinary cloudinary = new Cloudinary(Utils.cloudinaryUrlFromContext(
+                                                                                    getContext()));
                             String imageName = cloudinary.randomPublicId();
                             try {
-                                InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri);
+                                InputStream inputStream = getActivity().getContentResolver()
+                                                                       .openInputStream(imageUri);
                                 UploadTask uploadTask = new UploadTask(getContext(),inputStream);
                                 uploadTask.execute(imageName);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
 
-                            List<String> imageList = new ArrayList<String>();
+                            List<String> imageList = new ArrayList<>();
                             imageList.add(cloudinary.url().generate(imageName));
 
-                            //Add information to Purchased O"http://swd2015api.azurewebsites.net/api/PurchasedOrder/AddPurchasedOrderrder
+                            //Add information to Purchased Order
                             JSON_PurchasedOrder purchasedOrder = new JSON_PurchasedOrder(
                                     customerID,                             // Customer ID
                                     employeeID,                             // Employee ID
                                     createDate,                             // Create Date
                                     rsOrderStatus,                          // Order Status
-                                    placeExchange,                          // Address - Place Exchange
+                                    placeExchange,                          // Place Exchange
                                     productPrice,                           // Product Price
                                     productName,                            // Product Name
                                     productDescription,                     // Product Description
-                                    categoryID,                             // Category ID
-                                    imageList    // Product Image
+                                    categoryID                              // Category ID
                             );
 
+                            JSONRequestSellObject jsonRequestSellObject = new
+                                                    JSONRequestSellObject(purchasedOrder,imageList);
+
                             // Insert Purchased Order do Database
-                            purchasedOrderService.insertPurchasedOrder(purchasedOrder);
+                            purchasedOrderService.requestSell(jsonRequestSellObject);
 
-                            // Instantiate an AlertDialog.Builder with its constructor
-                            // showMsgBuilder - show message response to customer
-                            AlertDialog.Builder showMsgBuilder = new AlertDialog.Builder(getActivity());
-                            if ( responseCode == HttpsURLConnection.HTTP_OK) {
-                                // Set Confirm message when user click Request Sell button
-                                showMsgBuilder.setMessage(R.string.confirm_rs_msg_is_success);
-
-                                // Button Cancel request sell -> do nothing
-                                showMsgBuilder.setPositiveButton(R.string.cancel_rs_button, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        // Do nothing
-                                    }
-                                });
-                                showMsgBuilder.show();
-                            } else {
-                                // Set Confirm message when user click Request Sell button
-                                showMsgBuilder.setMessage(R.string.confirm_rs_msg_is_fail);
-
-                                // Button Cancel request sell -> do nothing
-                                showMsgBuilder.setPositiveButton(R.string.cancel_rs_button, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        // Do nothing
-                                    }
-                                });
-                                showMsgBuilder.show();
-                            }
                         }
                     }
                 });

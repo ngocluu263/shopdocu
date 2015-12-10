@@ -54,10 +54,12 @@ import java.util.List;
  */
 public class ProductService {
     public Activity activity;
-    Context mContext;
     BaseAdapter baseAdapter;
     Fragment fragment;
     android.support.v4.app.Fragment supportv4Fragment;
+
+    public ProductService() {
+    }
 
     public ProductService(Activity activity, Fragment fragment) {
         this.fragment = fragment;
@@ -156,40 +158,47 @@ public class ProductService {
         if (fragment != null) {
             switch (fragment.getClass().getSimpleName()) {
                 case "SearchFragment":
-                    SearchFragment searchFragment = (SearchFragment) fragment;
+                    try {
+                        SearchFragment searchFragment = (SearchFragment) fragment;
 
-                    if (productList.size() != 0) {
-                        int orderByID = searchFragment.orderBySpinner.getSelectedItemPosition();
-                        if (orderByID == 0) {
-                            Collections.sort(productList, new Comparator<JSON_Product>() {
-                                @Override
-                                public int compare(JSON_Product p1, JSON_Product p2) {
-                                    return p1.getPrice() - p2.getPrice(); // Ascending
-                                }
-                            });
-                        } else if (orderByID == 1) {
-                            Collections.sort(productList, new Comparator<JSON_Product>() {
-                                @Override
-                                public int compare(JSON_Product p1, JSON_Product p2) {
-                                    return p2.getPrice() - p1.getPrice(); // Descending
-                                }
-                            });
+                        if (productList.size() != 0) {
+                            int orderByID = searchFragment.orderBySpinner.getSelectedItemPosition();
+                            if (orderByID == 0) {
+                                Collections.sort(productList, new Comparator<JSON_Product>() {
+                                    @Override
+                                    public int compare(JSON_Product p1, JSON_Product p2) {
+                                        return p1.getPrice() - p2.getPrice(); // Ascending
+                                    }
+                                });
+                            } else if (orderByID == 1) {
+                                Collections.sort(productList, new Comparator<JSON_Product>() {
+                                    @Override
+                                    public int compare(JSON_Product p1, JSON_Product p2) {
+                                        return p2.getPrice() - p1.getPrice(); // Descending
+                                    }
+                                });
+                            }
+
+                            searchFragment.productFoundResult.setVisibility(View.VISIBLE);
+                            searchFragment.productFoundResult.setText("Tìm thấy " + productList.size()
+                                                                                    + " sản phẩm");
+
+                            //Call adapter to show searched result to Grid View
+                            searchFragment.searchResultGridView.setAdapter(
+                                    new ShowSearchedResultAdapter(searchFragment.getActivity()
+                                            .getApplicationContext(),
+                                            productList));
+                        } else {
+                            searchFragment.productFoundResult.setVisibility(View.INVISIBLE);
+                            searchFragment.productNotFoundTV_1.setText(R.string.product_not_found_1);
+                            searchFragment.productNotFoundTV_2.setText(R.string.product_not_found_2);
+                            searchFragment.productNotFoundTV_1.setVisibility(View.VISIBLE);
+                            searchFragment.productNotFoundTV_2.setVisibility(View.VISIBLE);
+                            searchFragment.searchResultGridView.setVisibility(View.INVISIBLE);
                         }
-
-                        //Call adapter to show searched result to Grid View
-                        searchFragment.searchResultGridView.setAdapter(
-                                new ShowSearchedResultAdapter(searchFragment.getActivity()
-                                        .getApplicationContext(),
-                                        productList));
-                    } else {
-                        searchFragment.productNotFoundTV_1.setText(R.string.product_not_found_1);
-                        searchFragment.productNotFoundTV_2.setText(R.string.product_not_found_2);
-                        searchFragment.productNotFoundTV_1.setVisibility(View.VISIBLE);
-                        searchFragment.productNotFoundTV_2.setVisibility(View.VISIBLE);
-                        searchFragment.searchResultGridView.setVisibility(View.INVISIBLE);
+                    }catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    //searchFragment.searchResultGridView.setAdapter(
-                    //  new ShowSearchedResultAdapter(searchFragment.getContext(), productList));
                     break;
             }
         } else if (supportv4Fragment != null) {

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.swd2015.shopdocu.Controller.Fragment.RequestSellProductFragment" >
+    android:layout_height="match_parent" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,28 +23,29 @@
                 <ImageView
                     android:id="@+id/add_product_name_icon"
                     android:src="@drawable/ic_add_product_name"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="190dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="210dp"/>
 
                 <EditText
                     android:id="@+id/input_product_name"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="48dp"
                     android:hint="@string/add_product_name"
-                    android:layout_marginTop="190dp"
+                    android:layout_marginTop="195dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="20dp"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textSize="16dp"/>
 
                 <ImageView
                     android:id="@+id/add_product_category_icon"
                     android:src="@drawable/ic_add_product_category"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="255dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="270dp" />
 
                 <Spinner
                     android:id="@+id/input_product_category_spinner"
@@ -57,7 +56,9 @@
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="20dp"
                     android:inputType="text"
-                    android:entries="@array/rs_category_spinner"/>
+                    android:entries="@array/rs_category_spinner"
+                    android:textSize="16dp"/>
+
                 <View
                     android:id="@+id/rs_category_spinner_line"
                     android:layout_width="match_parent"
@@ -70,66 +71,69 @@
                 <ImageView
                     android:id="@+id/add_product_price_icon"
                     android:src="@drawable/ic_add_product_price"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="325dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="340dp" />
 
                 <EditText
                     android:id="@+id/input_product_price"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="48dp"
                     android:hint="@string/add_product_price"
                     android:layout_marginTop="325dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="20dp"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:textSize="16dp"/>
 
                 <TextView
                     android:id="@+id/vnd_textView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="đ"
-                    android:layout_marginTop="325dp"
+                    android:layout_marginTop="335dp"
                     android:layout_alignRight="@+id/input_product_price"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/add_exchange_address_icon"
                     android:src="@drawable/ic_add_exchange_address"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="395dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="410dp"/>
 
                 <EditText
                     android:id="@+id/input_place_exchange"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="48dp"
                     android:hint="@string/add_exchange_address"
                     android:layout_marginTop="395dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="20dp"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textSize="16dp" />
 
                 <ImageView
                     android:id="@+id/add_product_detail"
                     android:src="@drawable/ic_add_product_detail"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="460dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="475dp"/>
 
                 <EditText
                     android:id="@+id/input_product_description"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="48dp"
                     android:hint="@string/add_product_description"
                     android:layout_marginTop="460dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="20dp"
-                    android:inputType="textMultiLine"/>
+                    android:inputType="textMultiLine"
+                    android:textSize="16dp"/>
 
                 <Button
                     android:id="@+id/request_sell_product_button_continue"

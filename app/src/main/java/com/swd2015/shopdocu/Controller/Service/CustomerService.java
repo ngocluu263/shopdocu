@@ -62,7 +62,7 @@ public class CustomerService {
                     RequestSellCustomerFragment requestSellCustomerFragment =
                                                             (RequestSellCustomerFragment) fragmentv4;
 
-                    //Get customer information and set to view (RequestSellCustomerFragment)
+                    // Get customer information and set to view (RequestSellCustomerFragment)
                     requestSellCustomerFragment.customerNameEditText
                                                 .setText(customer.getCustomerName());
                     requestSellCustomerFragment.customerAddressEditText
@@ -71,6 +71,9 @@ public class CustomerService {
                                                .setText(customer.getCustomerEmail());
                     requestSellCustomerFragment.customerPhoneNumberEditText
                                                .setText(customer.getCustomerPhoneNumber());
+
+                    // Set cursor in the end of Edit Text
+                    requestSellCustomerFragment.customerNameEditText.setSelection(customer.getCustomerName().length());
                 }
         }
     }

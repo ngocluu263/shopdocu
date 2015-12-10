@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -46,7 +47,7 @@ public class HomePageActivity extends AppCompatActivity {
     public ActionBar actionBar;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public android.support.v7.widget.Toolbar toolbar;
-
+    private     ProgressDialog              progressDialog;
     ProductService productService;
 
     @Override
@@ -187,15 +188,58 @@ public class HomePageActivity extends AppCompatActivity {
         else{
             switch (item.getItemId()){
                 case 0:{
-                    FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.main,
-                                                               new SearchFragment()).commit();
+                    progressDialog = ProgressDialog.show(this,
+                                        getResources().getString(R.string.progress_dialog_infor),
+                                        getResources().getString(R.string.progress_dialog_msg));
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            try{
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        fragmentManager.beginTransaction().replace(R.id.main,
+                                                new SearchFragment()).commit();
+                                    }
+                                });
+                                Thread.sleep(500);
+                                progressDialog.dismiss();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
                     return true;
                 }
                 case 1:{
-                    FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.main,
-                                                            new RequestSellFragment()).commit();
+                    progressDialog = ProgressDialog.show(this,
+                                        getResources().getString(R.string.progress_dialog_infor),
+                                        getResources().getString(R.string.progress_dialog_msg));
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            try{
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(getApplicationContext(),
+                                                                                CartActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                                Thread.sleep(500);
+                                progressDialog.dismiss();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+//                    FragmentManager fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction().replace(R.id.main,
+//                                                            new RequestSellFragment()).commit();
                     return true;
                 }
             }

@@ -36,16 +36,7 @@ public class RequestSellFragment extends Fragment {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                ImageView imageView = (ImageView) view.findViewById(R.id.rs_tab_layout_bar_image);
-                if (viewPager.getCurrentItem() == 1 && tab.getPosition() == 1) {
-                    imageView.setVisibility(View.INVISIBLE);
-                    tabLayout.setVisibility(View.VISIBLE);
-                    viewPager.setCurrentItem(1);
-                } else if (tab.getPosition() == 0) {
-                    tabLayout.setVisibility(View.INVISIBLE);
-                    imageView.setVisibility(View.VISIBLE);
-                    viewPager.setCurrentItem(0);
-                }
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override

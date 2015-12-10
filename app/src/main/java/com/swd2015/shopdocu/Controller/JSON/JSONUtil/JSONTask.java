@@ -3,27 +3,30 @@ package com.swd2015.shopdocu.Controller.JSON.JSONUtil;
 /**
  * Created by Quang on 20/11/2015.
  */
+
 public enum JSONTask {
-    GET_ALL_PRODUCT("http://swd2015api.azurewebsites.net/api/product"),
-    GET_PRODUCT_BY_ID("http://swd2015api.azurewebsites.net/api/product/getproductbyid"),
-    GET_SEARCHED_PRODUCTS("http://swd2015api.azurewebsites.net/api/product/SearchProduct"),
-    GET_NEW_PRODUCTS("http://swd2015api.azurewebsites.net/api/product/getnewproducts"),
-    GET_CUSTOMER_BY_ID("http://swd2015api.azurewebsites.net/api/customer/getcustomerbyid"),
+    GET_ALL_PRODUCT("api/product"),
+    GET_PRODUCT_BY_ID("api/product/getproductbyid"),
+    GET_SEARCHED_PRODUCTS("api/product/SearchProduct"),
+    GET_NEW_PRODUCTS("api/product/getnewproducts"),
+    GET_CUSTOMER_BY_ID("api/customer/getcustomerbyid"),
     POST_INSERT_PURCHASED_ORDER(
-                        "http://swd2015api.azurewebsites.net/api/PurchasedOrder/AddPurchasedOrder"),
-    GET_ALL_BANNER("http://swd2015api.azurewebsites.net/api/Image/Banner/GetAllBanners"),
-    GET_HOT_PRODUCTS("http://swd2015api.azurewebsites.net/api/product/GetHotProducts"),
-    CHECK_LOGIN("http://swd2015api.azurewebsites.net/api/Customer/CheckLogin"),
-    CREATE_ACCOUNT("http://swd2015api.azurewebsites.net/api/Customer/CreateAccount"),
+            "api/PurchasedOrder/AddPurchasedOrder"),
+    GET_ALL_BANNER("api/Image/Banner/GetAllBanners"),
+    GET_HOT_PRODUCTS("api/product/GetHotProducts"),
+    CHECK_LOGIN("api/Customer/CheckLogin"),
+    CREATE_ACCOUNT("api/Customer/CreateAccount"),
 
     //Customer detail
-    GET_USER_DETAIL("http://swd2015api.azurewebsites.net/api/customer/GetCustomerByID/"),
+    GET_USER_DETAIL("api/customer/GetCustomerByID/"),
 
     //Customer order
-    GET_USER_SOLD("http://swd2015api.azurewebsites.net/api/OrderDetail/GetAllSoldOrderDetailsByCustomerID/"),
-    GET_USER_PURCHASE("http://swd2015api.azurewebsites.net/api/PurchasedOrder/GetAllPurchasedOrderDetailsByCustomerID/"),
-    ADD_SOLD_PRODUCT("http://swd2015api.azurewebsites.net/api/OrderDetail/CreateSoldOrderDetail"),
-    ADD_CUSTOMER("http://swd2015api.azurewebsites.net/api/customer/CreateAccount");
+    GET_USER_SOLD("api/OrderDetail/GetAllSoldOrderDetailsByCustomerID/"),
+    GET_USER_PURCHASE("api/PurchasedOrder/GetAllPurchasedOrderDetailsByCustomerID/"),
+    ADD_SOLD_PRODUCT("api/OrderDetail/CreateSoldOrderDetail"),
+    ADD_CUSTOMER("api/customer/CreateAccount");
+
+    private static String API = "http://www.shopdocu.info/";
 
     private final String text;
 
@@ -33,6 +36,6 @@ public enum JSONTask {
 
     @Override
     public String toString() {
-        return text;
+        return API + text;
     }
 }
