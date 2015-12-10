@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.Model.Util.DBConfig;
 import com.swd2015.shopdocu.Model.Util.DBHandler;
@@ -28,6 +30,7 @@ public class CartProductDAO extends DBHandler {
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount();
         cursor.close();
+        db.close();
         return count;
     }
 
@@ -36,48 +39,58 @@ public class CartProductDAO extends DBHandler {
         String query = "Select * from " + DBConfig.TABLE_CART_PRODUCT +
                 " where " + DBConfig.PRODUCT_ID + " = " + productID;
         Cursor cursor = db.rawQuery(query, null);
-        if(cursor.getCount() <= 0){
+        if (cursor.getCount() <= 0) {
             cursor.close();
             return false;
         }
         cursor.close();
+        db.close();
         return true;
     }
 
-    public void addOrderedProduct(CartProduct order){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void addOrderedProduct(CartProduct order) {
+        SQLiteDatabase db = null;
         ContentValues values = new ContentValues();
+        try {
+            db = this.getWritableDatabase();
+            values.put(DBConfig.PRODUCT_NAME, order.getName());
+            values.put(DBConfig.PRODUCT_PRICE, order.getPrice());
+            values.put(DBConfig.PRODUCT_DESCRIPTION, order.getDescription());
+            values.put(DBConfig.PRODUCT_CATEGORY, order.getCategory());
+            values.put(DBConfig.PRODUCT_STATUS, order.getStatus());
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+            String date = df.format(order.getCreateDate());
+            values.put(DBConfig.PRODUCT_CREATEDATE, date);
+            values.put(DBConfig.PRODUCT_IMAGE, order.getImage());
 
-
-
-//        values.put(DBConfig.ORDER_ID, incrementingID);
-//        values.put(DBConfig.PRODUCT_ID, order.getID());
-        values.put(DBConfig.PRODUCT_NAME, order.getName());
-        values.put(DBConfig.PRODUCT_PRICE, order.getPrice());
-        values.put(DBConfig.PRODUCT_DESCRIPTION, order.getDescription());
-        values.put(DBConfig.PRODUCT_CATEGORY, order.getCategory());
-        values.put(DBConfig.PRODUCT_STATUS, order.getStatus());
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-        String date = df.format(order.getCreateDate());
-        values.put(DBConfig.PRODUCT_CREATEDATE, date);
-        values.put(DBConfig.PRODUCT_IMAGE, order.getImage());
-
-
-        if (isOrderExist(order.getID())){
-            values.put(DBConfig.ORDER_QUANTITY,getQuantity(order.getID()) + 1);
-            db.update(DBConfig.TABLE_CART_PRODUCT, values,
-                    DBConfig.PRODUCT_ID + "=" + order.getID(), null);
-        } else {
-            int incrementingID = numberOfRecord();
-            if(incrementingID != 0){
-                incrementingID++;
+            if (isOrderExist(order.getID())) {
+                values.put(DBConfig.ORDER_QUANTITY, getQuantity(order.getID()) + 1);
+                try {
+                    db.update(DBConfig.TABLE_CART_PRODUCT, values,
+                            DBConfig.PRODUCT_ID + "=" + order.getID(), null);
+                } catch (SQLiteException e) {
+                    db = this.getWritableDatabase();
+                    db.update(DBConfig.TABLE_CART_PRODUCT, values,
+                            DBConfig.PRODUCT_ID + "=" + order.getID(), null);
+                }
+            } else {
+                int incrementingID = numberOfRecord();
+                if (incrementingID != 0) {
+                    incrementingID++;
+                }
+                values.put(DBConfig.ORDER_ID, incrementingID);
+                values.put(DBConfig.PRODUCT_ID, order.getID());
+                values.put(DBConfig.ORDER_QUANTITY, 1);
+                try {
+                    db.insert(DBConfig.TABLE_CART_PRODUCT, null, values);
+                } catch (SQLiteException e){
+                    db = this.getWritableDatabase();
+                    db.insert(DBConfig.TABLE_CART_PRODUCT, null, values);
+                }
             }
-            values.put(DBConfig.ORDER_ID, incrementingID);
-            values.put(DBConfig.PRODUCT_ID, order.getID());
-            values.put(DBConfig.ORDER_QUANTITY, 1);
-            db.insert(DBConfig.TABLE_CART_PRODUCT, null, values);
+        } catch (SQLiteException e){
+            e.printStackTrace();
         }
-
         db.close();
     }
 
@@ -88,27 +101,27 @@ public class CartProductDAO extends DBHandler {
         try {
             cursor = db.rawQuery("SELECT " + DBConfig.ORDER_QUANTITY +
                     " FROM " + DBConfig.TABLE_CART_PRODUCT +
-                    " WHERE " + DBConfig.PRODUCT_ID + "=?", new String[] {productID + ""});
-            if(cursor.getCount() > 0) {
+                    " WHERE " + DBConfig.PRODUCT_ID + "=?", new String[]{productID + ""});
+            if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 quantity = cursor.getInt(cursor.getColumnIndex(DBConfig.ORDER_QUANTITY));
             }
             return quantity;
         } finally {
             cursor.close();
-//            db.close();
+            db.close();
         }
     }
 
-    public ArrayList<CartProduct> getAllCart(){
+    public ArrayList<CartProduct> getAllCart() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = null;
         ArrayList<CartProduct> cartProductList = new ArrayList<CartProduct>();
         try {
             cursor = db.rawQuery("SELECT *" +
                     " FROM " + DBConfig.TABLE_CART_PRODUCT, null);
-            if (cursor.moveToFirst()){
-                while (cursor.isAfterLast() == false){
+            if (cursor.moveToFirst()) {
+                while (cursor.isAfterLast() == false) {
                     CartProduct product = new CartProduct();
                     product.setOrderID(cursor.getInt(cursor.getColumnIndex(DBConfig.ORDER_ID)));
                     product.setID(cursor.getInt(cursor.getColumnIndex(DBConfig.PRODUCT_ID)));
@@ -129,17 +142,17 @@ public class CartProductDAO extends DBHandler {
         return cartProductList;
     }
 
-    public boolean deleteCart(int productID){
+    public boolean deleteCart(int productID) {
         SQLiteDatabase db = this.getWritableDatabase();
         boolean result = db.delete(DBConfig.TABLE_CART_PRODUCT, DBConfig.PRODUCT_ID + "=" + productID, null) > 0;
         db.close();
         return result;
     }
 
-    public void updateCartQuantity(int productID, int quantity){
+    public void updateCartQuantity(int productID, int quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        if (isOrderExist(productID)){
+        if (isOrderExist(productID)) {
             ContentValues values = new ContentValues();
             values.put(DBConfig.ORDER_QUANTITY, quantity);
             db.update(DBConfig.TABLE_CART_PRODUCT, values,

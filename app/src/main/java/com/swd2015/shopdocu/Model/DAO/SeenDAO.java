@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.Model.DTO.Product;
@@ -30,6 +31,7 @@ public class SeenDAO extends DBHandler {
         Cursor cursor = db.rawQuery(query, null);
         int count = cursor.getCount();
         cursor.close();
+        db.close();
         return count;
     }
 
@@ -43,36 +45,53 @@ public class SeenDAO extends DBHandler {
             return false;
         }
         cursor.close();
+        db.close();
         return true;
     }
 
     public void addSeenProduct(Product product){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = null;
         ContentValues values = new ContentValues();
 
-        values.put(DBConfig.PRODUCT_NAME, product.getName());
-        values.put(DBConfig.PRODUCT_CATEGORY, product.getCategory());
-        values.put(DBConfig.PRODUCT_DESCRIPTION, product.getDescription());
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-        String date = df.format(product.getCreateDate());
-        values.put(DBConfig.PRODUCT_CREATEDATE, date);
-        values.put(DBConfig.PRODUCT_PRICE, product.getPrice());
-        values.put(DBConfig.PRODUCT_STATUS, product.getStatus());
-        values.put(DBConfig.PRODUCT_IMAGE, product.getImage());
+        try {
+            db = this.getWritableDatabase();
+            values.put(DBConfig.PRODUCT_NAME, product.getName());
+            values.put(DBConfig.PRODUCT_CATEGORY, product.getCategory());
+            values.put(DBConfig.PRODUCT_DESCRIPTION, product.getDescription());
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+            String date = df.format(product.getCreateDate());
+            values.put(DBConfig.PRODUCT_CREATEDATE, date);
+            values.put(DBConfig.PRODUCT_PRICE, product.getPrice());
+            values.put(DBConfig.PRODUCT_STATUS, product.getStatus());
+            values.put(DBConfig.PRODUCT_IMAGE, product.getImage());
 
-        if (isProductExist(product.getID())){
-            db.update(DBConfig.TABLE_SEEN_PRODUCT, values,
-                    DBConfig.PRODUCT_ID + "=" + product.getID(), null);
-        } else {
-            int incrementingID = numberOfRecord();
-            if(incrementingID != 0){
-                incrementingID++;
+            if (isProductExist(product.getID())) {
+                try {
+                    db.update(DBConfig.TABLE_SEEN_PRODUCT, values,
+                        DBConfig.PRODUCT_ID + "=" + product.getID(), null);
+                } catch (SQLiteException e){
+                    db = this.getWritableDatabase();
+                    db.update(DBConfig.TABLE_SEEN_PRODUCT, values,
+                            DBConfig.PRODUCT_ID + "=" + product.getID(), null);
+                }
+
+            } else {
+                int incrementingID = numberOfRecord();
+                if (incrementingID != 0) {
+                    incrementingID++;
+                }
+                values.put(DBConfig.SEEN_PRODUCT_ID, incrementingID);
+                values.put(DBConfig.PRODUCT_ID, product.getID());
+                try {
+                    db.insert(DBConfig.TABLE_SEEN_PRODUCT, null, values);
+                } catch (SQLiteException e){
+                    db = this.getWritableDatabase();
+                    db.insert(DBConfig.TABLE_SEEN_PRODUCT, null, values);
+                }
             }
-            values.put(DBConfig.SEEN_PRODUCT_ID, incrementingID);
-            values.put(DBConfig.PRODUCT_ID, product.getID());
-            db.insert(DBConfig.TABLE_SEEN_PRODUCT, null, values);
+        } catch (SQLiteException e){
+            e.printStackTrace();
         }
-
         db.close();
     }
 

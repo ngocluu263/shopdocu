@@ -162,4 +162,7 @@
 
     // FAVORITE PRODUCT ACTIVITY STRING
     <string name="title_favorite_activity">Sản phẩm yêu thích</string>
+
+    // NAVIGATION BAR AND HOM ACTIVITY
+    <string name="cart_has_no_product">Bạn chưa có sản phẩm nào trong giỏ hàng!</string>
 </resources>

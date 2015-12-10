@@ -21,11 +21,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.swd2015.shopdocu.Controller.Adapter.NavListAdapter;
 import com.swd2015.shopdocu.Controller.Fragment.HomePage_Fragment;
 import com.swd2015.shopdocu.Controller.Fragment.LoginFragment;
 import com.swd2015.shopdocu.Controller.Fragment.SearchFragment;
+import com.swd2015.shopdocu.Controller.Service.CartService;
 import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.Controller.Util.Object.NavigationItem;
@@ -231,14 +233,14 @@ public class HomePageActivity extends AppCompatActivity {
         //region Profile Box click listener
         profileBox = (RelativeLayout) findViewById(R.id.profile_box);
 
-        Customer customer=userDAO.getUser();
-        if (customer!=null){
-            if (listNavItems.size()<=5){
-                listNavItems.add(new NavigationItem("Đăng xuất", R.drawable.ic_signout));
-            }
-            CustomerService customerService=new CustomerService(activity);
-            customerService.getCustomerById(customer.getID());
-        }
+//        Customer customer=userDAO.getUser();
+//        if (customer!=null){
+//            if (listNavItems.size()<=5){
+//                listNavItems.add(new NavigationItem("Đăng xuất", R.drawable.ic_signout));
+//            }
+//            CustomerService customerService=new CustomerService(activity);
+//            customerService.getCustomerById(customer.getID());
+//        }
 
         profileBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -287,8 +289,13 @@ public class HomePageActivity extends AppCompatActivity {
                     return true;
                 }
                 case 1:{
-                    Intent intent = new Intent(this, CartActivity.class);
-                    startActivity(intent);
+                    CartService cartService = new CartService(this);
+                    if(cartService.cartHasProduct()) {
+                        Intent intent = new Intent(this, CartActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getBaseContext(), getResources().getText(R.string.cart_has_no_product), Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
             }

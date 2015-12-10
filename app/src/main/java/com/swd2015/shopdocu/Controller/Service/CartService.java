@@ -11,6 +11,7 @@ import com.swd2015.shopdocu.Controller.Adapter.CartPreviewAdapter;
 import com.swd2015.shopdocu.Controller.Fragment.Confirmation1Fragment;
 import com.swd2015.shopdocu.Controller.Task.CartTask;
 import com.swd2015.shopdocu.Controller.Util.DBTask;
+import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 
 import java.util.ArrayList;
@@ -106,5 +107,13 @@ public class CartService {
         this.adapter = adapter;
         CartTask cartTask = new CartTask(this, productID, quantity, DBTask.UPDATE_CART);
         cartTask.execute();
+    }
+
+    public boolean cartHasProduct(){
+        CartProductDAO cartProductDAO = new CartProductDAO(activity.getApplicationContext());
+        if (cartProductDAO.numberOfRecord() != 0) {
+            return true;
+        }
+        return false;
     }
 }

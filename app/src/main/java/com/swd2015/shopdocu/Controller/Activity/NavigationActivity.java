@@ -18,8 +18,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.swd2015.shopdocu.Controller.Adapter.NavListAdapter;
+import com.swd2015.shopdocu.Controller.Service.CartService;
 import com.swd2015.shopdocu.Controller.Util.Object.NavigationItem;
 import com.swd2015.shopdocu.Model.DAO.UserDAO;
 import com.swd2015.shopdocu.Model.DTO.Customer;
@@ -219,8 +221,13 @@ public class NavigationActivity extends AppCompatActivity {
                     return true;
                 }
                 case 1:{
-                    Intent intent = new Intent(this, CartActivity.class);
-                    startActivity(intent);
+                    CartService cartService = new CartService(this);
+                    if(cartService.cartHasProduct()) {
+                        Intent intent = new Intent(this, CartActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getBaseContext(), getResources().getText(R.string.cart_has_no_product), Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
 
