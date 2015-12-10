@@ -32,12 +32,8 @@ public class UserPurchaseService {
         switch (activity.getClass().getSimpleName()){
             case "UserPurchaseActivity":
                 UserPurchaseActivity userPurchaseActivity = (UserPurchaseActivity) activity;
-
-
-
                 userPurchaseActivity.purchaseListView.setAdapter(
                         new UserPurchaseAdapter(userPurchaseActivity, setPurchaseOrderListAdapter(userPurchaseList)));
-
                 break;
         }
     }

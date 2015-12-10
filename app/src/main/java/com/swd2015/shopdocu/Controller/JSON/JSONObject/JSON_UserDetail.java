@@ -25,7 +25,7 @@ public class JSON_UserDetail {
     private String Address;
     @SerializedName("IsGuest")
     private String IsGuest;
-    @SerializedName("ImageURL")
+//    @SerializedName("ImageURL")
     private String Image;
 
     public JSON_UserDetail(){
@@ -41,6 +41,17 @@ public class JSON_UserDetail {
         this.Gender = Gender;
         this.Address = Address;
         this.IsGuest = IsGuest;
+        this.Image = Image;
+    }
+
+    public JSON_UserDetail(int ID, String Fullname, String Email, String Phone, String DOB, String Gender, String Address, String Image){
+        this.ID = ID;
+        this.Fullname = Fullname;
+        this.Email = Email;
+        this.Phone = Phone;
+        this.DOB = DOB;
+        this.Gender = Gender;
+        this.Address = Address;
         this.Image = Image;
     }
 
