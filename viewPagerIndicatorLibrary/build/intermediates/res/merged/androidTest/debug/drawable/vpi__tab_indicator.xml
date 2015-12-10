@@ -33,7 +33,11 @@
     <item android:state_focused="true" android:state_selected="true"  android:state_pressed="true" android:drawable="@drawable/vpi__tab_selected_pressed_holo" />
 </selector>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- From: file:/D:/FPT/SAD/SDC/Check_20151209/shopdocu/viewPagerIndicatorLibrary/src/main/res/drawable/vpi__tab_indicator.xml --><!-- From: file:/D:/FPT/SAD/SDC/Check_20151209/shopdocu/viewPagerIndicatorLibrary/build/intermediates/bundles/debug/res/drawable/vpi__tab_indicator.xml -->
 =======
 <!-- From: file:/C:/Users/Minh/Desktop/ShopDoCu/shopdocu-master/viewPagerIndicatorLibrary/src/main/res/drawable/vpi__tab_indicator.xml --><!-- From: file:/C:/Users/Minh/Desktop/ShopDoCu/shopdocu-master/viewPagerIndicatorLibrary/build/intermediates/bundles/debug/res/drawable/vpi__tab_indicator.xml -->
 >>>>>>> origin/Minh
+=======
+<!-- From: file:/D:/1.FU/SAD/Project/Android/shopdocu/viewPagerIndicatorLibrary/src/main/res/drawable/vpi__tab_indicator.xml --><!-- From: file:/D:/1.FU/SAD/Project/Android/shopdocu/viewPagerIndicatorLibrary/build/intermediates/bundles/debug/res/drawable/vpi__tab_indicator.xml -->
+>>>>>>> Quang

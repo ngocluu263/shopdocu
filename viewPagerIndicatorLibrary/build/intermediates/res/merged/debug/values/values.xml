@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- From: file:/D:/FPT/SAD/SDC/Check_20151209/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__attrs.xml -->
 =======
     <!-- From: file:/C:/Users/Minh/Desktop/ShopDoCu/shopdocu-master/viewPagerIndicatorLibrary/src/main/res/values/vpi__attrs.xml -->
 >>>>>>> origin/Minh
+=======
+    <!-- From: file:/D:/1.FU/SAD/Project/Android/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__attrs.xml -->
+>>>>>>> Quang
     <eat-comment/>
     <attr format="boolean" name="centered"/>
     <attr format="color" name="selectedColor"/>
     <attr format="dimension" name="strokeWidth"/>
     <attr format="color" name="unselectedColor"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- From: file:/D:/FPT/SAD/SDC/Check_20151209/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__defaults.xml -->
 =======
     <!-- From: file:/C:/Users/Minh/Desktop/ShopDoCu/shopdocu-master/viewPagerIndicatorLibrary/src/main/res/values/vpi__defaults.xml -->
 >>>>>>> origin/Minh
+=======
+    <!-- From: file:/D:/1.FU/SAD/Project/Android/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__defaults.xml -->
+>>>>>>> Quang
     <eat-comment/>
     <bool name="default_circle_indicator_centered">true</bool>
     <bool name="default_circle_indicator_snap">false</bool>
@@ -31,10 +39,14 @@
     <color name="default_title_indicator_text_color">#BBFFFFFF</color>
     <color name="default_underline_indicator_selected_color">#FF33B5E5</color>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- From: file:/D:/FPT/SAD/SDC/Check_20151209/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__colors.xml -->
 =======
     <!-- From: file:/C:/Users/Minh/Desktop/ShopDoCu/shopdocu-master/viewPagerIndicatorLibrary/src/main/res/values/vpi__colors.xml -->
 >>>>>>> origin/Minh
+=======
+    <!-- From: file:/D:/1.FU/SAD/Project/Android/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__colors.xml -->
+>>>>>>> Quang
     <eat-comment/>
     <color name="vpi__background_holo_dark">#ff000000</color>
     <color name="vpi__background_holo_light">#fff3f3f3</color>
@@ -50,10 +62,14 @@
     <declare-styleable name="UnderlinePageIndicator"><attr format="boolean" name="fades"/><attr format="integer" name="fadeDelay"/><attr format="integer" name="fadeLength"/><attr name="selectedColor"/><attr name="android:background"/></declare-styleable>
     <declare-styleable name="ViewPagerIndicator"><attr format="reference" name="vpiCirclePageIndicatorStyle"/><attr format="reference" name="vpiIconPageIndicatorStyle"/><attr format="reference" name="vpiLinePageIndicatorStyle"/><attr format="reference" name="vpiTitlePageIndicatorStyle"/><attr format="reference" name="vpiTabPageIndicatorStyle"/><attr format="reference" name="vpiUnderlinePageIndicatorStyle"/></declare-styleable>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- From: file:/D:/FPT/SAD/SDC/Check_20151209/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__defaults.xml -->
 =======
     <!-- From: file:/C:/Users/Minh/Desktop/ShopDoCu/shopdocu-master/viewPagerIndicatorLibrary/src/main/res/values/vpi__defaults.xml -->
 >>>>>>> origin/Minh
+=======
+    <!-- From: file:/D:/1.FU/SAD/Project/Android/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__defaults.xml -->
+>>>>>>> Quang
     <eat-comment/>
     <dimen name="default_circle_indicator_radius">3dp</dimen>
     <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
@@ -74,10 +90,14 @@
     <integer name="default_underline_indicator_fade_delay">300</integer>
     <integer name="default_underline_indicator_fade_length">400</integer>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- From: file:/D:/FPT/SAD/SDC/Check_20151209/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__styles.xml -->
 =======
     <!-- From: file:/C:/Users/Minh/Desktop/ShopDoCu/shopdocu-master/viewPagerIndicatorLibrary/src/main/res/values/vpi__styles.xml -->
 >>>>>>> origin/Minh
+=======
+    <!-- From: file:/D:/1.FU/SAD/Project/Android/shopdocu/viewPagerIndicatorLibrary/src/main/res/values/vpi__styles.xml -->
+>>>>>>> Quang
     <eat-comment/>
     <style name="TextAppearance.TabPageIndicator" parent="Widget">
         <item name="android:textStyle">bold</item>

@@ -1,6 +1,8 @@
 package com.swd2015.shopdocu.Controller.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.util.DisplayMetrics;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.CartActivity;
 import com.swd2015.shopdocu.Controller.Service.CartService;
+import com.swd2015.shopdocu.Controller.Util.FormatNameAndPrice;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.R;
 
@@ -32,6 +35,7 @@ public class CartAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     public List<CartProduct> cartList;
     private CartActivity cartActivity;
+    AlertDialog.Builder comfirmRSBuilder;
 
     public CartAdapter(Context context, List<CartProduct> cartList){
         mContext = context;
@@ -69,6 +73,7 @@ public class CartAdapter extends BaseAdapter {
         }
 
         if(cartList != null){
+            comfirmRSBuilder = new AlertDialog.Builder(cartActivity);
             final CartProduct cartProduct = cartList.get(position);
 
             TextView productTitle = (TextView)cartListView.findViewById(R.id.product_name);
@@ -85,11 +90,11 @@ public class CartAdapter extends BaseAdapter {
                     .into(productSmallImage);
 
             productTitle.setText(cartProduct.getName());
-            productPrice.setText(String.valueOf(cartProduct.getPrice()));
+            productPrice.setText(FormatNameAndPrice.FormatPrice(cartProduct.getPrice()));
             productStatus.setText(cartProduct.getStatus());
 
 
-            String[] items = new String[]{"1", "2", "3" , "4", "5"};
+            String[] items = new String[]{"1", "2", "3" , "4", "5", "6", "7", "8", "9", "10"};
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
                     android.R.layout.simple_spinner_dropdown_item, items);
             quantityDropdown.setAdapter(adapter);
@@ -102,20 +107,36 @@ public class CartAdapter extends BaseAdapter {
             }
 
             adjustFontSize(productTitle);
-            final CartAdapter cartAdapter = this;
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cartActivity.cartService.deleteCart(cartAdapter, cartProduct.getID());
-                }
-            });
+                    // Set Confirm message when user click Request Sell button
+                    comfirmRSBuilder.setMessage(R.string.delete_cart_confirm);
+
+                    // Button Cancel request sell -> do nothing
+                    comfirmRSBuilder.setPositiveButton(R.string.cancel_rs_button, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Do nothing
+                        }
+                    });
+                    // Button Confirm request sell -> save Purchased Order to Database
+                    comfirmRSBuilder.setNegativeButton(R.string.delete_confirm_button, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            cartActivity.cartService.deleteCart(cartProduct.getID());
+                        }
+                    });
+
+                    AlertDialog dialog = comfirmRSBuilder.create();
+                    dialog.show();
+                    }
+                });
 
             quantityDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                            int position, long id) {
                     int quantity = position + 1;
-                    cartActivity.cartService.updateQuantityCart(cartAdapter, cartProduct.getID(),
+                    cartActivity.cartService.updateQuantityCart(cartProduct.getID(),
                             quantity);
                 }
 
@@ -151,4 +172,7 @@ public class CartAdapter extends BaseAdapter {
 
         return (int) dp;
     }
+
+
+
 }

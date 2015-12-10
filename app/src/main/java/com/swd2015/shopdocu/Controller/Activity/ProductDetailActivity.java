@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
 import com.swd2015.shopdocu.Controller.Service.CustomerService;
@@ -108,6 +109,8 @@ public class ProductDetailActivity extends NavigationActivity {
                 CartProduct cartProduct = new CartProduct(new Product(product), product.getStatus());
                 CartProductDAO cartProductDAO = new CartProductDAO(getBaseContext());
                 cartProductDAO.addOrderedProduct(cartProduct);
+                Toast.makeText(getApplicationContext(),getResources().
+                        getString(R.string.add_to_cart_message),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -120,6 +123,8 @@ public class ProductDetailActivity extends NavigationActivity {
                     favoriteButton.setBackgroundResource(R.drawable.ic_red_heart);
                 }
                 productService.toggleFavorite(product);
+                Toast.makeText(getApplicationContext(),getResources().
+                        getString(R.string.add_to_favorite_message),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -166,14 +171,6 @@ public class ProductDetailActivity extends NavigationActivity {
             display.getSize(size);
             int width = size.x;
             int height = size.y;
-
-            System.out.println("heightttttttttt: " +height);
-            System.out.println("widthhhhhhhh: " + width);
-
-//            productDetailContainerHeight = convertPxToDp(height) * 90 / 100;
-//            buyButtonSectionHeight = convertPxToDp(height) * 5 / 100;
-//            buyButtonWidth = convertPxToDp(width) * 70 / 100;
-//            addToCartButtonWidth = convertPxToDp(width) * 15 / 100;
 
             productDetailContainerHeight = height * 90 / 100;
             buyButtonSectionHeight = height * 7 / 100;

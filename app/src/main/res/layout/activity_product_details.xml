@@ -15,8 +15,144 @@ tools:context="com.swd2015.shopdocu.Controller.Activity.HomePageActivity">
         android:id="@+id/product_detail_main"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.swd2015.shopdocu.Controller.Activity.ProductDetailActivity">
+        android:layout_height="@dimen/product_detail_main"
+        android:background="@color/lightWhite">
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ProductDetailScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="@color/lightWhite">
+
+
+        <TextView
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Tên sản phẩm"
+            android:id="@+id/product_name"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+        <RelativeLayout
+            android:id="@+id/section1"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@id/product_name"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:orientation="vertical"
+            android:background="@drawable/border" >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:id="@+id/product_large_image"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"/>
+
+                <View
+                    android:id="@+id/spliter3"
+                    android:layout_below="@id/product_large_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/lightWhite"/>
+
+            <ImageButton
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@id/spliter3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/favorite_button"
+                android:background="@drawable/ic_blank_heart"
+                />
+
+                <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/product_small_image_list"
+                    android:layout_below="@id/product_large_image"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dp"
+                    android:columnWidth="60dp"
+                    android:numColumns="auto_fit"
+                    android:layout_marginTop="50dp"
+
+                    android:verticalSpacing="10dp"
+                    android:horizontalSpacing="10dp"
+                    android:stretchMode="columnWidth"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:visibility="invisible" />
+
+            <View
+                android:layout_below="@id/product_small_image_list"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/lightWhite"/>
+
+            <RelativeLayout
+                android:id="@+id/priceSection"
+                android:layout_below="@id/product_small_image_list"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Giá"
+                    android:id="@+id/productPrice"
+                    android:textSize="20sp"
+                    android:textColor="@color/orange"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:id="@+id/spliter"
+                    android:layout_toRightOf="@id/productPrice"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/lightWhite"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Status"
+                    android:id="@+id/productStatus"
+                    android:layout_toRightOf="@id/spliter"
+                    android:textSize="18sp"
+                    android:textColor="@color/blueDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+            
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/product_detail_container"
@@ -251,10 +387,5 @@ tools:context="com.swd2015.shopdocu.Controller.Activity.HomePageActivity">
     </LinearLayout>
 
 </LinearLayout>
-
-
-<!--Drawer Pane -->
-<include layout="@layout/drawer_pane"/>
-
 
 </android.support.v4.widget.DrawerLayout>
