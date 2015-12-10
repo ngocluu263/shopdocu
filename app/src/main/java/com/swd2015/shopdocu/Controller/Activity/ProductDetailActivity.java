@@ -1,5 +1,6 @@
 package com.swd2015.shopdocu.Controller.Activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -18,9 +19,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Product;
+import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
+import com.swd2015.shopdocu.Controller.Util.Object.NavigationItem;
 import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
+import com.swd2015.shopdocu.Model.DAO.UserDAO;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
+import com.swd2015.shopdocu.Model.DTO.Customer;
 import com.swd2015.shopdocu.Model.DTO.Product;
 import com.swd2015.shopdocu.R;
 
@@ -61,9 +66,11 @@ public class ProductDetailActivity extends NavigationActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
-        //region toolbar and navigation item
+        // toolbar and navigation item
         createNavigation();
-        //endregion
+
+        avatar= (ImageView)findViewById(R.id.avatar);
+        userName= (TextView) findViewById((R.id.avartarName));
 
         //region main activity
         productID = getIntent().getExtras().getInt("productID");
@@ -117,6 +124,27 @@ public class ProductDetailActivity extends NavigationActivity {
         });
 
         adjustViewSize();
+        //endregion
+        final Activity activity = this;
+        final UserDAO userDAO=new UserDAO(getBaseContext());
+        Customer customer=userDAO.getUser();
+        if (customer!=null){
+            if (listNavItems.size()<=5){
+                listNavItems.add(new NavigationItem("Đăng xuất", R.drawable.ic_signout));
+            }
+            CustomerService customerService=new CustomerService(activity);
+            customerService.getCustomerById(customer.getID());
+        }
+        //regionchange title,add back button
+//        HomePageActivity activity=(HomePageActivity)getActivity();
+//        android.support.v7.app.ActionBar actionBar=activity.actionBar;
+//        ActionBarDrawerToggle toggle=activity.actionBarDrawerToggle;
+//        toggle.setDrawerIndicatorEnabled(false);
+//        actionBar.setTitle("Đăng kí tài khoản");
+//        actionBar.setHomeButtonEnabled(true);
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        actionBar.setTitle("Thông tin sản phẩm");
+        actionBar.setHomeButtonEnabled(true);
         //endregion
 
     }

@@ -1,8 +1,10 @@
 package com.swd2015.shopdocu.Controller.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,10 +18,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.swd2015.shopdocu.Controller.Adapter.NavListAdapter;
+import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.Controller.Util.Object.NavigationItem;
 import com.swd2015.shopdocu.Model.DAO.UserDAO;
 import com.swd2015.shopdocu.Model.DTO.Customer;
@@ -43,6 +48,9 @@ public class NavigationActivity extends AppCompatActivity {
     public List<Fragment> listFragments;
     public ActionBar actionBar;
     public ActionBarDrawerToggle actionBarDrawerToggle;
+    public TextView userName;
+    public ImageView avatar;
+
 
     public void createNavigation(){
         actionBar=getSupportActionBar();
@@ -63,31 +71,17 @@ public class NavigationActivity extends AppCompatActivity {
                 ,R.layout.navigation_list,listNavItems);
         listNav.setAdapter(navListAdapter);
 
-        //This code is useful when you just use 1 activity and manu fragment
-//        listFragments=  new ArrayList<Fragment>();
-//        final HomePage_Fragment homePageFragment=new HomePage_Fragment();
-//        final LoginFragment loginFragment = new LoginFragment();
-//        AboutFragment AboutFragment =new AboutFragment();
-//
-//        listFragments.add(new LoginFragment());
-//        HomePage_Fragment homePage_fragment=new HomePage_Fragment();
-//        FragmentManager fragmentManager = getFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.main,homePage_fragment).commit();
-
-        // setTitle(listNavItems.get(2).getTitle());
-
-
         drawerLayout.closeDrawer(drawerPane);
         final Activity activity = this;
+        final UserDAO userDAO=new UserDAO(activity.getBaseContext());
+
         //set listener for navigation item (slide-in menu)
         listNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                UserDAO userDAO=new UserDAO(activity.getBaseContext());
                 Intent intent;
                 switch (position) {
                     case 0: {
-//                        fragmentTransaction.replace(R.id.main, homePageFragment).commit();
                         intent=new Intent(activity,HomePageActivity.class);
                         intent.putExtra("Action","HomePage");
                         startActivity(intent);
@@ -145,9 +139,18 @@ public class NavigationActivity extends AppCompatActivity {
 
                     }
                     case 5: { // dang xuat
-                        // xoa user khoi db local
-                        userDAO.deleteUser();
-                        listNavItems.remove(5);
+                        new AlertDialog.Builder(activity).
+                                setMessage("Đăng xuất thành công").
+                                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        userDAO.deleteUser();
+                                        listNavItems.remove(5);
+                                        avatar.setImageResource(R.drawable.blank_icon);
+                                        userName.setText("Đăng nhập/Đăng ký");
+                                    }
+                                }).
+                                show();
                         break;
                     }
                 }
@@ -179,14 +182,31 @@ public class NavigationActivity extends AppCompatActivity {
         profileBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //check login
-                Intent intent=new Intent(activity,HomePageActivity.class);
-                intent.putExtra("Action","Login");
-                startActivity(intent);
-//
+                Customer customer=userDAO.getUser();
+                if (customer!=null) { //user da dang nhap
+                    Intent intent = new Intent(activity, UserPurchaseActivity.class);
+                    intent.putExtra("UserID", customer.getID());
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(activity, HomePageActivity.class);
+                    intent.putExtra("Action", "Login");
+                    startActivity(intent);
+                }
                 drawerLayout.closeDrawer(drawerPane);
             }
         });
+        //call service to change avatar and name
+        Customer customer=userDAO.getUser();
+        if (customer!=null){
+            if (listNavItems.size()<=5){
+                listNavItems.add(new NavigationItem("Đăng xuất", R.drawable.ic_signout));
+            }
+            CustomerService customerService=new CustomerService(activity);
+            customerService.getCustomerById(customer.getID());
+        }
+
+
     }
 
     //add menu item
@@ -212,9 +232,15 @@ public class NavigationActivity extends AppCompatActivity {
         }
         else{
             switch (item.getItemId()){
+                case android.R.id.home:{
+                    onBackPressed();
+                    return true;
+                }
+
                 case 0:{
                     Intent intent = new Intent(this, HomePageActivity.class);
                     intent.putExtra("Action","Search");
+                    intent.putExtra("PreviousActivity","ProductDetailActivity");
                     startActivity(intent);
                     return true;
                 }

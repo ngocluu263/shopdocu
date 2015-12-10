@@ -31,7 +31,7 @@ public class LoginFragment extends Fragment {
     TextView signup;
     Button btnLogin;
     public JSON_Customer user;
-    public String action;
+    public  String action;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -48,7 +48,7 @@ public class LoginFragment extends Fragment {
         edtPassword=(EditText)v.findViewById(R.id.edtPassword);
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         checkPass=(CheckBox) v.findViewById(R.id.chkShowPassword);
-        Bundle bundle = this.getArguments();
+        final Bundle bundle = this.getArguments();
 
         HomePageActivity activity=(HomePageActivity)getActivity();
         android.support.v7.app.ActionBar actionBar=activity.actionBar;
@@ -57,7 +57,6 @@ public class LoginFragment extends Fragment {
 
         actionBar.setTitle("Đăng nhập");
         actionBar.setHomeButtonEnabled(false);
-
 
         if (bundle!=null){
             String email = bundle.getString("email");
@@ -99,11 +98,11 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction= getFragmentManager().beginTransaction();
                 SignupFragment signupFragment= new SignupFragment();
+                signupFragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.loginFragment, signupFragment);
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
             }
         });
 

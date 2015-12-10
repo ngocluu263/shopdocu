@@ -1,9 +1,11 @@
 package com.swd2015.shopdocu.Controller.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -51,6 +53,7 @@ public class HomePageActivity extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public ImageView avartar;
     public TextView userName;
+    public String previousActivity;
     //public android.support.v7.widget.Toolbar toolbar;
 
     ProductService productService;
@@ -58,10 +61,12 @@ public class HomePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       final UserDAO userDAO=new UserDAO(getBaseContext());
-
-
         setContentView(R.layout.activity_home_page);
+        //handle exception
+      //  Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
+
+        final UserDAO userDAO=new UserDAO(getBaseContext());
+
         avartar= (ImageView)findViewById(R.id.avatar);
         userName= (TextView) findViewById((R.id.avartarName));
 
@@ -132,7 +137,8 @@ public class HomePageActivity extends AppCompatActivity {
         listNav.setItemChecked(0, true);
         drawerLayout.closeDrawer(drawerPane);
         final Activity activity = this;
-        //set listener for navigation item (slide-in menu)
+
+        //regionsetlistener for navigation item (slide-in menu)
         listNav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -197,17 +203,28 @@ public class HomePageActivity extends AppCompatActivity {
                     }
                     case 5: { // dang xuat
                         // xoa user khoi db local
-                        userDAO.deleteUser();
-                        listNavItems.remove(5);
-                        avartar.setImageResource(R.drawable.blank_icon);
-                        userName.setText("Đăng nhập/Đăng ký");
+                        new AlertDialog.Builder(loginFragment.getActivity()).
+                                setMessage("Đăng xuất thành công").
+                                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        userDAO.deleteUser();
+                                        listNavItems.remove(5);
+                                        avartar.setImageResource(R.drawable.blank_icon);
+                                        userName.setText("Đăng nhập/Đăng ký");
+                                    }
+                                }).
+                                show();
+
                         break;
                     }
                 }
                 //endregion
+
                 drawerLayout.closeDrawer(drawerPane);
             }
         });
+        //endregion
 
         //create listener for drawer  layout
         actionBarDrawerToggle = new ActionBarDrawerToggle
@@ -275,20 +292,41 @@ public class HomePageActivity extends AppCompatActivity {
         }
         else{
             switch (item.getItemId()){
+                //back button
                 case android.R.id.home:
                 {
-                    onBackPressed();
-                    break;
+                    Bundle extras = getIntent().getExtras();
+                    if (extras!=null) {
+                        previousActivity = extras.getString("PreviousActivity");
+                    }
+                    if (previousActivity==null) {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.main, new HomePage_Fragment()).commit();
+                        //onBackPressed();
+                        break;
+                    }
+                    else
+                    {
+                        onBackPressed();
+                    }
                 }
+                //search icon
                 case 0:{
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.main,
                                                                new SearchFragment()).commit();
                     return true;
                 }
+                //cart icon
                 case 1:{
-                    Intent intent = new Intent(this, CartActivity.class);
-                    startActivity(intent);
+                     CartService cartService = new CartService(this);
+                    if(cartService.cartHasProduct()) {
+                        Intent intent = new Intent(this, CartActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getBaseContext(), getResources().getText(R.string.cart_has_no_product), Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
             }

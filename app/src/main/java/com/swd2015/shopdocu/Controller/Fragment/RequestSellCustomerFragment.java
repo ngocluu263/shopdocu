@@ -5,12 +5,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.swd2015.shopdocu.Controller.Activity.HomePageActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_PurchasedOrder;
 import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.Controller.Service.PurchasedOrderService;
@@ -69,11 +71,9 @@ public class RequestSellCustomerFragment extends Fragment {
                 // Instantiate an AlertDialog.Builder with its constructor
                 // comfirmRSBuilder - show message confirm request sell to customer
                 AlertDialog.Builder comfirmRSBuilder = new AlertDialog.Builder(getActivity());
-
                 // Set Confirm message when user click Request Sell button
                 comfirmRSBuilder.setMessage(R.string.confirm_rs_msg);
 
-                // Button Cancel request sell -> do nothing
                 comfirmRSBuilder.setPositiveButton(R.string.cancel_rs_button, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Do nothing
@@ -149,6 +149,14 @@ public class RequestSellCustomerFragment extends Fragment {
             }
         });
 
+        //regionchange title,add back button
+        HomePageActivity activity=(HomePageActivity)getActivity();
+        android.support.v7.app.ActionBar actionBar=activity.actionBar;
+        ActionBarDrawerToggle toggle=activity.actionBarDrawerToggle;
+        toggle.setDrawerIndicatorEnabled(false);
+        actionBar.setTitle("Đăng kí bán hàng");
+        actionBar.setHomeButtonEnabled(true);
+        //endregion
         return view;
     }
 

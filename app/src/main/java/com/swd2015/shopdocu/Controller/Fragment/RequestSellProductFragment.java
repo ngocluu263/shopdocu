@@ -153,6 +153,7 @@ public class RequestSellProductFragment extends Fragment {
      * PhucLHSE61219_201511
      */
     @Override
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
             Bundle extras = data.getExtras();
