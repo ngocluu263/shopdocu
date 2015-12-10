@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.swd2015.shopdocu.Controller.Activity.CartActivity;
 import com.swd2015.shopdocu.Controller.Service.CartService;
+import com.swd2015.shopdocu.Controller.Util.FormatNameAndPrice;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 import com.swd2015.shopdocu.R;
 
@@ -89,7 +90,7 @@ public class CartAdapter extends BaseAdapter {
                     .into(productSmallImage);
 
             productTitle.setText(cartProduct.getName());
-            productPrice.setText(String.valueOf(cartProduct.getPrice()));
+            productPrice.setText(FormatNameAndPrice.FormatPrice(cartProduct.getPrice()));
             productStatus.setText(cartProduct.getStatus());
 
 

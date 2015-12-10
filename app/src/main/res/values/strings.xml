@@ -151,6 +151,8 @@
     <string name="customer_info_title">Địa chỉ nhận hàng</string>
     <string name="quantity_item">Số lượng: </string>
     <string name="total_item">Tống giá: </string>
+    <string name="checkout_confirm_message">Xác nhận đặt hàng?</string>
+    <string name="ok_button">Đồng ý</string>
 
     // CONFIRMATION 2 FRAGMENT STRING
     <string name="back_to_home_button">Trở về trang chủ</string>

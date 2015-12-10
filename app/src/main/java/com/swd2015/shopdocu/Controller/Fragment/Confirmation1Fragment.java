@@ -68,7 +68,7 @@ public class Confirmation1Fragment extends Fragment {
         cartService.getCartList();
 
         // Set Confirm message when user click Request Sell button
-        comfirmRSBuilder.setMessage(R.string.delete_cart_confirm);
+        comfirmRSBuilder.setMessage(R.string.checkout_confirm_message);
 
         // Button Cancel request sell -> do nothing
         comfirmRSBuilder.setPositiveButton(R.string.cancel_rs_button, new DialogInterface.OnClickListener() {
@@ -77,7 +77,7 @@ public class Confirmation1Fragment extends Fragment {
             }
         });
         // Button Confirm request sell -> save Purchased Order to Database
-        comfirmRSBuilder.setNegativeButton(R.string.delete_confirm_button, new DialogInterface.OnClickListener() {
+        comfirmRSBuilder.setNegativeButton(R.string.ok_button, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 requestConfirmation();
                 Confirmation2Fragment confirmation2Fragment = new Confirmation2Fragment();
