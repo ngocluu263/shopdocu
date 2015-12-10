@@ -32,6 +32,8 @@ public class JSONUserDetailTask extends JSONParser {
                 JSON_UserDetail u = gson.fromJson(json, JSON_UserDetail.class);
                 userDetailService.setUserDetail(u);
                 break;
+            case UPDATE_CUSTOMER:
+
         }
     }
 }

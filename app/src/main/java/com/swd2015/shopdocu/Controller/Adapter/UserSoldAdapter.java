@@ -9,10 +9,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.swd2015.shopdocu.Controller.Activity.UserSoldActivity;
+import com.swd2015.shopdocu.Controller.Util.FormatNameAndPrice;
 import com.swd2015.shopdocu.Controller.Util.Object.User_SoldObj;
 import com.swd2015.shopdocu.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
+
+import static com.swd2015.shopdocu.Controller.Util.FormatNameAndPrice.FormatPrice;
 
 /**
  * Created by khiem on 12/2/2015.
@@ -72,7 +76,12 @@ public class UserSoldAdapter extends BaseAdapter {
             String orderDate = user_soldsObj.get(position).getDate().substring(0, 10);
 
             txtSellDate.setText(orderDate);
-            txtOrderSellPrice.setText(user_soldsObj.get(position).getPrice());
+
+            String price = user_soldsObj.get(position).getPrice();
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            String productPrice = formatter.format(Double.parseDouble(price));
+            productPrice=productPrice.replace(',','.');
+            txtOrderSellPrice.setText(productPrice);
 
             String st = user_soldsObj.get(position).getStatus();
             if (st.equalsIgnoreCase("từ chối bán")){

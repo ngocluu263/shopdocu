@@ -3,8 +3,6 @@ package com.swd2015.shopdocu.Controller.JSON.JSONUtil;
 /**
  * Created by Quang on 20/11/2015.
  */
-
-
 public enum JSONTask {
     GET_ALL_PRODUCT("api/product"),
     GET_PRODUCT_BY_ID("api/product/getproductbyid"),
@@ -12,7 +10,7 @@ public enum JSONTask {
     GET_NEW_PRODUCTS("api/product/getnewproducts"),
     GET_CUSTOMER_BY_ID("api/customer/getcustomerbyid"),
     POST_INSERT_PURCHASED_ORDER(
-                        "api/PurchasedOrder/AddPurchasedOrder"),
+            "api/PurchasedOrder/AddPurchasedOrder"),
     GET_ALL_BANNER("api/Image/Banner/GetAllBanners"),
     GET_HOT_PRODUCTS("api/product/GetHotProducts"),
     CHECK_LOGIN("api/Customer/CheckLogin"),
@@ -25,6 +23,7 @@ public enum JSONTask {
     GET_USER_SOLD("api/OrderDetail/GetAllSoldOrderDetailsByCustomerID/"),
     GET_USER_PURCHASE("api/PurchasedOrder/GetAllPurchasedOrderDetailsByCustomerID/"),
     ADD_SOLD_PRODUCT("api/OrderDetail/CreateSoldOrderDetail"),
+    UPDATE_CUSTOMER("api/customer/UpdateCustomerDetail/"),
     ADD_CUSTOMER("api/customer/CreateAccount");
 
     private static String API = "http://www.shopdocu.info/";

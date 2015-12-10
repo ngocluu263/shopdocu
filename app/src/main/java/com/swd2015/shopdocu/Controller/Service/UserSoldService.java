@@ -32,12 +32,8 @@ public class UserSoldService {
         switch (activity.getClass().getSimpleName()){
             case "UserSoldActivity":
                 UserSoldActivity userSoldActivity = (UserSoldActivity) activity;
-
-
-
                 userSoldActivity.soldListView.setAdapter(
                         new UserSoldAdapter(userSoldActivity, setSoldOrderListAdapter(userSoldList)));
-
                 break;
         }
     }

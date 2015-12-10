@@ -12,6 +12,7 @@ import com.swd2015.shopdocu.Controller.Activity.UserPurchaseActivity;
 import com.swd2015.shopdocu.Controller.Util.Object.User_PurchaseObj;
 import com.swd2015.shopdocu.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -72,7 +73,13 @@ public class UserPurchaseAdapter extends BaseAdapter {
             String orderDate = user_purchaseObj.get(position).getDate().substring(0, 10);
 
             txtSellDate.setText(orderDate);
-            txtOrderSellPrice.setText(user_purchaseObj.get(position).getPrice());
+
+            String price = user_purchaseObj.get(position).getPrice();
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            String productPrice = formatter.format(Double.parseDouble(price));
+            productPrice=productPrice.replace(',','.');
+
+            txtOrderSellPrice.setText(productPrice);
 
             String st = user_purchaseObj.get(position).getStatus();
             if (st.equalsIgnoreCase("từ chối thu mua")){

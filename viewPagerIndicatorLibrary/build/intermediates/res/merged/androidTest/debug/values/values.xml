@@ -2,6 +2,7 @@
 <resources>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- From: file:/D:/FPT/SAD/SDC/Check_20151209/shopdocu/viewPagerIndicatorLibrary/build/intermediates/bundles/debug/res/values/values.xml -->
 =======
     <!-- From: file:/C:/Users/Minh/Desktop/ShopDoCu/shopdocu-master/viewPagerIndicatorLibrary/build/intermediates/bundles/debug/res/values/values.xml -->
@@ -9,6 +10,9 @@
 =======
     <!-- From: file:/D:/1.FU/SAD/Project/Android/shopdocu/viewPagerIndicatorLibrary/build/intermediates/bundles/debug/res/values/values.xml -->
 >>>>>>> Quang
+=======
+    <!-- From: file:/D:/Users/KhiemTC/Documents/GitHub/New%20folder/shopdocu/viewPagerIndicatorLibrary/build/intermediates/bundles/debug/res/values/values.xml -->
+>>>>>>> khiem_merge
     <eat-comment/>
     <attr format="boolean" name="centered"/>
     <attr format="color" name="selectedColor"/>

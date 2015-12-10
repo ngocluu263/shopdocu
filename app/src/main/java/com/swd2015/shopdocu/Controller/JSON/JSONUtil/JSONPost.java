@@ -4,6 +4,9 @@ import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSONRequestSellObject;
+import com.swd2015.shopdocu.Controller.Activity.UserDetailActivity;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSONUserObject;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_PurchasedOrder;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -12,10 +15,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-//import com.swd2015.shopdocu.Model.DTO.CheckoutInfo;
-//import com.swd2015.shopdocu.Model.DTO.Customer;
 
 import com.swd2015.shopdocu.Controller.Service.PurchasedOrderService;
+import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_UserDetail;
+import com.swd2015.shopdocu.Controller.Service.UserDetailService;
 import com.swd2015.shopdocu.Model.DTO.CheckoutInfo;
 
 import java.net.HttpURLConnection;
@@ -35,6 +38,9 @@ public class JSONPost extends AsyncTask<String, String, String> {
     CheckoutInfo checkoutInfo;
     JSONRequestSellObject requestSellObject;
     PurchasedOrderService purchasedOrderService;
+    JSON_PurchasedOrder purchasedOrder;
+    JSONUserObject jsonUserObject;
+    UserDetailService userDetailService;
 
     public JSONPost(PurchasedOrderService purchasedOrderService,JSONTask task, JSONRequestSellObject requestSellObject) {
         this.purchasedOrderService = purchasedOrderService;
@@ -49,10 +55,18 @@ public class JSONPost extends AsyncTask<String, String, String> {
         this.json = gson.toJson(checkoutInfo, CheckoutInfo.class);
     }
 
+    public JSONPost(UserDetailService userDetailService, JSONTask task, JSONUserObject jsonUserObject){
+        this.userDetailService = userDetailService;
+        this.API = task;
+        this.jsonUserObject = jsonUserObject;
+        this.json = gson.toJson(this.jsonUserObject, JSONUserObject.class);
+    }
+
     @Override
     protected String doInBackground(String... params) {
         URL url = null;
         String response = "";
+        int responseCode = 0;
         try {
             url = new URL(API.toString());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -72,7 +86,7 @@ public class JSONPost extends AsyncTask<String, String, String> {
             writer.flush();
             writer.close();
 
-            int responseCode = conn.getResponseCode();
+            responseCode = conn.getResponseCode();
 
             System.out.println("POST Response Code: " + responseCode);
 
@@ -101,6 +115,9 @@ public class JSONPost extends AsyncTask<String, String, String> {
             case POST_INSERT_PURCHASED_ORDER:
                 purchasedOrderService.httpPostResponse(json);
                 break;
+			case UPDATE_CUSTOMER:
+             userDetailService.httpPostResponse(json);
+             break;
         }
     }
 }
