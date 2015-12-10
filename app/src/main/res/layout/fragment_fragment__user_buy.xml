@@ -17,19 +17,21 @@
         android:id="@+id/frameLayout_base">
 
         <Button
-            android:layout_width="192dp"
+            android:layout_width="190dp"
             android:layout_height="66dp"
             android:text="Mua"
             android:id="@+id/Buy"
+            android:background="@color/orange"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="-4.5dp"
             />
 
         <Button
-            android:layout_width="192dp"
+            android:layout_width="190dp"
             android:layout_height="66dp"
             android:text="Bán"
             android:id="@+id/Sell"
+            android:background="@color/orange"
             android:layout_marginLeft="192dp"
             android:layout_marginTop="-4.5dp"
             />

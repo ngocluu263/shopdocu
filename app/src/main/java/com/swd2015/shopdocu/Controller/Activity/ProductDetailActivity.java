@@ -172,8 +172,8 @@ public class ProductDetailActivity extends NavigationActivity {
             int width = size.x;
             int height = size.y;
 
-            productDetailContainerHeight = height * 90 / 100;
-            buyButtonSectionHeight = height * 7 / 100;
+            productDetailContainerHeight = height * 80 / 100;
+            buyButtonSectionHeight = height * 8 / 100;
             buyButtonWidth = width * 70 / 100;
             addToCartButtonWidth = width * 15 / 100;
 

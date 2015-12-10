@@ -37,7 +37,6 @@ import java.util.List;
  * Created by Minh on 12/8/2015.
  */
 public class NavigationActivity extends AppCompatActivity {
-    public final String greenColor="#7CD175";
     public  DrawerLayout drawerLayout;
     public  RelativeLayout drawerPane;
     public ListView listNav;
@@ -55,7 +54,7 @@ public class NavigationActivity extends AppCompatActivity {
     public void createNavigation(){
         actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(greenColor)));
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerPane=(RelativeLayout) findViewById(R.id.drawer_pane);

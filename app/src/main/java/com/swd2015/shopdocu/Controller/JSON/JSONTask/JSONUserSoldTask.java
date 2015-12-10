@@ -28,6 +28,9 @@ public class JSONUserSoldTask extends JSONParser {
 
     @Override
     protected void onPostExecute(String json){
+        if(json == null || json.trim().length() == 0){
+            userSoldService.connectionError();
+        }
         Gson gson = new Gson();
 
         switch(this.API){

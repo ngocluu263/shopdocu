@@ -1,6 +1,8 @@
 package com.swd2015.shopdocu.Controller.Service;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Handler;
 
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_Banner;
@@ -30,6 +32,22 @@ public class BannerService {
         JSONBannerTask jsonTask = new JSONBannerTask(this, JSONTask.GET_ALL_BANNER);
         jsonTask.execute();
     }
+
+    public void connectionError(){
+        if(fragment != null) {
+            new AlertDialog.Builder(fragment.getActivity()).
+                    setMessage("Xin hãy kiểm tra lại kết nối của bạn!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).
+                    show();
+        }
+
+    }
+
 
     public void setAllBanner(ArrayList<JSON_Banner> bannerList){
        final BannerFragment bannerFragment=(BannerFragment) fragment;

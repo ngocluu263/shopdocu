@@ -1,14 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<merger version="3"><dataSet config="main"><source path="D:\FPT\SAD\SDC\Check_20151209\shopdocu\viewPagerIndicatorLibrary\src\main\assets"/></dataSet><dataSet config="release"><source path="D:\FPT\SAD\SDC\Check_20151209\shopdocu\viewPagerIndicatorLibrary\src\release\assets"/></dataSet></merger>
-=======
-<merger version="3"><dataSet config="main"><source path="C:\Users\Minh\Desktop\ShopDoCu\shopdocu-master\viewPagerIndicatorLibrary\src\main\assets"/></dataSet><dataSet config="release"><source path="C:\Users\Minh\Desktop\ShopDoCu\shopdocu-master\viewPagerIndicatorLibrary\src\release\assets"/></dataSet></merger>
->>>>>>> origin/Minh
-=======
-<merger version="3"><dataSet config="main"><source path="D:\1.FU\SAD\Project\Android\shopdocu\viewPagerIndicatorLibrary\src\main\assets"/></dataSet><dataSet config="release"><source path="D:\1.FU\SAD\Project\Android\shopdocu\viewPagerIndicatorLibrary\src\release\assets"/></dataSet></merger>
->>>>>>> Quang
-=======
-<merger version="3"><dataSet config="main"><source path="D:\Users\KhiemTC\Documents\GitHub\New folder\shopdocu\viewPagerIndicatorLibrary\src\main\assets"/></dataSet><dataSet config="release"><source path="D:\Users\KhiemTC\Documents\GitHub\New folder\shopdocu\viewPagerIndicatorLibrary\src\release\assets"/></dataSet></merger>
->>>>>>> khiem_merge
+<merger version="3"><dataSet config="main"><source path="C:\Users\PhucLHSE61219\Desktop\New folder\shopdocu\viewPagerIndicatorLibrary\src\main\assets"/></dataSet><dataSet config="release"><source path="C:\Users\PhucLHSE61219\Desktop\New folder\shopdocu\viewPagerIndicatorLibrary\src\release\assets"/></dataSet></merger>

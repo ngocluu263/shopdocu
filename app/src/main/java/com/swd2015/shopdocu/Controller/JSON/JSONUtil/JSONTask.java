@@ -10,7 +10,7 @@ public enum JSONTask {
     GET_NEW_PRODUCTS("api/product/getnewproducts"),
     GET_CUSTOMER_BY_ID("api/customer/getcustomerbyid"),
     POST_INSERT_PURCHASED_ORDER(
-            "api/PurchasedOrder/AddPurchasedOrder"),
+            "api/PurchasedOrder/CreatePurchasedOrder"),
     GET_ALL_BANNER("api/Image/Banner/GetAllBanners"),
     GET_HOT_PRODUCTS("api/product/GetHotProducts"),
     CHECK_LOGIN("api/Customer/CheckLogin"),

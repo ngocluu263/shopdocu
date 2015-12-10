@@ -141,6 +141,7 @@
     <string name="checkout_button">THANH TOÁN</string>
     <string name="delete_cart_confirm">Bạn có muốn xóa sản phẩm này?</string>
     <string name="delete_confirm_button">Xóa</string>
+    <string name="cart_has_no_product">Bạn chưa có sản phẩm nào trong giỏ hàng!</string>
 
     // CHECKOUT FRAGMENT STRING
     <string name="checkout_1_title">Thanh toán</string>
@@ -174,4 +175,7 @@
 
     <string name="take_product_photo_action">Chụp hình sản phẩm</string>
     <string name="choose_product_photo_action">Chọn hình từ thư viện</string>
+
+    // SELL
+    <string name="sell_confirm_tittle">Bạn đã đăng bán thành công!</string>
 </resources>

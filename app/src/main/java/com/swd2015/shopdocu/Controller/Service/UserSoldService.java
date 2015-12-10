@@ -1,6 +1,8 @@
 package com.swd2015.shopdocu.Controller.Service;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import com.swd2015.shopdocu.Controller.Activity.UserSoldActivity;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSON_User_Sold;
@@ -27,6 +29,22 @@ public class UserSoldService {
         JSONUserSoldTask jsonTask = new JSONUserSoldTask(this, JSONTask.GET_USER_SOLD, ID);
         jsonTask.execute();
     }
+
+    public void connectionError(){
+        if (this.activity != null) {
+            new AlertDialog.Builder(activity).
+                    setMessage("Xin hãy kiểm tra lại kết nối của bạn!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).
+                    show();
+        }
+
+    }
+
 
     public void setAllOrder(ArrayList<JSON_User_Sold> userSoldList){
         switch (activity.getClass().getSimpleName()){

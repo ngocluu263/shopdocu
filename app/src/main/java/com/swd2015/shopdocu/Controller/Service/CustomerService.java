@@ -68,6 +68,33 @@ public class CustomerService {
                                                                                 String.valueOf(ID));
         jsonCustomerTask.execute();
     }
+    public void connectionError(){
+        if (this.activity != null) {
+            new AlertDialog.Builder(activity).
+                    setMessage("Xin hãy kiểm tra lại kết nối của bạn!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).
+                    show();
+        }else if(fragment != null) {
+            new AlertDialog.Builder(fragment.getActivity()).
+                    setMessage("Xin hãy kiểm tra lại kết nối của bạn!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).
+                    show();
+        }  else {
+            activity.finish();
+        }
+
+    }
+
 
     public void setCustomer(JSON_Customer customer) {
         if (fragmentv4!=null) {

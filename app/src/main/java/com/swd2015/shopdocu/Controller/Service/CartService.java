@@ -11,6 +11,7 @@ import com.swd2015.shopdocu.Controller.Adapter.CartPreviewAdapter;
 import com.swd2015.shopdocu.Controller.Fragment.Confirmation1Fragment;
 import com.swd2015.shopdocu.Controller.Task.CartTask;
 import com.swd2015.shopdocu.Controller.Util.DBTask;
+import com.swd2015.shopdocu.Model.DAO.CartProductDAO;
 import com.swd2015.shopdocu.Model.DTO.CartProduct;
 
 import java.util.ArrayList;

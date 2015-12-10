@@ -68,10 +68,6 @@ public class UserDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_fragment__user_detail);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            userID = extras.getInt("UserID");
-        }
         UserDetailService userDetailService = new UserDetailService(this);
 
         int userID=1;
@@ -182,6 +178,7 @@ public class UserDetailActivity extends AppCompatActivity {
                             finish();
                         }
                     });
+                    return;
                 }
             }
         });

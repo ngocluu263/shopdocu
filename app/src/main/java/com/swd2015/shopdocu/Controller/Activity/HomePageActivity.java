@@ -24,11 +24,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.swd2015.shopdocu.Controller.Adapter.NavListAdapter;
 import com.swd2015.shopdocu.Controller.Fragment.HomePage_Fragment;
 import com.swd2015.shopdocu.Controller.Fragment.LoginFragment;
 import com.swd2015.shopdocu.Controller.Fragment.SearchFragment;
+import com.swd2015.shopdocu.Controller.Service.CartService;
 import com.swd2015.shopdocu.Controller.Service.CustomerService;
 import com.swd2015.shopdocu.Controller.Service.ProductService;
 import com.swd2015.shopdocu.Controller.Util.Object.NavigationItem;
@@ -40,16 +42,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
-    final String greenColor="#7CD175";
     DrawerLayout drawerLayout;
     RelativeLayout drawerPane;
     ListView listNav;
     RelativeLayout profileBox;
-    GridView newProductGrid;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
    public List<NavigationItem> listNavItems;
-    List<Fragment> listFragments;
     public ActionBar actionBar;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public android.support.v7.widget.Toolbar toolbar;
@@ -57,8 +56,6 @@ public class HomePageActivity extends AppCompatActivity {
     public ImageView avartar;
     public TextView userName;
     public String previousActivity;
-    //public android.support.v7.widget.Toolbar toolbar;
-    ProductService productService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +71,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(greenColor)));
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerPane=(RelativeLayout) findViewById(R.id.drawer_pane);
@@ -205,7 +202,7 @@ public class HomePageActivity extends AppCompatActivity {
                     }
                     case 5: { // dang xuat
                         // xoa user khoi db local
-                        new AlertDialog.Builder(loginFragment.getActivity()).
+                        new AlertDialog.Builder(activity).
                                 setMessage("Đăng xuất thành công").
                                 setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
@@ -302,6 +299,9 @@ public class HomePageActivity extends AppCompatActivity {
                         previousActivity = extras.getString("PreviousActivity");
                     }
                     if (previousActivity==null) {
+                        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        //                actionBar.setDisplayShowHomeEnabled(false);
+                        actionBar.setDisplayHomeAsUpEnabled(true);
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.main, new HomePage_Fragment()).commit();
@@ -342,6 +342,7 @@ public class HomePageActivity extends AppCompatActivity {
                 }
                 //cart icon
                 case 1:{
+                    final Activity that = this;
                     progressDialog = ProgressDialog.show(this,
                                         getResources().getString(R.string.progress_dialog_infor),
                                         getResources().getString(R.string.progress_dialog_msg));
@@ -353,10 +354,10 @@ public class HomePageActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        CartService cartService = new CartService(this);
-                    if(cartService.cartHasProduct()) {
-                        Intent intent = new Intent(this, CartActivity.class);
-                        startActivity(intent);
+                                        CartService cartService = new CartService(that);
+                                if(cartService.cartHasProduct()) {
+                                Intent intent = new Intent(that, CartActivity.class);
+                                startActivity(intent);
                     } else {
                         Toast.makeText(getBaseContext(), getResources().getText(R.string.cart_has_no_product), Toast.LENGTH_SHORT).show();
                     }

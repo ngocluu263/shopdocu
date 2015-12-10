@@ -1,8 +1,10 @@
 package com.swd2015.shopdocu.Controller.Service;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -71,6 +73,41 @@ public class ProductService {
 
     public ProductService(android.support.v4.app.Fragment supportv4Fragment) {
         this.supportv4Fragment = supportv4Fragment;
+    }
+
+    public void connectionError(){
+        if (this.activity != null) {
+            new AlertDialog.Builder(activity).
+                    setMessage("Xin hãy kiểm tra lại kết nối của bạn!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).
+                    show();
+        }else if(fragment != null) {
+            new AlertDialog.Builder(fragment.getActivity()).
+                    setMessage("Xin hãy kiểm tra lại kết nối của bạn!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).
+                    show();
+        } else if(supportv4Fragment != null) {
+            new AlertDialog.Builder(fragment.getActivity()).
+                    setMessage("Xin hãy kiểm tra lại kết nối của bạn!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).
+                    show();
+        }
+
     }
 
     public ProductService(BaseAdapter baseAdapter) {
@@ -183,7 +220,7 @@ public class ProductService {
                             searchFragment.searchResultGridView.setAdapter(
                                     new ShowSearchedResultAdapter(searchFragment.getActivity()
                                             .getApplicationContext(),
-                                            productList));
+                                            productList, searchFragment.getActivity() ));
                         } else {
                             searchFragment.productFoundResult.setVisibility(View.INVISIBLE);
                             searchFragment.productNotFoundTV_1.setText(R.string.product_not_found_1);

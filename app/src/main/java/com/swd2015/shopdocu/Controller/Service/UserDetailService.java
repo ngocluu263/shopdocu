@@ -1,6 +1,7 @@
 package com.swd2015.shopdocu.Controller.Service;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,22 @@ public class UserDetailService {
         JSONUserDetailTask jsonTask = new JSONUserDetailTask(this, JSONTask.GET_USER_DETAIL, ID);
         jsonTask.execute();
     }
+
+    public void connectionError(){
+        if (this.activity != null) {
+            new AlertDialog.Builder(activity).
+                    setMessage("Xin hãy kiểm tra lại kết nối của bạn!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).
+                    show();
+        }
+
+    }
+
 
     public void setUserDetail(JSON_UserDetail userDetail){
         switch (activity.getClass().getSimpleName()){

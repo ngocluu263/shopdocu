@@ -33,6 +33,9 @@ public class JSONProductTask extends JSONParser {
 
     @Override
     protected void onPostExecute(String json) {
+        if(json == null || json.trim().length() == 0){
+            productService.connectionError();
+        }
         Gson gson = new Gson();
         switch (this.API){
             case GET_ALL_PRODUCT:
@@ -61,4 +64,6 @@ public class JSONProductTask extends JSONParser {
                 break;
         }
     }
+
+
 }

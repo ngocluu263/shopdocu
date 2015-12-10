@@ -2,6 +2,7 @@ package com.swd2015.shopdocu.Controller.Fragment;
 
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+
 import com.cloudinary.Cloudinary;
 import com.cloudinary.android.Utils;
 import com.swd2015.shopdocu.Controller.JSON.JSONObject.JSONRequestSellObject;
@@ -55,6 +58,7 @@ public class RequestSellCustomerFragment extends Fragment {
     public      static int                  categoryID;
     public      static Uri                  imageUri;
     public      static AlertDialog.Builder  showMsgBuilder;
+    public static ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,9 +71,14 @@ public class RequestSellCustomerFragment extends Fragment {
         customerEmailEditText = (EditText) view.findViewById(R.id.input_customer_email);
         customerPhoneNumberEditText = (EditText) view.findViewById(R.id.input_customer_phone_number);
 
+        customerID = 4;
+        Bundle extras = getArguments();
+        if (extras != null) {
+            customerID = extras.getInt("UserID");
+        }
         //Call service and get customer information to set in view
         CustomerService customerService = new CustomerService(this);
-        customerService.getCustomerById(55);
+        customerService.getCustomerById(customerID);
 
         final PurchasedOrderService purchasedOrderService = new PurchasedOrderService(this);
         requestSellButton = (Button) view.findViewById(R.id.request_sell_button);
@@ -91,7 +100,6 @@ public class RequestSellCustomerFragment extends Fragment {
                 // Button Confirm request sell -> save Purchased Order to Database
                 comfirmRSBuilder.setNegativeButton(R.string.confirm_rs_button, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        customerID = 4;
                         employeeID = 3;
 
                         // Get customer information from view
@@ -134,11 +142,26 @@ public class RequestSellCustomerFragment extends Fragment {
                                     categoryID                              // Category ID
                             );
 
-                            JSONRequestSellObject jsonRequestSellObject = new
+                            final JSONRequestSellObject jsonRequestSellObject = new
                                                     JSONRequestSellObject(purchasedOrder,imageList);
 
                             // Insert Purchased Order do Database
-                            purchasedOrderService.requestSell(jsonRequestSellObject);
+                            progressDialog = ProgressDialog.show(getActivity(), "Thông tin", " Vui lòng chờ!");
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run()
+                                {
+                                    try{
+                                        purchasedOrderService.requestSell(jsonRequestSellObject);
+                                        Thread.sleep(5000);
+//                                        progressDialog.dismiss();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }).start();
+
+
 
                         }
                     }

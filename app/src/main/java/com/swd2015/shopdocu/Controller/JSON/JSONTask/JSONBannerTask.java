@@ -23,6 +23,9 @@ public class JSONBannerTask extends JSONParser {
 
     @Override
     protected void onPostExecute(String json) {
+        if(json == null || json.trim().length() == 0){
+            bannerService.connectionError();
+        }
         Gson gson = new Gson();
         switch (this.API){
             case GET_ALL_BANNER:

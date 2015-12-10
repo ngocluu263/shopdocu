@@ -29,6 +29,9 @@ public class JSONPostTask extends JSONParserPost {
 
     @Override
     protected void onPostExecute(String json) {
+        if(json == null || json.trim().length() == 0){
+            customerService.connectionError();
+        }
         Gson gson = new Gson();
         switch (this.API){
             case CHECK_LOGIN:
